@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 Public Class FrmMain
 
     Private frmC As FrmCIPM
+    Private frmD As FrmDataBase
     Private mov As Boolean = False
     Private movx As Integer = 0
     Private movy As Integer = 0
@@ -49,5 +50,11 @@ Public Class FrmMain
 
         mov = False
 
+    End Sub
+
+    Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
+        frmD = New FrmDataBase
+        frmD.MdiParent = Me
+        frmD.Show()
     End Sub
 End Class

@@ -106,12 +106,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cement.Designer.vb">
+    <Compile Include="CIPM.vb" />
+    <Compile Include="DataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Cement.xsd</DependentUpon>
+      <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CIPM.vb" />
+    <Compile Include="FrmDataBase.Designer.vb">
+      <DependentUpon>FrmDataBase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDataBase.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmCIPM.Designer.vb">
       <DependentUpon>FrmCIPM.vb</DependentUpon>
     </Compile>
@@ -143,6 +149,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FrmDataBase.resx">
+      <DependentUpon>FrmDataBase.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCIPM.resx">
       <DependentUpon>FrmCIPM.vb</DependentUpon>
     </EmbeddedResource>
@@ -160,18 +169,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Cement.xsc">
-      <DependentUpon>Cement.xsd</DependentUpon>
+    <None Include="DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
     </None>
-    <None Include="Cement.xsd">
+    <None Include="DataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Cement.Designer.vb</LastGenOutput>
+      <LastGenOutput>DataSet.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Cement.xss">
-      <DependentUpon>Cement.xsd</DependentUpon>
+    <None Include="DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
     </None>
-    <None Include="EcoConcrete_TemporaryKey.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -197,6 +205,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\UHPC_1.tif" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Materials.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -204,7 +215,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Materials.mdf</DependentUpon>
     </Content>
-    <None Include="Resources\UHPC_1.tif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -265,6 +265,8 @@ Partial Class FrmCIPM
         'LabelPHImin
         '
         Me.LabelPHImin.AutoSize = True
+        Me.LabelPHImin.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPHImin.ForeColor = System.Drawing.Color.Orange
         Me.LabelPHImin.Location = New System.Drawing.Point(193, 412)
         Me.LabelPHImin.Name = "LabelPHImin"
         Me.LabelPHImin.Size = New System.Drawing.Size(0, 14)

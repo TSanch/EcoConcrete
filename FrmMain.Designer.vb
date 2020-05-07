@@ -32,6 +32,7 @@ Partial Class FrmMain
         Me.ManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VersionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         MenuStrip1 = New System.Windows.Forms.MenuStrip()
         MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -61,11 +62,12 @@ Partial Class FrmMain
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(98, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'DatabaseToolStripMenuItem
         '
+        Me.DatabaseToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem})
         Me.DatabaseToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.DatabaseToolStripMenuItem.Name = "DatabaseToolStripMenuItem"
         Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(83, 20)
@@ -113,6 +115,12 @@ Partial Class FrmMain
         Me.Panel1.Size = New System.Drawing.Size(21, 500)
         Me.Panel1.TabIndex = 2
         '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -143,4 +151,5 @@ Partial Class FrmMain
     Friend WithEvents VersionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CIPMToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
 End Class
