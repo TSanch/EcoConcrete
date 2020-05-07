@@ -112,12 +112,6 @@
       <DependentUpon>Cement.xsd</DependentUpon>
     </Compile>
     <Compile Include="CIPM.vb" />
-    <Compile Include="frmDatabase.Designer.vb">
-      <DependentUpon>frmDatabase.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmDatabase.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FrmCIPM.Designer.vb">
       <DependentUpon>FrmCIPM.vb</DependentUpon>
     </Compile>
@@ -149,9 +143,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmDatabase.resx">
-      <DependentUpon>frmDatabase.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmCIPM.resx">
       <DependentUpon>FrmCIPM.vb</DependentUpon>
     </EmbeddedResource>
@@ -163,9 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +204,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Materials.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\UHPC_1.tif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

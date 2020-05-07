@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Windows.Forms.DataVisualization.Charting
 
-Public Class FrmDatabase
+Public Class FrmCIPM
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
     End Sub

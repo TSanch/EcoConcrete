@@ -2,12 +2,13 @@
 Imports System.Data.SqlClient
 Public Class FrmMain
 
-    Private frmC As New FrmDatabase
+    Private frmC As FrmCIPM
     Private mov As Boolean = False
     Private movx As Integer = 0
     Private movy As Integer = 0
 
     Private Sub CIPMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CIPMToolStripMenuItem.Click
+        frmC = New FrmCIPM
         frmC.MdiParent = Me
         frmC.Show()
     End Sub

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="BackColor" Type="System.Drawing.Color" Scope="Application">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">OldLace</Value>
     </Setting>
     <Setting Name="MaterialsConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;

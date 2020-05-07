@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmDatabase
+Partial Class FrmCIPM
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -70,7 +70,7 @@ Partial Class FrmDatabase
         '
         'NumM
         '
-        Me.NumM.Location = New System.Drawing.Point(108, 49)
+        Me.NumM.Location = New System.Drawing.Point(161, 84)
         Me.NumM.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumM.Name = "NumM"
         Me.NumM.Size = New System.Drawing.Size(63, 22)
@@ -78,7 +78,7 @@ Partial Class FrmDatabase
         '
         'Numn
         '
-        Me.Numn.Location = New System.Drawing.Point(108, 77)
+        Me.Numn.Location = New System.Drawing.Point(161, 112)
         Me.Numn.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numn.Name = "Numn"
         Me.Numn.Size = New System.Drawing.Size(63, 22)
@@ -86,7 +86,7 @@ Partial Class FrmDatabase
         '
         'Numwa
         '
-        Me.Numwa.Location = New System.Drawing.Point(108, 123)
+        Me.Numwa.Location = New System.Drawing.Point(161, 165)
         Me.Numwa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwa.Name = "Numwa"
         Me.Numwa.Size = New System.Drawing.Size(63, 22)
@@ -94,7 +94,7 @@ Partial Class FrmDatabase
         '
         'Numwb
         '
-        Me.Numwb.Location = New System.Drawing.Point(108, 151)
+        Me.Numwb.Location = New System.Drawing.Point(161, 193)
         Me.Numwb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwb.Name = "Numwb"
         Me.Numwb.Size = New System.Drawing.Size(63, 22)
@@ -103,7 +103,8 @@ Partial Class FrmDatabase
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(48, 49)
+        Me.Label1.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label1.Location = New System.Drawing.Point(101, 84)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(17, 14)
@@ -113,7 +114,8 @@ Partial Class FrmDatabase
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(48, 79)
+        Me.Label2.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label2.Location = New System.Drawing.Point(101, 114)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(15, 14)
@@ -123,7 +125,8 @@ Partial Class FrmDatabase
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(48, 125)
+        Me.Label3.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label3.Location = New System.Drawing.Point(101, 167)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(26, 14)
@@ -133,7 +136,8 @@ Partial Class FrmDatabase
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(48, 153)
+        Me.Label4.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label4.Location = New System.Drawing.Point(101, 195)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(26, 14)
@@ -143,7 +147,7 @@ Partial Class FrmDatabase
         'NumCa
         '
         Me.NumCa.DecimalPlaces = 1
-        Me.NumCa.Location = New System.Drawing.Point(108, 180)
+        Me.NumCa.Location = New System.Drawing.Point(161, 246)
         Me.NumCa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCa.Name = "NumCa"
         Me.NumCa.Size = New System.Drawing.Size(63, 22)
@@ -152,7 +156,7 @@ Partial Class FrmDatabase
         'NumCb
         '
         Me.NumCb.DecimalPlaces = 1
-        Me.NumCb.Location = New System.Drawing.Point(108, 208)
+        Me.NumCb.Location = New System.Drawing.Point(161, 274)
         Me.NumCb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCb.Name = "NumCb"
         Me.NumCb.Size = New System.Drawing.Size(63, 22)
@@ -160,7 +164,7 @@ Partial Class FrmDatabase
         '
         'Numdc
         '
-        Me.Numdc.Location = New System.Drawing.Point(108, 236)
+        Me.Numdc.Location = New System.Drawing.Point(161, 325)
         Me.Numdc.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numdc.Name = "Numdc"
         Me.Numdc.Size = New System.Drawing.Size(63, 22)
@@ -169,7 +173,8 @@ Partial Class FrmDatabase
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(48, 182)
+        Me.Label5.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label5.Location = New System.Drawing.Point(101, 248)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(24, 14)
@@ -179,7 +184,8 @@ Partial Class FrmDatabase
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(48, 210)
+        Me.Label6.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label6.Location = New System.Drawing.Point(101, 276)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(24, 14)
@@ -189,7 +195,8 @@ Partial Class FrmDatabase
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(48, 238)
+        Me.Label7.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label7.Location = New System.Drawing.Point(101, 327)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(21, 14)
@@ -199,50 +206,57 @@ Partial Class FrmDatabase
         'ButtonCIPM
         '
         Me.ButtonCIPM.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonCIPM.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue
+        Me.ButtonCIPM.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
         Me.ButtonCIPM.FlatAppearance.BorderSize = 2
-        Me.ButtonCIPM.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonCIPM.Location = New System.Drawing.Point(71, 274)
+        Me.ButtonCIPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCIPM.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCIPM.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonCIPM.Location = New System.Drawing.Point(71, 366)
         Me.ButtonCIPM.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ButtonCIPM.Name = "ButtonCIPM"
-        Me.ButtonCIPM.Size = New System.Drawing.Size(100, 25)
+        Me.ButtonCIPM.Size = New System.Drawing.Size(185, 30)
         Me.ButtonCIPM.TabIndex = 14
         Me.ButtonCIPM.Text = "CIPM"
         Me.ButtonCIPM.UseVisualStyleBackColor = True
         '
         'Chart1
         '
+        Me.Chart1.BackColor = System.Drawing.Color.OldLace
         Me.Chart1.BorderlineColor = System.Drawing.Color.Black
         ChartArea1.Name = "ChartArea1"
         Me.Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(198, 30)
+        Me.Chart1.Location = New System.Drawing.Point(420, 43)
         Me.Chart1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Chart1.Name = "Chart1"
-        Me.Chart1.Size = New System.Drawing.Size(577, 269)
+        Me.Chart1.Size = New System.Drawing.Size(546, 269)
         Me.Chart1.TabIndex = 15
         Me.Chart1.Text = "Graph"
         '
         'ButtonExit
         '
+        Me.ButtonExit.BackColor = System.Drawing.Color.Transparent
         Me.ButtonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonExit.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue
+        Me.ButtonExit.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButtonExit.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
         Me.ButtonExit.FlatAppearance.BorderSize = 2
-        Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonExit.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonExit.ForeColor = System.Drawing.Color.DarkRed
-        Me.ButtonExit.Location = New System.Drawing.Point(675, 372)
+        Me.ButtonExit.Location = New System.Drawing.Point(0, 462)
         Me.ButtonExit.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ButtonExit.Name = "ButtonExit"
-        Me.ButtonExit.Size = New System.Drawing.Size(100, 25)
+        Me.ButtonExit.Size = New System.Drawing.Size(1000, 38)
         Me.ButtonExit.TabIndex = 16
-        Me.ButtonExit.Text = "Exit"
-        Me.ButtonExit.UseVisualStyleBackColor = True
+        Me.ButtonExit.Text = "EXIT"
+        Me.ButtonExit.UseVisualStyleBackColor = False
         '
         'LabelRes
         '
         Me.LabelRes.AutoSize = True
-        Me.LabelRes.Location = New System.Drawing.Point(292, 372)
+        Me.LabelRes.ForeColor = System.Drawing.Color.DarkOrange
+        Me.LabelRes.Location = New System.Drawing.Point(68, 412)
         Me.LabelRes.Name = "LabelRes"
         Me.LabelRes.Size = New System.Drawing.Size(119, 14)
         Me.LabelRes.TabIndex = 17
@@ -251,7 +265,7 @@ Partial Class FrmDatabase
         'LabelPHImin
         '
         Me.LabelPHImin.AutoSize = True
-        Me.LabelPHImin.Location = New System.Drawing.Point(417, 372)
+        Me.LabelPHImin.Location = New System.Drawing.Point(193, 412)
         Me.LabelPHImin.Name = "LabelPHImin"
         Me.LabelPHImin.Size = New System.Drawing.Size(0, 14)
         Me.LabelPHImin.TabIndex = 18
@@ -260,7 +274,7 @@ Partial Class FrmDatabase
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label8.Location = New System.Drawing.Point(437, 312)
+        Me.Label8.Location = New System.Drawing.Point(635, 315)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(18, 17)
@@ -269,7 +283,7 @@ Partial Class FrmDatabase
         '
         'NumPhiStep
         '
-        Me.NumPhiStep.Location = New System.Drawing.Point(483, 321)
+        Me.NumPhiStep.Location = New System.Drawing.Point(681, 324)
         Me.NumPhiStep.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPhiStep.Name = "NumPhiStep"
         Me.NumPhiStep.Size = New System.Drawing.Size(63, 22)
@@ -279,7 +293,8 @@ Partial Class FrmDatabase
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label9.Location = New System.Drawing.Point(382, 371)
+        Me.Label9.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label9.Location = New System.Drawing.Point(158, 411)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(18, 17)
@@ -289,7 +304,7 @@ Partial Class FrmDatabase
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(415, 329)
+        Me.Label10.Location = New System.Drawing.Point(613, 332)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(61, 14)
         Me.Label10.TabIndex = 22
@@ -297,27 +312,27 @@ Partial Class FrmDatabase
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.Panel1.BackColor = System.Drawing.Color.Orange
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(21, 409)
+        Me.Panel1.Size = New System.Drawing.Size(21, 462)
         Me.Panel1.TabIndex = 23
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.Panel2.BackColor = System.Drawing.Color.Orange
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.ForeColor = System.Drawing.Color.Green
         Me.Panel2.Location = New System.Drawing.Point(21, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(767, 24)
+        Me.Panel2.Size = New System.Drawing.Size(979, 37)
         Me.Panel2.TabIndex = 24
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(235, 329)
+        Me.Label11.Location = New System.Drawing.Point(433, 332)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(28, 14)
         Me.Label11.TabIndex = 26
@@ -327,7 +342,7 @@ Partial Class FrmDatabase
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label12.Location = New System.Drawing.Point(235, 312)
+        Me.Label12.Location = New System.Drawing.Point(433, 315)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(18, 17)
@@ -337,7 +352,7 @@ Partial Class FrmDatabase
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(652, 329)
+        Me.Label13.Location = New System.Drawing.Point(850, 332)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(32, 14)
         Me.Label13.TabIndex = 28
@@ -347,7 +362,7 @@ Partial Class FrmDatabase
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label14.Location = New System.Drawing.Point(645, 312)
+        Me.Label14.Location = New System.Drawing.Point(843, 315)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(18, 17)
@@ -357,7 +372,7 @@ Partial Class FrmDatabase
         'NumPHImin
         '
         Me.NumPHImin.DecimalPlaces = 1
-        Me.NumPHImin.Location = New System.Drawing.Point(281, 321)
+        Me.NumPHImin.Location = New System.Drawing.Point(479, 324)
         Me.NumPHImin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHImin.Name = "NumPHImin"
         Me.NumPHImin.Size = New System.Drawing.Size(63, 22)
@@ -366,7 +381,7 @@ Partial Class FrmDatabase
         'NumPHIMax
         '
         Me.NumPHIMax.DecimalPlaces = 1
-        Me.NumPHIMax.Location = New System.Drawing.Point(691, 321)
+        Me.NumPHIMax.Location = New System.Drawing.Point(889, 324)
         Me.NumPHIMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHIMax.Name = "NumPHIMax"
         Me.NumPHIMax.Size = New System.Drawing.Size(63, 22)
@@ -379,7 +394,7 @@ Partial Class FrmDatabase
         Me.AutoSize = Global.EcoConcrete.My.MySettings.Default.Autosize
         Me.BackColor = Global.EcoConcrete.My.MySettings.Default.BackColor
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(788, 409)
+        Me.ClientSize = New System.Drawing.Size(1000, 500)
         Me.ControlBox = False
         Me.Controls.Add(Me.NumPHIMax)
         Me.Controls.Add(Me.NumPHImin)

@@ -65,7 +65,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("White")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("OldLace")>  _
         Public ReadOnly Property BackColor() As Global.System.Drawing.Color
             Get
                 Return CType(Me("BackColor"),Global.System.Drawing.Color)

@@ -38,12 +38,12 @@ Partial Class FrmMain
         '
         'MenuStrip1
         '
-        MenuStrip1.BackColor = System.Drawing.Color.SteelBlue
+        MenuStrip1.BackColor = System.Drawing.Color.DarkOrange
         MenuStrip1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProjectToolStripMenuItem, Me.DatabaseToolStripMenuItem, Me.OptmisationToolStripMenuItem, Me.ToolStripMenuItem1})
         MenuStrip1.Location = New System.Drawing.Point(21, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New System.Drawing.Size(779, 24)
+        MenuStrip1.Size = New System.Drawing.Size(979, 24)
         MenuStrip1.TabIndex = 0
         MenuStrip1.Text = "MenuStrip1"
         AddHandler MenuStrip1.MouseDown, AddressOf Me.MenuStrip1_MouseDown
@@ -53,61 +53,64 @@ Partial Class FrmMain
         'ProjectToolStripMenuItem
         '
         Me.ProjectToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.ProjectToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.ProjectToolStripMenuItem.Name = "ProjectToolStripMenuItem"
-        Me.ProjectToolStripMenuItem.Size = New System.Drawing.Size(72, 20)
+        Me.ProjectToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
         Me.ProjectToolStripMenuItem.Text = "Project"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(104, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'DatabaseToolStripMenuItem
         '
+        Me.DatabaseToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.DatabaseToolStripMenuItem.Name = "DatabaseToolStripMenuItem"
-        Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(89, 20)
+        Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(83, 20)
         Me.DatabaseToolStripMenuItem.Text = "Database"
         '
         'OptmisationToolStripMenuItem
         '
         Me.OptmisationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CIPMToolStripMenuItem})
+        Me.OptmisationToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.OptmisationToolStripMenuItem.Name = "OptmisationToolStripMenuItem"
-        Me.OptmisationToolStripMenuItem.Size = New System.Drawing.Size(113, 20)
+        Me.OptmisationToolStripMenuItem.Size = New System.Drawing.Size(103, 20)
         Me.OptmisationToolStripMenuItem.Text = "Optimisation"
         '
         'CIPMToolStripMenuItem
         '
         Me.CIPMToolStripMenuItem.Name = "CIPMToolStripMenuItem"
-        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CIPMToolStripMenuItem.Text = "CIPM"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualToolStripMenuItem, Me.VersionToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(28, 20)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(27, 20)
         Me.ToolStripMenuItem1.Text = "?"
         '
         'ManualToolStripMenuItem
         '
         Me.ManualToolStripMenuItem.Name = "ManualToolStripMenuItem"
-        Me.ManualToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.ManualToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
         Me.ManualToolStripMenuItem.Text = "Manual"
         '
         'VersionToolStripMenuItem
         '
         Me.VersionToolStripMenuItem.Name = "VersionToolStripMenuItem"
-        Me.VersionToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.VersionToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
         Me.VersionToolStripMenuItem.Text = "Version"
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.SteelBlue
+        Me.Panel1.BackColor = System.Drawing.Color.DarkOrange
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(21, 420)
+        Me.Panel1.Size = New System.Drawing.Size(21, 500)
         Me.Panel1.TabIndex = 2
         '
         'FrmMain
@@ -115,15 +118,16 @@ Partial Class FrmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gainsboro
-        Me.ClientSize = New System.Drawing.Size(800, 420)
+        Me.BackgroundImage = Global.EcoConcrete.My.Resources.Resources.UHPC_1
+        Me.ClientSize = New System.Drawing.Size(1000, 500)
         Me.Controls.Add(MenuStrip1)
         Me.Controls.Add(Me.Panel1)
-        Me.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ForeColor = System.Drawing.Color.DarkOrange
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MainMenuStrip = MenuStrip1
         Me.Name = "FrmMain"
         Me.Text = "EcoConcrete"
-        Me.TransparencyKey = System.Drawing.Color.Red
+        Me.TransparencyKey = System.Drawing.Color.Transparent
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
