@@ -24,12 +24,8 @@ Partial Class FrmCIPM
     Private Sub InitializeComponent()
         Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
         Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Me.NumM = New System.Windows.Forms.NumericUpDown()
-        Me.Numn = New System.Windows.Forms.NumericUpDown()
         Me.Numwa = New System.Windows.Forms.NumericUpDown()
         Me.Numwb = New System.Windows.Forms.NumericUpDown()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.NumCa = New System.Windows.Forms.NumericUpDown()
@@ -55,8 +51,8 @@ Partial Class FrmCIPM
         Me.Label14 = New System.Windows.Forms.Label()
         Me.NumPHImin = New System.Windows.Forms.NumericUpDown()
         Me.NumPHIMax = New System.Windows.Forms.NumericUpDown()
-        CType(Me.NumM, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Numn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ComboBoxMat = New System.Windows.Forms.ComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         CType(Me.Numwa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Numwb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumCa, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,22 +63,6 @@ Partial Class FrmCIPM
         CType(Me.NumPHImin, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPHIMax, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'NumM
-        '
-        Me.NumM.Location = New System.Drawing.Point(161, 84)
-        Me.NumM.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.NumM.Name = "NumM"
-        Me.NumM.Size = New System.Drawing.Size(63, 22)
-        Me.NumM.TabIndex = 0
-        '
-        'Numn
-        '
-        Me.Numn.Location = New System.Drawing.Point(161, 112)
-        Me.Numn.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.Numn.Name = "Numn"
-        Me.Numn.Size = New System.Drawing.Size(63, 22)
-        Me.Numn.TabIndex = 1
         '
         'Numwa
         '
@@ -99,28 +79,6 @@ Partial Class FrmCIPM
         Me.Numwb.Name = "Numwb"
         Me.Numwb.Size = New System.Drawing.Size(63, 22)
         Me.Numwb.TabIndex = 3
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label1.Location = New System.Drawing.Point(101, 84)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(17, 14)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "M"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label2.Location = New System.Drawing.Point(101, 114)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(15, 14)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "n"
         '
         'Label3
         '
@@ -389,6 +347,23 @@ Partial Class FrmCIPM
         Me.NumPHIMax.Size = New System.Drawing.Size(63, 22)
         Me.NumPHIMax.TabIndex = 30
         '
+        'ComboBoxMat
+        '
+        Me.ComboBoxMat.FormattingEnabled = True
+        Me.ComboBoxMat.Location = New System.Drawing.Point(161, 59)
+        Me.ComboBoxMat.Name = "ComboBoxMat"
+        Me.ComboBoxMat.Size = New System.Drawing.Size(121, 22)
+        Me.ComboBoxMat.TabIndex = 50
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(77, 62)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(66, 14)
+        Me.Label15.TabIndex = 49
+        Me.Label15.Text = "Material :"
+        '
         'FrmCIPM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -398,6 +373,8 @@ Partial Class FrmCIPM
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1000, 500)
         Me.ControlBox = False
+        Me.Controls.Add(Me.ComboBoxMat)
+        Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.NumPHIMax)
         Me.Controls.Add(Me.NumPHImin)
         Me.Controls.Add(Me.Label13)
@@ -423,12 +400,8 @@ Partial Class FrmCIPM
         Me.Controls.Add(Me.NumCa)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Numwb)
         Me.Controls.Add(Me.Numwa)
-        Me.Controls.Add(Me.Numn)
-        Me.Controls.Add(Me.NumM)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.DodgerBlue
@@ -440,8 +413,6 @@ Partial Class FrmCIPM
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "CIPM"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.NumM, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Numn, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Numwa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Numwb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumCa, System.ComponentModel.ISupportInitialize).EndInit()
@@ -455,13 +426,8 @@ Partial Class FrmCIPM
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents NumM As NumericUpDown
-    Friend WithEvents Numn As NumericUpDown
     Friend WithEvents Numwa As NumericUpDown
     Friend WithEvents Numwb As NumericUpDown
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents NumCa As NumericUpDown
@@ -487,4 +453,6 @@ Partial Class FrmCIPM
     Friend WithEvents Label14 As Label
     Friend WithEvents NumPHImin As NumericUpDown
     Friend WithEvents NumPHIMax As NumericUpDown
+    Friend WithEvents ComboBoxMat As ComboBox
+    Friend WithEvents Label15 As Label
 End Class

@@ -1,30 +1,46 @@
 ﻿Imports System.IO
 Imports System.Windows.Forms.DataVisualization.Charting
+Imports System.Data.SqlClient
+Imports System.Data.DataRow
+Imports System.Xml
 
 Public Class FrmCIPM
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
-    End Sub
+    Dim Connexion As New SqlConnection
+    Dim Mat As New MaterialsData
+    Dim Command As New SqlCommand
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+    Dim M As Integer = 1
 
-    End Sub
-
-    Private Sub NumericUpDown7_ValueChanged(sender As Object, e As EventArgs) Handles Numdc.ValueChanged
-
-    End Sub
-
-    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
-
-    End Sub
 
     Private Sub FrmCIPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         LabelRes.Hide()
         Label9.Hide()
 
-        NumM.Value = 1
-        Numn.Value = 8
+        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\EcoConcrete\Materials.mdf;Integrated Security=True"
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Dim Request = "SELECT * FROM MaterialsList"
+        Command.Connection = Connexion
+        Command.CommandText = Request
+        Command.ExecuteNonQuery()
+
+
+        Dim DAdapter = New SqlDataAdapter(Command)
+        DAdapter.Fill(Mat, "MaterialsList")
+
+        ComboBoxMat.DataSource = Mat.Tables("MaterialsList")
+        ComboBoxMat.DisplayMember = "Name"
+        ComboBoxMat.ValueMember = "Id"
+
         Numwa.Value = 1
         Numwb.Value = 1
         NumCa.Value = 1.5
@@ -40,29 +56,48 @@ Public Class FrmCIPM
 
     Private Sub ButtonCIPM_Click(sender As Object, e As EventArgs) Handles ButtonCIPM.Click
 
-        Dim r(,) As Double
-        Dim alpha(,) As Double
-        Dim Kval As Double
+        Dim Kval As Double = 12.2
 
         InitGraphs()
 
-        r = {{0.04, 0.44, 6.16, 24.98, 37.23, 25.43, 5.69, 0.05}}
-        For i As Integer = 0 To Numn.Value - 1
-            r(0, i) /= 100
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim MatName As String = oData.Row("Name").ToString()
+
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Dim Request = "SELECT * FROM " + MatName
+        Command.CommandText = Request
+        Command.ExecuteNonQuery()
+
+        Dim DAdapter As New SqlDataAdapter(Command)
+        DAdapter.Fill(Mat, MatName)
+
+        Dim MatTable()() As Object = Mat.Tables(MatName).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
+        Dim n = MatTable.Count()
+
+        Dim r(M - 1, n - 1) As Double
+        For i As Integer = 0 To n - 1
+            r(0, i) = MatTable(i)(2) / 100
         Next
 
-        alpha = New Double(NumM.Value - 1, Numn.Value - 1) {}
-        For i As Integer = 0 To (NumM.Value - 1)
-            For j As Integer = 0 To (Numn.Value - 1)
-                alpha(i, j) = 0.385
-            Next
+        Dim alpha(M - 1, n - 1) As Double
+        For i As Integer = 0 To n - 1
+            alpha(0, i) = MatTable(i)(3)
         Next
 
-        Kval = 12.2
+        Dim d(n - 1) As Double
+        For i As Integer = 0 To n - 1
+            d(i) = MatTable(i)(4)
+        Next
 
-        Dim d = {60.7, 28.3, 13.2, 6.1, 2.9, 1.3, 0.6, 0.3}
-
-        Dim model As New CIPM(NumM.Value, Numn.Value, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
+        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
 
         Dim err As Double
         Dim errmin As Double = 100
@@ -125,5 +160,6 @@ Public Class FrmCIPM
         Chart1.Series("PlotMin").MarkerSize = 10
         Chart1.Series("PlotMin").ChartType = DataVisualization.Charting.SeriesChartType.Point
     End Sub
+
 
 End Class

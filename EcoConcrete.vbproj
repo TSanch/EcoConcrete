@@ -107,11 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CIPM.vb" />
-    <Compile Include="DataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="FrmDataBase.Designer.vb">
       <DependentUpon>FrmDataBase.vb</DependentUpon>
     </Compile>
@@ -130,6 +125,16 @@
     <Compile Include="FrmMain.Designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaterialsData.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaterialsData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialsDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaterialsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -169,16 +174,27 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataSet.xsc">
-      <DependentUpon>DataSet.xsd</DependentUpon>
+    <None Include="MaterialsData.xsc">
+      <DependentUpon>MaterialsData.xsd</DependentUpon>
     </None>
-    <None Include="DataSet.xsd">
+    <None Include="MaterialsData.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>MaterialsData.Designer.vb</LastGenOutput>
     </None>
-    <None Include="DataSet.xss">
-      <DependentUpon>DataSet.xsd</DependentUpon>
+    <None Include="MaterialsData.xss">
+      <DependentUpon>MaterialsData.xsd</DependentUpon>
+    </None>
+    <None Include="MaterialsDataSet.xsc">
+      <DependentUpon>MaterialsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MaterialsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MaterialsDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MaterialsDataSet.xss">
+      <DependentUpon>MaterialsDataSet.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
