@@ -22,8 +22,8 @@ Partial Class FrmCIPM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Me.Numwa = New System.Windows.Forms.NumericUpDown()
         Me.Numwb = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -53,6 +53,8 @@ Partial Class FrmCIPM
         Me.NumPHIMax = New System.Windows.Forms.NumericUpDown()
         Me.ComboBoxMat = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.ButtonSave = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.Numwa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Numwb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumCa, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +68,7 @@ Partial Class FrmCIPM
         '
         'Numwa
         '
-        Me.Numwa.Location = New System.Drawing.Point(161, 165)
+        Me.Numwa.Location = New System.Drawing.Point(161, 99)
         Me.Numwa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwa.Name = "Numwa"
         Me.Numwa.Size = New System.Drawing.Size(63, 22)
@@ -74,7 +76,7 @@ Partial Class FrmCIPM
         '
         'Numwb
         '
-        Me.Numwb.Location = New System.Drawing.Point(161, 193)
+        Me.Numwb.Location = New System.Drawing.Point(161, 127)
         Me.Numwb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwb.Name = "Numwb"
         Me.Numwb.Size = New System.Drawing.Size(63, 22)
@@ -84,7 +86,7 @@ Partial Class FrmCIPM
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label3.Location = New System.Drawing.Point(101, 167)
+        Me.Label3.Location = New System.Drawing.Point(101, 101)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(26, 14)
@@ -95,7 +97,7 @@ Partial Class FrmCIPM
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label4.Location = New System.Drawing.Point(101, 195)
+        Me.Label4.Location = New System.Drawing.Point(101, 129)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(26, 14)
@@ -105,7 +107,7 @@ Partial Class FrmCIPM
         'NumCa
         '
         Me.NumCa.DecimalPlaces = 1
-        Me.NumCa.Location = New System.Drawing.Point(161, 246)
+        Me.NumCa.Location = New System.Drawing.Point(161, 180)
         Me.NumCa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCa.Name = "NumCa"
         Me.NumCa.Size = New System.Drawing.Size(63, 22)
@@ -114,7 +116,7 @@ Partial Class FrmCIPM
         'NumCb
         '
         Me.NumCb.DecimalPlaces = 1
-        Me.NumCb.Location = New System.Drawing.Point(161, 274)
+        Me.NumCb.Location = New System.Drawing.Point(161, 208)
         Me.NumCb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCb.Name = "NumCb"
         Me.NumCb.Size = New System.Drawing.Size(63, 22)
@@ -122,7 +124,7 @@ Partial Class FrmCIPM
         '
         'Numdc
         '
-        Me.Numdc.Location = New System.Drawing.Point(161, 325)
+        Me.Numdc.Location = New System.Drawing.Point(161, 259)
         Me.Numdc.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numdc.Name = "Numdc"
         Me.Numdc.Size = New System.Drawing.Size(63, 22)
@@ -132,7 +134,7 @@ Partial Class FrmCIPM
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label5.Location = New System.Drawing.Point(101, 248)
+        Me.Label5.Location = New System.Drawing.Point(101, 182)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(24, 14)
@@ -143,7 +145,7 @@ Partial Class FrmCIPM
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label6.Location = New System.Drawing.Point(101, 276)
+        Me.Label6.Location = New System.Drawing.Point(101, 210)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(24, 14)
@@ -154,7 +156,7 @@ Partial Class FrmCIPM
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label7.Location = New System.Drawing.Point(101, 327)
+        Me.Label7.Location = New System.Drawing.Point(101, 261)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(21, 14)
@@ -169,7 +171,7 @@ Partial Class FrmCIPM
         Me.ButtonCIPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonCIPM.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonCIPM.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonCIPM.Location = New System.Drawing.Point(71, 366)
+        Me.ButtonCIPM.Location = New System.Drawing.Point(104, 426)
         Me.ButtonCIPM.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ButtonCIPM.Name = "ButtonCIPM"
         Me.ButtonCIPM.Size = New System.Drawing.Size(185, 30)
@@ -179,12 +181,12 @@ Partial Class FrmCIPM
         '
         'Chart1
         '
-        Me.Chart1.BackColor = System.Drawing.Color.OldLace
+        Me.Chart1.BackColor = System.Drawing.SystemColors.Control
         Me.Chart1.BorderlineColor = System.Drawing.Color.Black
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
-        Legend1.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend1)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend2)
         Me.Chart1.Location = New System.Drawing.Point(420, 43)
         Me.Chart1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Chart1.Name = "Chart1"
@@ -214,7 +216,7 @@ Partial Class FrmCIPM
         '
         Me.LabelRes.AutoSize = True
         Me.LabelRes.ForeColor = System.Drawing.Color.DarkOrange
-        Me.LabelRes.Location = New System.Drawing.Point(68, 412)
+        Me.LabelRes.Location = New System.Drawing.Point(417, 434)
         Me.LabelRes.Name = "LabelRes"
         Me.LabelRes.Size = New System.Drawing.Size(119, 14)
         Me.LabelRes.TabIndex = 17
@@ -225,7 +227,7 @@ Partial Class FrmCIPM
         Me.LabelPHImin.AutoSize = True
         Me.LabelPHImin.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPHImin.ForeColor = System.Drawing.Color.Orange
-        Me.LabelPHImin.Location = New System.Drawing.Point(193, 412)
+        Me.LabelPHImin.Location = New System.Drawing.Point(542, 434)
         Me.LabelPHImin.Name = "LabelPHImin"
         Me.LabelPHImin.Size = New System.Drawing.Size(0, 14)
         Me.LabelPHImin.TabIndex = 18
@@ -254,7 +256,7 @@ Partial Class FrmCIPM
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Symbol", 10.0!)
         Me.Label9.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label9.Location = New System.Drawing.Point(158, 411)
+        Me.Label9.Location = New System.Drawing.Point(507, 433)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(18, 17)
@@ -332,6 +334,7 @@ Partial Class FrmCIPM
         'NumPHImin
         '
         Me.NumPHImin.DecimalPlaces = 1
+        Me.NumPHImin.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
         Me.NumPHImin.Location = New System.Drawing.Point(479, 324)
         Me.NumPHImin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHImin.Name = "NumPHImin"
@@ -341,6 +344,7 @@ Partial Class FrmCIPM
         'NumPHIMax
         '
         Me.NumPHIMax.DecimalPlaces = 1
+        Me.NumPHIMax.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
         Me.NumPHIMax.Location = New System.Drawing.Point(889, 324)
         Me.NumPHIMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHIMax.Name = "NumPHIMax"
@@ -364,15 +368,43 @@ Partial Class FrmCIPM
         Me.Label15.TabIndex = 49
         Me.Label15.Text = "Material :"
         '
+        'ButtonSave
+        '
+        Me.ButtonSave.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ButtonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
+        Me.ButtonSave.FlatAppearance.BorderSize = 2
+        Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSave.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSave.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonSave.Location = New System.Drawing.Point(767, 426)
+        Me.ButtonSave.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ButtonSave.Name = "ButtonSave"
+        Me.ButtonSave.Size = New System.Drawing.Size(185, 30)
+        Me.ButtonSave.TabIndex = 51
+        Me.ButtonSave.Text = "Save   "
+        Me.ButtonSave.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label1.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label1.Location = New System.Drawing.Point(874, 433)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(18, 17)
+        Me.Label1.TabIndex = 52
+        Me.Label1.Text = "F"
+        '
         'FrmCIPM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = Global.EcoConcrete.My.MySettings.Default.Autosize
-        Me.BackColor = Global.EcoConcrete.My.MySettings.Default.BackColor
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1000, 500)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ButtonSave)
         Me.Controls.Add(Me.ComboBoxMat)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.NumPHIMax)
@@ -455,4 +487,6 @@ Partial Class FrmCIPM
     Friend WithEvents NumPHIMax As NumericUpDown
     Friend WithEvents ComboBoxMat As ComboBox
     Friend WithEvents Label15 As Label
+    Friend WithEvents ButtonSave As Button
+    Friend WithEvents Label1 As Label
 End Class

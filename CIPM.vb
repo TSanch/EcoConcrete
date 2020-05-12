@@ -40,8 +40,8 @@ Public Class CIPM
         Ca = Caval
         Cb = Cbval
 
-        a = New Double(n - 1, n - 1) {}
-        b = New Double(n - 1, n - 1) {}
+        ReDim a(n - 1, n - 1)
+        ReDim b(n - 1, n - 1)
 
         Calcab()
 
@@ -84,7 +84,7 @@ Public Class CIPM
 
     End Sub
 
-    Public Function CalcError(ByRef PHI As Double) As Double
+    Public Function CalcError(ByVal PHI As Double) As Double
 
         Dim Kcalc As Double = 0
 

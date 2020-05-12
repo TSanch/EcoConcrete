@@ -6,18 +6,42 @@ Imports System.Xml
 
 Public Class FrmCIPM
 
-    Dim Connexion As New SqlConnection
-    Dim Mat As New MaterialsData
-    Dim Command As New SqlCommand
+    Dim Connexion As SqlConnection
+    Dim DAdapter As SqlDataAdapter
+    Dim Command As SqlCommand
+
+    Dim Mat As MaterialsData
+
+    Dim MatName As String
+    Dim MatNameOld As String = ""
+
+    Public r(,) As Double
+    Public alpha(,) As Double
+    Public d() As Double
 
     Dim M As Integer = 1
+    Dim n As Integer
 
+    Dim PHIMin
 
     Private Sub FrmCIPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         LabelRes.Hide()
         Label9.Hide()
 
+        Chart1.Titles.Add("Model Values")
+        Chart1.ChartAreas.Clear()
+        Chart1.ChartAreas.Add("Default")
+        With Chart1.ChartAreas("Default")
+            .AxisX.Title = "Compacity [.]"
+            .AxisX.MajorGrid.LineColor = Color.SkyBlue
+            .AxisY.Title = "Malax Energy [.]"
+            .AxisY.Maximum = NumPHImin.Value
+            .AxisY.Maximum = NumPHIMax.Value
+            .AxisY.MajorGrid.LineColor = Color.SkyBlue
+        End With
+
+        Connexion = New SqlConnection
         Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\EcoConcrete\Materials.mdf;Integrated Security=True"
         If Connexion.State = ConnectionState.Open Then
             Connexion.Close()
@@ -29,12 +53,14 @@ Public Class FrmCIPM
         End Try
 
         Dim Request = "SELECT * FROM MaterialsList"
+        Command = New SqlCommand
         Command.Connection = Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()
 
+        Mat = New MaterialsData
 
-        Dim DAdapter = New SqlDataAdapter(Command)
+        DAdapter = New SqlDataAdapter(Command)
         DAdapter.Fill(Mat, "MaterialsList")
 
         ComboBoxMat.DataSource = Mat.Tables("MaterialsList")
@@ -52,6 +78,12 @@ Public Class FrmCIPM
 
         Chart1.Hide()
 
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        MatName = oData.Row("Name").ToString()
+
+        Mat = New MaterialsData
+        LoadData()
+
     End Sub
 
     Private Sub ButtonCIPM_Click(sender As Object, e As EventArgs) Handles ButtonCIPM.Click
@@ -60,48 +92,10 @@ Public Class FrmCIPM
 
         InitGraphs()
 
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        Dim MatName As String = oData.Row("Name").ToString()
-
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
-        End If
-        Try
-            Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Request = "SELECT * FROM " + MatName
-        Command.CommandText = Request
-        Command.ExecuteNonQuery()
-
-        Dim DAdapter As New SqlDataAdapter(Command)
-        DAdapter.Fill(Mat, MatName)
-
-        Dim MatTable()() As Object = Mat.Tables(MatName).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
-        Dim n = MatTable.Count()
-
-        Dim r(M - 1, n - 1) As Double
-        For i As Integer = 0 To n - 1
-            r(0, i) = MatTable(i)(2) / 100
-        Next
-
-        Dim alpha(M - 1, n - 1) As Double
-        For i As Integer = 0 To n - 1
-            alpha(0, i) = MatTable(i)(3)
-        Next
-
-        Dim d(n - 1) As Double
-        For i As Integer = 0 To n - 1
-            d(i) = MatTable(i)(4)
-        Next
-
         Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
 
         Dim err As Double
         Dim errmin As Double = 100
-        Dim PHImin As Double
 
         For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
             err = model.CalcError(PHI)
@@ -124,6 +118,11 @@ Public Class FrmCIPM
 
         Chart1.Show()
 
+        Chart1.ChartAreas("Default").AxisY.Minimum = 0
+        Chart1.ChartAreas("Default").AxisY.Maximum = 0.3
+        Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
+        Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
+
         Select Case choice
             Case 1
                 Chart1.Series("Plot").Points.AddXY(x, y)
@@ -133,23 +132,15 @@ Public Class FrmCIPM
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
+    Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
+        Connexion.Close()
+        DAdapter.Dispose()
+        Command.Dispose()
+        Mat.Dispose()
         Close()
     End Sub
 
     Private Sub InitGraphs()
-        Chart1.Titles.Add("Model Values")
-        Chart1.ChartAreas.Clear()
-        Chart1.ChartAreas.Add("Default")
-
-        With Chart1.ChartAreas("Default")
-            .AxisX.Title = "Compacity [.]"
-            .AxisX.MajorGrid.LineColor = Color.SkyBlue
-            .AxisY.Title = "Malax Energy [.]"
-            .AxisY.Maximum = NumPHImin.Value
-            .AxisY.Maximum = NumPHIMax.Value
-            .AxisY.MajorGrid.LineColor = Color.SkyBlue
-        End With
 
         Chart1.Series.Clear()
         Chart1.Series.Add("Plot")
@@ -159,7 +150,92 @@ Public Class FrmCIPM
         Chart1.Series("PlotMin").Color = Color.Blue
         Chart1.Series("PlotMin").MarkerSize = 10
         Chart1.Series("PlotMin").ChartType = DataVisualization.Charting.SeriesChartType.Point
+
     End Sub
 
+    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
+
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim MatName As String = oData.Row("Name").ToString()
+
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Select Case MsgBox("Are you sure to save PHI for " + MatName, MsgBoxStyle.YesNo, MatName)
+            Case MsgBoxResult.Yes
+
+                Dim Request = "UPDATE MaterialsList SET PHI = " + PHIMin.ToString() + " WHERE Name = '" + MatName + "'"
+                Command.Connection = Connexion
+                Command.CommandText = Request
+                Command.ExecuteNonQuery()
+
+                Request = "SELECT * FROM MaterialsList"
+                Command.CommandText = Request
+                Command.ExecuteNonQuery()
+
+                Dim DAdapter As New SqlDataAdapter(Command)
+                DAdapter.Fill(Mat, "MaterialsList")
+
+            Case MsgBoxResult.No
+
+        End Select
+
+    End Sub
+
+    Private Sub ComboBoxMat_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ComboBoxMat.SelectionChangeCommitted
+
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        MatName = oData.Row("Name").ToString()
+
+        If MatName <> MatNameOld Then LoadData()
+
+    End Sub
+
+    Private Sub LoadData()
+
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Dim Request = "SELECT * FROM " + MatName
+        Command.Connection = Connexion
+        Command.CommandText = Request
+        Command.ExecuteNonQuery()
+
+        Dim DAdapter = New SqlDataAdapter(Command)
+        DAdapter.Fill(Mat, MatName)
+
+        Dim MatTable()() As Object = Mat.Tables(MatName).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
+        n = MatTable.Count()
+
+        ReDim r(M - 1, n - 1)
+        For i As Integer = 0 To n - 1
+            r(0, i) = MatTable(i)(1) / 100
+        Next
+
+        ReDim alpha(M - 1, n - 1)
+        For i As Integer = 0 To n - 1
+            alpha(0, i) = MatTable(i)(2)
+        Next
+
+        ReDim d(n - 1)
+        For i As Integer = 0 To n - 1
+            d(i) = MatTable(i)(3)
+        Next
+
+        MatNameOld = MatName
+
+    End Sub
 
 End Class

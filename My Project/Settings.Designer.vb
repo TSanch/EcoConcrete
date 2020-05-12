@@ -53,35 +53,6 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property Autosize() As Boolean
-            Get
-                Return CType(Me("Autosize"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("OldLace")>  _
-        Public ReadOnly Property BackColor() As Global.System.Drawing.Color
-            Get
-                Return CType(Me("BackColor"),Global.System.Drawing.Color)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Materials.mdf"& _ 
-            ";Integrated Security=True")>  _
-        Public ReadOnly Property MaterialsConnectionString() As String
-            Get
-                Return CType(Me("MaterialsConnectionString"),String)
-            End Get
-        End Property
     End Class
 End Namespace
 

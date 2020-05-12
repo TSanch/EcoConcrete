@@ -31,7 +31,10 @@ Partial Class FrmDataBase
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView = New System.Windows.Forms.DataGridView()
         Me.ComboBoxMat = New System.Windows.Forms.ComboBox()
+        Me.LabelInfos = New System.Windows.Forms.Label()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ButtonExit
@@ -111,11 +114,13 @@ Partial Class FrmDataBase
         '
         'DataGridView
         '
+        Me.DataGridView.AllowDrop = True
         Me.DataGridView.BackgroundColor = System.Drawing.Color.OldLace
+        Me.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView.Location = New System.Drawing.Point(38, 97)
+        Me.DataGridView.Location = New System.Drawing.Point(38, 118)
         Me.DataGridView.Name = "DataGridView"
-        Me.DataGridView.Size = New System.Drawing.Size(908, 313)
+        Me.DataGridView.Size = New System.Drawing.Size(795, 338)
         Me.DataGridView.TabIndex = 47
         '
         'ComboBoxMat
@@ -126,6 +131,27 @@ Partial Class FrmDataBase
         Me.ComboBoxMat.Size = New System.Drawing.Size(121, 22)
         Me.ComboBoxMat.TabIndex = 48
         '
+        'LabelInfos
+        '
+        Me.LabelInfos.AutoSize = True
+        Me.LabelInfos.Location = New System.Drawing.Point(431, 57)
+        Me.LabelInfos.Name = "LabelInfos"
+        Me.LabelInfos.Size = New System.Drawing.Size(0, 14)
+        Me.LabelInfos.TabIndex = 49
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.AllowUserToResizeRows = False
+        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
+        Me.DataGridView2.BackgroundColor = System.Drawing.Color.OldLace
+        Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Cursor = System.Windows.Forms.Cursors.Default
+        Me.DataGridView2.Location = New System.Drawing.Point(487, 43)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.Size = New System.Drawing.Size(459, 89)
+        Me.DataGridView2.TabIndex = 50
+        '
         'FrmDataBase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -135,6 +161,8 @@ Partial Class FrmDataBase
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1008, 514)
         Me.ControlBox = False
+        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.LabelInfos)
         Me.Controls.Add(Me.ComboBoxMat)
         Me.Controls.Add(Me.DataGridView)
         Me.Controls.Add(Me.Label4)
@@ -156,6 +184,7 @@ Partial Class FrmDataBase
         Me.Text = "CIPM"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -170,4 +199,6 @@ Partial Class FrmDataBase
     Friend WithEvents Label4 As Label
     Friend WithEvents DataGridView As DataGridView
     Friend WithEvents ComboBoxMat As ComboBox
+    Friend WithEvents LabelInfos As Label
+    Friend WithEvents DataGridView2 As DataGridView
 End Class

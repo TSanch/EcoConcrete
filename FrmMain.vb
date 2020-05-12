@@ -30,28 +30,6 @@ Public Class FrmMain
         Close()
     End Sub
 
-    Private Sub MenuStrip1_MouseDown(sender As Object, e As MouseEventArgs)
-
-        mov = True
-        movx = e.X
-        movy = e.Y
-
-    End Sub
-
-    Private Sub MenuStrip1_MouseMove(sender As Object, e As MouseEventArgs)
-
-        If mov Then
-            Me.SetDesktopLocation(MousePosition.X - movx, MousePosition.Y - movy)
-        End If
-
-    End Sub
-
-    Private Sub MenuStrip1_MouseUp(sender As Object, e As MouseEventArgs)
-
-        mov = False
-
-    End Sub
-
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
         frmD = New FrmDataBase
         frmD.MdiParent = Me

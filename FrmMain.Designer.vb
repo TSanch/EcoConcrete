@@ -26,13 +26,13 @@ Partial Class FrmMain
         Me.ProjectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptmisationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CIPMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VersionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         MenuStrip1 = New System.Windows.Forms.MenuStrip()
         MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -47,9 +47,6 @@ Partial Class FrmMain
         MenuStrip1.Size = New System.Drawing.Size(979, 24)
         MenuStrip1.TabIndex = 0
         MenuStrip1.Text = "MenuStrip1"
-        AddHandler MenuStrip1.MouseDown, AddressOf Me.MenuStrip1_MouseDown
-        AddHandler MenuStrip1.MouseMove, AddressOf Me.MenuStrip1_MouseMove
-        AddHandler MenuStrip1.MouseUp, AddressOf Me.MenuStrip1_MouseUp
         '
         'ProjectToolStripMenuItem
         '
@@ -73,6 +70,12 @@ Partial Class FrmMain
         Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(83, 20)
         Me.DatabaseToolStripMenuItem.Text = "Database"
         '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
         'OptmisationToolStripMenuItem
         '
         Me.OptmisationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CIPMToolStripMenuItem})
@@ -84,7 +87,7 @@ Partial Class FrmMain
         'CIPMToolStripMenuItem
         '
         Me.CIPMToolStripMenuItem.Name = "CIPMToolStripMenuItem"
-        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.CIPMToolStripMenuItem.Text = "CIPM"
         '
         'ToolStripMenuItem1
@@ -115,12 +118,6 @@ Partial Class FrmMain
         Me.Panel1.Size = New System.Drawing.Size(21, 500)
         Me.Panel1.TabIndex = 2
         '
-        'ViewToolStripMenuItem
-        '
-        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ViewToolStripMenuItem.Text = "View"
-        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -131,7 +128,7 @@ Partial Class FrmMain
         Me.Controls.Add(MenuStrip1)
         Me.Controls.Add(Me.Panel1)
         Me.ForeColor = System.Drawing.Color.DarkOrange
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.MainMenuStrip = MenuStrip1
         Me.Name = "FrmMain"
         Me.Text = "EcoConcrete"
