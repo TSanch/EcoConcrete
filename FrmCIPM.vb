@@ -42,7 +42,7 @@ Public Class FrmCIPM
         End With
 
         Connexion = New SqlConnection
-        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\EcoConcrete\Materials.mdf;Integrated Security=True"
+        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
         If Connexion.State = ConnectionState.Open Then
             Connexion.Close()
         End If
