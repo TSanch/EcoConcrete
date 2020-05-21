@@ -4,6 +4,7 @@ Public Class FrmMain
 
     Private frmC As FrmCIPM
     Private frmD As FrmDataBase
+    Private frmM As FrmMix
     Private mov As Boolean = False
     Private movx As Integer = 0
     Private movy As Integer = 0
@@ -19,11 +20,6 @@ Public Class FrmMain
         Me.IsMdiContainer = True
         Me.WindowState = FormWindowState.Normal
         Me.Location = Screen.AllScreens(1).WorkingArea.Location
-        'frmC.Left = 0
-        'frmC.Top = 0
-        'frmC.Height = Me.Height
-        'frmC.Width = Me.Width
-        'frmC.Hide()
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -34,5 +30,11 @@ Public Class FrmMain
         frmD = New FrmDataBase
         frmD.MdiParent = Me
         frmD.Show()
+    End Sub
+
+    Private Sub MIXToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MIXToolStripMenuItem.Click
+        frmM = New FrmMix
+        frmM.MdiParent = Me
+        frmM.Show()
     End Sub
 End Class

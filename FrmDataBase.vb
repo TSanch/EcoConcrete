@@ -54,8 +54,6 @@ Public Class FrmDataBase
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         MatName = oData.Row("Name").ToString()
 
-        DiplayData()
-
     End Sub
 
     Public Sub DiplayData()
@@ -67,6 +65,8 @@ Public Class FrmDataBase
             Command.ExecuteNonQuery()
 
             DAdapter = New SqlDataAdapter(Command)
+
+            If Mat.Tables.Contains(MatName) Then Mat.Tables(MatName).Clear()
             DAdapter.Fill(Mat, MatName)
 
             DataGridView.DataSource = Mat.Tables(MatName)
@@ -75,7 +75,6 @@ Public Class FrmDataBase
 
             DataGridView2.DataSource = Mat.Tables("MaterialsList")
             DataGridView2.Columns("Id").Visible = False
-            DataGridView2.Columns("Name").Visible = False
             DataGridView2.AutoSize = False
 
             MatNameOld = MatName
@@ -225,14 +224,6 @@ Public Class FrmDataBase
 
     End Sub
 
-    Private Sub ComboBoxMat_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ComboBoxMat.SelectionChangeCommitted
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        MatName = oData.Row("Name").ToString()
-
-        If MatName <> MatNameOld Then DiplayData()
-
-    End Sub
-
     Private Sub KeyPaste(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView.KeyDown
         If e.KeyCode = Keys.V And Keys.ControlKey Then
             Paste()
@@ -270,4 +261,11 @@ Public Class FrmDataBase
 
     End Sub
 
+    Private Sub ComboBoxMat_SelectedValueChanged(sender As Object, e As EventArgs) Handles ComboBoxMat.SelectedValueChanged
+
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        MatName = oData.Row("Name").ToString()
+        If MatName <> MatNameOld Then DiplayData()
+
+    End Sub
 End Class

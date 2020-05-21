@@ -78,7 +78,7 @@ Partial Class FrmDataBase
         '
         Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSave.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonSave.Location = New System.Drawing.Point(839, 416)
+        Me.ButtonSave.Location = New System.Drawing.Point(633, 413)
         Me.ButtonSave.Name = "ButtonSave"
         Me.ButtonSave.Size = New System.Drawing.Size(107, 40)
         Me.ButtonSave.TabIndex = 27
@@ -87,7 +87,7 @@ Partial Class FrmDataBase
         '
         'ButtonDelete
         '
-        Me.ButtonDelete.Location = New System.Drawing.Point(337, 53)
+        Me.ButtonDelete.Location = New System.Drawing.Point(359, 165)
         Me.ButtonDelete.Name = "ButtonDelete"
         Me.ButtonDelete.Size = New System.Drawing.Size(75, 23)
         Me.ButtonDelete.TabIndex = 36
@@ -96,7 +96,7 @@ Partial Class FrmDataBase
         '
         'ButtonNewMat
         '
-        Me.ButtonNewMat.Location = New System.Drawing.Point(256, 53)
+        Me.ButtonNewMat.Location = New System.Drawing.Point(278, 165)
         Me.ButtonNewMat.Name = "ButtonNewMat"
         Me.ButtonNewMat.Size = New System.Drawing.Size(75, 23)
         Me.ButtonNewMat.TabIndex = 37
@@ -106,7 +106,7 @@ Partial Class FrmDataBase
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(35, 57)
+        Me.Label4.Location = New System.Drawing.Point(57, 169)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(66, 14)
         Me.Label4.TabIndex = 40
@@ -118,15 +118,15 @@ Partial Class FrmDataBase
         Me.DataGridView.BackgroundColor = System.Drawing.Color.OldLace
         Me.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView.Location = New System.Drawing.Point(38, 118)
+        Me.DataGridView.Location = New System.Drawing.Point(60, 194)
         Me.DataGridView.Name = "DataGridView"
-        Me.DataGridView.Size = New System.Drawing.Size(795, 338)
+        Me.DataGridView.Size = New System.Drawing.Size(567, 259)
         Me.DataGridView.TabIndex = 47
         '
         'ComboBoxMat
         '
         Me.ComboBoxMat.FormattingEnabled = True
-        Me.ComboBoxMat.Location = New System.Drawing.Point(119, 54)
+        Me.ComboBoxMat.Location = New System.Drawing.Point(141, 166)
         Me.ComboBoxMat.Name = "ComboBoxMat"
         Me.ComboBoxMat.Size = New System.Drawing.Size(121, 22)
         Me.ComboBoxMat.TabIndex = 48
@@ -147,9 +147,9 @@ Partial Class FrmDataBase
         Me.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Cursor = System.Windows.Forms.Cursors.Default
-        Me.DataGridView2.Location = New System.Drawing.Point(487, 43)
+        Me.DataGridView2.Location = New System.Drawing.Point(60, 43)
         Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(459, 89)
+        Me.DataGridView2.Size = New System.Drawing.Size(886, 89)
         Me.DataGridView2.TabIndex = 50
         '
         'FrmDataBase

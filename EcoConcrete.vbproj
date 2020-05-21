@@ -147,6 +147,12 @@
       <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmMix.Designer.vb">
+      <DependentUpon>FrmMix.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMix.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MaterialsData.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMix.resx">
+      <DependentUpon>FrmMix.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -33,6 +33,7 @@ Partial Class FrmMain
         Me.ManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VersionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.MIXToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         MenuStrip1 = New System.Windows.Forms.MenuStrip()
         MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -78,7 +79,7 @@ Partial Class FrmMain
         '
         'OptmisationToolStripMenuItem
         '
-        Me.OptmisationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CIPMToolStripMenuItem})
+        Me.OptmisationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CIPMToolStripMenuItem, Me.MIXToolStripMenuItem})
         Me.OptmisationToolStripMenuItem.ForeColor = System.Drawing.Color.Black
         Me.OptmisationToolStripMenuItem.Name = "OptmisationToolStripMenuItem"
         Me.OptmisationToolStripMenuItem.Size = New System.Drawing.Size(103, 20)
@@ -87,7 +88,7 @@ Partial Class FrmMain
         'CIPMToolStripMenuItem
         '
         Me.CIPMToolStripMenuItem.Name = "CIPMToolStripMenuItem"
-        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
+        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CIPMToolStripMenuItem.Text = "CIPM"
         '
         'ToolStripMenuItem1
@@ -117,6 +118,12 @@ Partial Class FrmMain
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(21, 500)
         Me.Panel1.TabIndex = 2
+        '
+        'MIXToolStripMenuItem
+        '
+        Me.MIXToolStripMenuItem.Name = "MIXToolStripMenuItem"
+        Me.MIXToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MIXToolStripMenuItem.Text = "MIX"
         '
         'FrmMain
         '
@@ -149,4 +156,5 @@ Partial Class FrmMain
     Friend WithEvents CIPMToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MIXToolStripMenuItem As ToolStripMenuItem
 End Class
