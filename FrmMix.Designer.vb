@@ -40,23 +40,34 @@ Partial Class FrmMix
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.ButtonSave = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.CheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.MaterialsListTableAdapter1 = New EcoConcrete.MaterialsDataSetTableAdapters.MaterialsListTableAdapter()
         Me.DataGridView = New System.Windows.Forms.DataGridView()
         Me.ButtonMixOpt = New System.Windows.Forms.Button()
+        Me.ButtonAddMix = New System.Windows.Forms.Button()
+        Me.NumPHIMax = New System.Windows.Forms.NumericUpDown()
+        Me.NumPHImin = New System.Windows.Forms.NumericUpDown()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.NumPhiStep = New System.Windows.Forms.NumericUpDown()
         CType(Me.Numwa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Numwb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumCa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumCb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Numdc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumPHIMax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumPHImin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumPhiStep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Numwa
         '
-        Me.Numwa.Location = New System.Drawing.Point(877, 94)
+        Me.Numwa.Location = New System.Drawing.Point(889, 59)
         Me.Numwa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwa.Name = "Numwa"
         Me.Numwa.Size = New System.Drawing.Size(63, 22)
@@ -64,7 +75,7 @@ Partial Class FrmMix
         '
         'Numwb
         '
-        Me.Numwb.Location = New System.Drawing.Point(877, 122)
+        Me.Numwb.Location = New System.Drawing.Point(889, 87)
         Me.Numwb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwb.Name = "Numwb"
         Me.Numwb.Size = New System.Drawing.Size(63, 22)
@@ -74,7 +85,7 @@ Partial Class FrmMix
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label3.Location = New System.Drawing.Point(817, 96)
+        Me.Label3.Location = New System.Drawing.Point(829, 61)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(26, 14)
@@ -85,7 +96,7 @@ Partial Class FrmMix
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label4.Location = New System.Drawing.Point(817, 124)
+        Me.Label4.Location = New System.Drawing.Point(829, 89)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(26, 14)
@@ -95,7 +106,7 @@ Partial Class FrmMix
         'NumCa
         '
         Me.NumCa.DecimalPlaces = 1
-        Me.NumCa.Location = New System.Drawing.Point(877, 153)
+        Me.NumCa.Location = New System.Drawing.Point(889, 118)
         Me.NumCa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCa.Name = "NumCa"
         Me.NumCa.Size = New System.Drawing.Size(63, 22)
@@ -104,7 +115,7 @@ Partial Class FrmMix
         'NumCb
         '
         Me.NumCb.DecimalPlaces = 1
-        Me.NumCb.Location = New System.Drawing.Point(877, 181)
+        Me.NumCb.Location = New System.Drawing.Point(889, 146)
         Me.NumCb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCb.Name = "NumCb"
         Me.NumCb.Size = New System.Drawing.Size(63, 22)
@@ -112,7 +123,7 @@ Partial Class FrmMix
         '
         'Numdc
         '
-        Me.Numdc.Location = New System.Drawing.Point(877, 209)
+        Me.Numdc.Location = New System.Drawing.Point(889, 174)
         Me.Numdc.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numdc.Name = "Numdc"
         Me.Numdc.Size = New System.Drawing.Size(63, 22)
@@ -122,7 +133,7 @@ Partial Class FrmMix
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label5.Location = New System.Drawing.Point(817, 155)
+        Me.Label5.Location = New System.Drawing.Point(829, 120)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(24, 14)
@@ -133,7 +144,7 @@ Partial Class FrmMix
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label6.Location = New System.Drawing.Point(817, 183)
+        Me.Label6.Location = New System.Drawing.Point(829, 148)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(24, 14)
@@ -144,7 +155,7 @@ Partial Class FrmMix
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label7.Location = New System.Drawing.Point(817, 211)
+        Me.Label7.Location = New System.Drawing.Point(829, 176)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(21, 14)
@@ -189,7 +200,7 @@ Partial Class FrmMix
         '
         Me.LabelRes.AutoSize = True
         Me.LabelRes.ForeColor = System.Drawing.Color.DarkOrange
-        Me.LabelRes.Location = New System.Drawing.Point(417, 434)
+        Me.LabelRes.Location = New System.Drawing.Point(360, 268)
         Me.LabelRes.Name = "LabelRes"
         Me.LabelRes.Size = New System.Drawing.Size(119, 14)
         Me.LabelRes.TabIndex = 17
@@ -200,7 +211,7 @@ Partial Class FrmMix
         Me.LabelPHImin.AutoSize = True
         Me.LabelPHImin.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPHImin.ForeColor = System.Drawing.Color.Orange
-        Me.LabelPHImin.Location = New System.Drawing.Point(542, 434)
+        Me.LabelPHImin.Location = New System.Drawing.Point(485, 268)
         Me.LabelPHImin.Name = "LabelPHImin"
         Me.LabelPHImin.Size = New System.Drawing.Size(0, 14)
         Me.LabelPHImin.TabIndex = 18
@@ -210,7 +221,7 @@ Partial Class FrmMix
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Symbol", 10.0!)
         Me.Label9.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label9.Location = New System.Drawing.Point(507, 433)
+        Me.Label9.Location = New System.Drawing.Point(450, 267)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(18, 17)
@@ -245,34 +256,6 @@ Partial Class FrmMix
         Me.Label15.TabIndex = 49
         Me.Label15.Text = "Material :"
         '
-        'ButtonSave
-        '
-        Me.ButtonSave.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
-        Me.ButtonSave.FlatAppearance.BorderSize = 2
-        Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSave.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonSave.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonSave.Location = New System.Drawing.Point(767, 426)
-        Me.ButtonSave.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.ButtonSave.Name = "ButtonSave"
-        Me.ButtonSave.Size = New System.Drawing.Size(185, 30)
-        Me.ButtonSave.TabIndex = 51
-        Me.ButtonSave.Text = "Save   "
-        Me.ButtonSave.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label1.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label1.Location = New System.Drawing.Point(874, 433)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 17)
-        Me.Label1.TabIndex = 52
-        Me.Label1.Text = "F"
-        '
         'CheckedListBox
         '
         Me.CheckedListBox.BackColor = System.Drawing.Color.OldLace
@@ -295,7 +278,7 @@ Partial Class FrmMix
         Me.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView.Cursor = System.Windows.Forms.Cursors.Default
-        Me.DataGridView.Location = New System.Drawing.Point(293, 76)
+        Me.DataGridView.Location = New System.Drawing.Point(286, 87)
         Me.DataGridView.Name = "DataGridView"
         Me.DataGridView.Size = New System.Drawing.Size(483, 170)
         Me.DataGridView.TabIndex = 54
@@ -308,13 +291,117 @@ Partial Class FrmMix
         Me.ButtonMixOpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonMixOpt.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonMixOpt.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonMixOpt.Location = New System.Drawing.Point(805, 252)
+        Me.ButtonMixOpt.Location = New System.Drawing.Point(824, 315)
         Me.ButtonMixOpt.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ButtonMixOpt.Name = "ButtonMixOpt"
         Me.ButtonMixOpt.Size = New System.Drawing.Size(161, 30)
         Me.ButtonMixOpt.TabIndex = 55
         Me.ButtonMixOpt.Text = "Calculate Mix"
         Me.ButtonMixOpt.UseVisualStyleBackColor = True
+        '
+        'ButtonAddMix
+        '
+        Me.ButtonAddMix.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ButtonAddMix.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
+        Me.ButtonAddMix.FlatAppearance.BorderSize = 2
+        Me.ButtonAddMix.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonAddMix.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAddMix.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonAddMix.Location = New System.Drawing.Point(452, 51)
+        Me.ButtonAddMix.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ButtonAddMix.Name = "ButtonAddMix"
+        Me.ButtonAddMix.Size = New System.Drawing.Size(161, 30)
+        Me.ButtonAddMix.TabIndex = 56
+        Me.ButtonAddMix.Text = "Add Mix"
+        Me.ButtonAddMix.UseVisualStyleBackColor = True
+        '
+        'NumPHIMax
+        '
+        Me.NumPHIMax.DecimalPlaces = 1
+        Me.NumPHIMax.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumPHIMax.Location = New System.Drawing.Point(889, 240)
+        Me.NumPHIMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumPHIMax.Name = "NumPHIMax"
+        Me.NumPHIMax.Size = New System.Drawing.Size(63, 22)
+        Me.NumPHIMax.TabIndex = 65
+        '
+        'NumPHImin
+        '
+        Me.NumPHImin.DecimalPlaces = 1
+        Me.NumPHImin.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumPHImin.Location = New System.Drawing.Point(889, 212)
+        Me.NumPHImin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumPHImin.Name = "NumPHImin"
+        Me.NumPHImin.Size = New System.Drawing.Size(63, 22)
+        Me.NumPHImin.TabIndex = 64
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(843, 248)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(32, 14)
+        Me.Label13.TabIndex = 63
+        Me.Label13.Text = "Max"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label14.Location = New System.Drawing.Point(829, 240)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(18, 17)
+        Me.Label14.TabIndex = 62
+        Me.Label14.Text = "F"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(843, 220)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(28, 14)
+        Me.Label11.TabIndex = 61
+        Me.Label11.Text = "Min"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label12.Location = New System.Drawing.Point(829, 213)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(18, 17)
+        Me.Label12.TabIndex = 60
+        Me.Label12.Text = "F"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(821, 284)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(61, 14)
+        Me.Label10.TabIndex = 59
+        Me.Label10.Text = "Accuracy"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label8.Location = New System.Drawing.Point(829, 267)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(18, 17)
+        Me.Label8.TabIndex = 58
+        Me.Label8.Text = "F"
+        '
+        'NumPhiStep
+        '
+        Me.NumPhiStep.Location = New System.Drawing.Point(889, 266)
+        Me.NumPhiStep.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumPhiStep.Name = "NumPhiStep"
+        Me.NumPhiStep.Size = New System.Drawing.Size(63, 22)
+        Me.NumPhiStep.TabIndex = 57
         '
         'FrmMix
         '
@@ -323,11 +410,19 @@ Partial Class FrmMix
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1000, 500)
         Me.ControlBox = False
+        Me.Controls.Add(Me.NumPHIMax)
+        Me.Controls.Add(Me.NumPHImin)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.NumPhiStep)
+        Me.Controls.Add(Me.ButtonAddMix)
         Me.Controls.Add(Me.ButtonMixOpt)
         Me.Controls.Add(Me.DataGridView)
         Me.Controls.Add(Me.CheckedListBox)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.ButtonSave)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -363,6 +458,9 @@ Partial Class FrmMix
         CType(Me.NumCb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Numdc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumPHIMax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumPHImin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumPhiStep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -385,10 +483,18 @@ Partial Class FrmMix
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label15 As Label
-    Friend WithEvents ButtonSave As Button
-    Friend WithEvents Label1 As Label
     Friend WithEvents CheckedListBox As CheckedListBox
     Friend WithEvents MaterialsListTableAdapter1 As MaterialsDataSetTableAdapters.MaterialsListTableAdapter
     Friend WithEvents DataGridView As DataGridView
     Friend WithEvents ButtonMixOpt As Button
+    Friend WithEvents ButtonAddMix As Button
+    Friend WithEvents NumPHIMax As NumericUpDown
+    Friend WithEvents NumPHImin As NumericUpDown
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents NumPhiStep As NumericUpDown
 End Class

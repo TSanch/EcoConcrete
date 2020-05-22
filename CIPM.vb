@@ -25,11 +25,6 @@ Public Class CIPM
         NbMaterials = NbMaterialsval
         n = nval
 
-        p = New Double(n - 1) {}
-        For i As Integer = 0 To n - 1
-            p(i) = 1
-        Next
-
         r = rval
         alpha = alphaval
         Kcipm = Kval
@@ -84,9 +79,10 @@ Public Class CIPM
 
     End Sub
 
-    Public Function CalcError(ByVal PHI As Double) As Double
+    Public Function CalcError(ByVal PHI As Double, ByVal pval() As Double) As Double
 
         Dim Kcalc As Double = 0
+        p = pval
 
         For i As Integer = 0 To n - 1
 

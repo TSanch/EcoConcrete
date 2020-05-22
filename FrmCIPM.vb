@@ -92,13 +92,18 @@ Public Class FrmCIPM
 
         InitGraphs()
 
+        Dim p(M - 1) As Double
+        For j As Integer = 0 To M - 1
+            p(j) = 1
+        Next
+
         Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
 
         Dim err As Double
         Dim errmin As Double = 100
 
         For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
-            err = model.CalcError(PHI)
+            err = model.CalcError(PHI, p)
             frmCIPM_Plot(PHI, err, 1)
             If err < errmin Then
                 errmin = err

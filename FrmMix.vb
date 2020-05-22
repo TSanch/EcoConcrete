@@ -21,7 +21,7 @@ Public Class FrmMix
     Public d() As Double
 
     Dim M As Integer
-    Dim nbp As Integer = 1
+    Dim nbp As Integer = 0
 
 
     Dim PHIMin
@@ -79,13 +79,13 @@ Public Class FrmMix
         NumCa.Value = 1.5
         NumCb.Value = 0.2
         Numdc.Value = 25
-        'NumPHImin.Value = 0.2
-        'NumPhiStep.Value = 3
-        'NumPHIMax.Value = 0.8
+        NumPHImin.Value = 0.2
+        NumPhiStep.Value = 3
+        NumPHIMax.Value = 0.8
 
         'Chart1.Hide()
 
-        Mat.Tables("MaterialsList").Columns.Add("p" + CStr(nbp))
+        'Mat.Tables("MaterialsList").Columns.Add("p" + CStr(nbp))
 
         'Ajouter colomne pour proportions p
 
@@ -148,41 +148,6 @@ Public Class FrmMix
     '    Chart1.Series("PlotMin").ChartType = DataVisualization.Charting.SeriesChartType.Point
 
     'End Sub
-
-    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
-
-        'Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        'Dim MatName As String = oData.Row("Name").ToString()
-
-        'If Connexion.State = ConnectionState.Open Then
-        '    Connexion.Close()
-        'End If
-        'Try
-        '    Connexion.Open()
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message)
-        'End Try
-
-        'Select Case MsgBox("Are you sure to save PHI for " + MatName, MsgBoxStyle.YesNo, MatName)
-        '    Case MsgBoxResult.Yes
-
-        '        Dim Request = "UPDATE MaterialsList SET PHI = " + PHIMin.ToString() + " WHERE Name = '" + MatName + "'"
-        '        Command.Connection = Connexion
-        '        Command.CommandText = Request
-        '        Command.ExecuteNonQuery()
-
-        '        Request = "SELECT * FROM MaterialsList"
-        '        Command.CommandText = Request
-        '        Command.ExecuteNonQuery()
-
-        '        Dim DAdapter As New SqlDataAdapter(Command)
-        '        DAdapter.Fill(Mat, "MaterialsList")
-
-        '    Case MsgBoxResult.No
-
-        'End Select
-
-    End Sub
 
     Private Sub LoadData()
 
@@ -270,23 +235,47 @@ Public Class FrmMix
 
         Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
 
-        Dim err As Double
-        Dim errmin As Double = 100
+        LabelPHImin.Text = ""
 
-        'For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
-        '    err = model.CalcError(PHI)
-        '    frmCIPM_Plot(PHI, err, 1)
-        '    If err < errmin Then
-        '        errmin = err
-        '        PHIMin = PHI
-        '    End If
+        For i As Integer = 0 To nbp - 1
 
-        'Next
+            Dim MatTable()() As Object = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
 
-        'frmCIPM_Plot(PHIMin, errmin, 2)
-        Label9.Show()
-        LabelRes.Show()
-        LabelPHImin.Text = CStr(PHIMin)
+            Dim p(M - 1) As Double
+            For j As Integer = 0 To M - 1
+                p(j) = CDbl(MatTable(j)(6 + i))
+            Next
+
+            Dim err As Double
+            Dim errmin As Double = 100
+
+            For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
+
+                err = model.CalcError(PHI, p)
+                'frmCIPM_Plot(PHI, err, 1)
+                If err < errmin Then
+                    errmin = err
+                    PHIMin = PHI
+                End If
+
+            Next
+
+            'frmCIPM_Plot(PHIMin, errmin, 2)
+            Label9.Show()
+            LabelRes.Show()
+
+            LabelPHImin.Text += " " + CStr(PHIMin)
+
+        Next
+
 
     End Sub
+
+    Private Sub ButtonAddMix_Click(sender As Object, e As EventArgs) Handles ButtonAddMix.Click
+
+        nbp += 1
+        Mat.Tables("MaterialsList").Columns.Add("p" + CStr(nbp))
+
+    End Sub
+
 End Class
