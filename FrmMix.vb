@@ -78,7 +78,7 @@ Public Class FrmMix
         Numwb.Value = 1
         NumCa.Value = 1.5
         NumCb.Value = 0.2
-        Numdc.Value = 25
+        Numdc.Value = 125
         NumPHImin.Value = 0.2
         NumPhiStep.Value = 3
         NumPHIMax.Value = 0.8

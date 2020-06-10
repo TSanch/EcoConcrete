@@ -16,7 +16,7 @@ Public Class FrmMain
     End Sub
 
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        My.Application.ChangeCulture("en_US")
+        My.Application.ChangeCulture("en_CA")
         Me.IsMdiContainer = True
         Me.WindowState = FormWindowState.Normal
         Me.Location = Screen.AllScreens(1).WorkingArea.Location

@@ -71,7 +71,7 @@ Public Class FrmCIPM
         Numwb.Value = 1
         NumCa.Value = 1.5
         NumCb.Value = 0.2
-        Numdc.Value = 25
+        Numdc.Value = 125
         NumPHImin.Value = 0.2
         NumPhiStep.Value = 3
         NumPHIMax.Value = 0.8
@@ -124,7 +124,7 @@ Public Class FrmCIPM
         Chart1.Show()
 
         Chart1.ChartAreas("Default").AxisY.Minimum = 0
-        Chart1.ChartAreas("Default").AxisY.Maximum = 0.3
+        Chart1.ChartAreas("Default").AxisY.Maximum = 1
         Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
         Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
 

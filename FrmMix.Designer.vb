@@ -125,6 +125,7 @@ Partial Class FrmMix
         '
         Me.Numdc.Location = New System.Drawing.Point(889, 174)
         Me.Numdc.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Numdc.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.Numdc.Name = "Numdc"
         Me.Numdc.Size = New System.Drawing.Size(63, 22)
         Me.Numdc.TabIndex = 10

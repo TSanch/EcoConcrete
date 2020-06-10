@@ -22,8 +22,8 @@ Partial Class FrmCIPM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Me.Numwa = New System.Windows.Forms.NumericUpDown()
         Me.Numwb = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -126,6 +126,7 @@ Partial Class FrmCIPM
         '
         Me.Numdc.Location = New System.Drawing.Point(161, 259)
         Me.Numdc.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Numdc.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.Numdc.Name = "Numdc"
         Me.Numdc.Size = New System.Drawing.Size(63, 22)
         Me.Numdc.TabIndex = 10
@@ -183,10 +184,10 @@ Partial Class FrmCIPM
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
         Me.Chart1.BorderlineColor = System.Drawing.Color.Black
-        ChartArea2.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea2)
-        Legend2.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend2)
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend1)
         Me.Chart1.Location = New System.Drawing.Point(420, 43)
         Me.Chart1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Chart1.Name = "Chart1"
