@@ -9,6 +9,15 @@ Partial Class FrmMain
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If
+            If disposing AndAlso frmC IsNot Nothing Then
+                frmC.Dispose()
+            End If
+            If disposing AndAlso frmD IsNot Nothing Then
+                frmD.Dispose()
+            End If
+            If disposing AndAlso frmM IsNot Nothing Then
+                frmM.Dispose()
+            End If
         Finally
             MyBase.Dispose(disposing)
         End Try

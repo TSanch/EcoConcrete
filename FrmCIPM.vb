@@ -15,9 +15,9 @@ Public Class FrmCIPM
     Dim MatName As String
     Dim MatNameOld As String = ""
 
-    Public r(,) As Double
-    Public alpha(,) As Double
-    Public d() As Double
+    Private r(,) As Double
+    Private alpha(,) As Double
+    Private d() As Double
 
     Dim M As Integer = 1
     Dim n As Integer
@@ -243,4 +243,11 @@ Public Class FrmCIPM
 
     End Sub
 
+    Protected Overrides Sub Finalize()
+        Connexion.Close()
+        DAdapter.Dispose()
+        Command.Dispose()
+        Mat.Dispose()
+        MyBase.Finalize()
+    End Sub
 End Class

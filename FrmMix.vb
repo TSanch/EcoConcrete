@@ -16,9 +16,9 @@ Public Class FrmMix
     Dim MatNameOld As String = ""
 
     Dim n As Integer
-    Public r(,) As Double
-    Public alpha(,) As Double
-    Public d() As Double
+    Private r(,) As Double
+    Private alpha(,) As Double
+    Private d() As Double
 
     Dim M As Integer
     Dim nbp As Integer = 0

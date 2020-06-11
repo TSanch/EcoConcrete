@@ -10,6 +10,10 @@ Partial Class FrmMix
                 components.Dispose()
             End If
         Finally
+            Command.Dispose()
+            Connexion.Dispose()
+            DAdapter.Dispose()
+            Mat.Dispose()
             MyBase.Dispose(disposing)
         End Try
     End Sub

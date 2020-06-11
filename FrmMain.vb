@@ -5,9 +5,6 @@ Public Class FrmMain
     Private frmC As FrmCIPM
     Private frmD As FrmDataBase
     Private frmM As FrmMix
-    Private mov As Boolean = False
-    Private movx As Integer = 0
-    Private movy As Integer = 0
 
     Private Sub CIPMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CIPMToolStripMenuItem.Click
         frmC = New FrmCIPM

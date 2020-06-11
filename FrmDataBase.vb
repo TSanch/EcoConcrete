@@ -10,6 +10,7 @@ Public Class FrmDataBase
     Dim Command As SqlCommand
 
     Dim Mat As MaterialsData
+    Dim n As Integer = 65
 
     Dim MatName As String
     Dim MatNameOld As String = ""
@@ -87,7 +88,7 @@ Public Class FrmDataBase
 
     Private Sub ButtonNewMat_Click(sender As Object, e As EventArgs) Handles ButtonNewMat.Click
 
-        Dim NewMat(3) As String
+        Dim NewMat(4) As String
         Inputboxes(NewMat)
 
         If Connexion.State = ConnectionState.Open Then
@@ -116,6 +117,12 @@ Public Class FrmDataBase
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
+            For i As Integer = 0 To NewMat(4)
+                Request = "INSERT INTO " + NewMat(0) + " ([r], [alpha], [d]) VALUES (0, 0, 0)"
+                Command.CommandText = Request
+                Command.ExecuteNonQuery()
+            Next
+
             Mat.Tables.Add(NewMat(0))
 
         Catch ex As Exception
@@ -126,15 +133,16 @@ Public Class FrmDataBase
 
     Private Sub Inputboxes(ByRef NewMat() As String)
 
-        Dim Question(3) As String
+        Dim Question(4) As String
         Dim i As Integer
 
         Question(0) = "Name of the material ?"
         Question(1) = "Manufacturer ?"
         Question(2) = "Cost [CAD/Tons] ?"
         Question(3) = "Density [kg/m3] ?"
+        Question(4) = "Class number ? Default = 65"
 
-        For i = 0 To 3
+        For i = 0 To 4
             NewMat(i) = InputBox(Question(i), "NEW MATERIAL" & i, "")
         Next
 
@@ -241,7 +249,7 @@ Public Class FrmDataBase
         r = DataGridView.SelectedCells(0).RowIndex
         c = DataGridView.SelectedCells(0).ColumnIndex
 
-        For i As Integer = 0 To tArr.Length - 1
+        For i As Integer = 0 To tArr.Length - 2
             arT = tArr(i).Split(vbTab)
             cc = c
             For ii As Integer = 0 To arT.Length - 1
@@ -251,12 +259,11 @@ Public Class FrmDataBase
                     DataGridView.Rows.Add(Row)
                 End If
 
-                With DataGridView.Item(cc, r)
-                    .Value = arT(ii).TrimStart
-                End With
-                cc = cc + 1
+                DataGridView.Item(cc, r).Value = CDbl(arT(ii))
+
+                cc += 1
             Next
-            r = r + 1
+            r += 1
         Next
 
     End Sub
@@ -269,7 +276,5 @@ Public Class FrmDataBase
 
     End Sub
 
-    Private Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick
 
-    End Sub
 End Class

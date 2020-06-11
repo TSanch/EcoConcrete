@@ -1,23 +1,22 @@
 ﻿Imports Microsoft.VisualBasic.Logging
 Imports Microsoft.Win32
-Imports CenterSpace.NMath.Core
 
 Public Class CIPM
 
-    Public NbMaterials As Double
-    Public n As Double
-    Public p() As Double
-    Public r(,) As Double
-    Public alpha(,) As Double
-    Public Kcipm As Double
-    Public dc As Double
-    Public d(n - 1) As Double
-    Public wa As Double
-    Public wb As Double
-    Public Ca As Double
-    Public Cb As Double
-    Public a(,) As Double
-    Public b(,) As Double
+    Private NbMaterials As Double
+    Private n As Double
+    Private p() As Double
+    Private r(,) As Double
+    Private alpha(,) As Double
+    Private Kcipm As Double
+    Private dc As Double
+    Private d(n - 1) As Double
+    Private wa As Double
+    Private wb As Double
+    Private Ca As Double
+    Private Cb As Double
+    Private a(,) As Double
+    Private b(,) As Double
 
     Public Sub New(ByVal NbMaterialsval As Double, ByVal nval As Double, ByVal rval(,) As Double, ByVal alphaval(,) As Double, ByVal Kval As Double,
             ByVal dcval As Double, ByVal dval() As Double, ByVal waval As Double, ByVal wbval As Double, ByVal Caval As Double, ByVal Cbval As Double)
