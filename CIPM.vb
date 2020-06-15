@@ -34,9 +34,6 @@ Public Class CIPM
         Ca = Caval
         Cb = Cbval
 
-        ReDim a(n - 1, n - 1)
-        ReDim b(n - 1, n - 1)
-
         Calcab()
 
     End Sub
@@ -44,11 +41,16 @@ Public Class CIPM
     Private Sub Calcab()
 
         Dim logdd As Double
+        Dim w0a, w0b As Double
+
+        ReDim a(n - 1, n - 1)
+        ReDim b(n - 1, n - 1)
 
         For i As Integer = 0 To n - 1
             For j As Integer = 0 To n - 1
 
-                Dim w0a As Double = wa
+                w0a = wa
+
                 If d(j) < dc Then
                     w0a = wa * Ca
                 End If
@@ -61,7 +63,7 @@ Public Class CIPM
                     a(i, j) = 0
                 End If
 
-                Dim w0b As Double = wb
+                w0b = wb
                 If d(i) < dc Then
                     w0b = wb * Cb
                 End If
@@ -81,32 +83,36 @@ Public Class CIPM
     Public Function CalcError(ByVal PHI As Double, ByVal pval() As Double) As Double
 
         Dim Kcalc As Double = 0
+        Dim PhiBeta, Phi2Beta As Double
+        Dim beta, betaj As Double
+        Dim r2 As Double
+
         p = pval
 
         For i As Integer = 0 To n - 1
 
-            Dim PhiBeta As Double = 0
-            Dim Phi2Beta As Double = 0
+            PhiBeta = 0
+            Phi2Beta = 0
 
             'Loop on the materials
             For k As Integer = 0 To NbMaterials - 1
 
-                Dim beta As Double = (1 + 1 / Kcipm) * alpha(k, i)
+                beta = (1 + 1 / Kcipm) * alpha(k, i)
                 PhiBeta += p(k) * r(k, i) * PHI / beta
 
                 'Loop on the complete granulometry
-                Dim r2 As Double = 0
+                r2 = 0
 
                 For j As Integer = 0 To (i - 2)
 
-                    Dim betaj As Double = (1 + 1 / Kcipm) * alpha(k, j)
+                    betaj = (1 + 1 / Kcipm) * alpha(k, j)
                     r2 += (1 - b(i, j) * (1 - 1 / betaj)) * r(k, j) * PHI
 
                 Next
 
-                For j As Integer = i To n - 1
+                For j As Integer = i To (n - 1)
 
-                    Dim betaj As Double = (1 + 1 / Kcipm) * alpha(k, j)
+                    betaj = (1 + 1 / Kcipm) * alpha(k, j)
                     r2 += a(i, j) * r(k, j) * PHI / betaj
 
                 Next

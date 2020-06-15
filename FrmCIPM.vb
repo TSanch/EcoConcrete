@@ -22,7 +22,7 @@ Public Class FrmCIPM
     Dim M As Integer = 1
     Dim n As Integer
 
-    Dim PHIMin
+    Dim PHIMin = 0
 
     Private Sub FrmCIPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -36,8 +36,8 @@ Public Class FrmCIPM
             .AxisX.Title = "Compacity [.]"
             .AxisX.MajorGrid.LineColor = Color.SkyBlue
             .AxisY.Title = "Malax Energy [.]"
-            .AxisY.Maximum = NumPHImin.Value
-            .AxisY.Maximum = NumPHIMax.Value
+            .AxisY.Maximum = 0
+            .AxisY.Maximum = 1
             .AxisY.MajorGrid.LineColor = Color.SkyBlue
         End With
 
@@ -73,7 +73,7 @@ Public Class FrmCIPM
         NumCb.Value = 0.2
         Numdc.Value = 125
         NumPHImin.Value = 0.2
-        NumPhiStep.Value = 3
+        NumPhiStep.Value = 100000
         NumPHIMax.Value = 0.8
 
         Chart1.Hide()
@@ -99,27 +99,51 @@ Public Class FrmCIPM
 
         Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
 
-        Dim err As Double
+        Dim increment As Double = (NumPHIMax.Value - NumPHImin.Value) / (NumPhiStep.Value - 1)
+        Dim vect_err(NumPhiStep.Value - 1) As Double
+        Dim vect_phi(NumPhiStep.Value - 1) As Double
+
+        Dim errfound As Boolean = False
         Dim errmin As Double = 100
 
-        For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
-            err = model.CalcError(PHI, p)
-            frmCIPM_Plot(PHI, err, 1)
-            If err < errmin Then
-                errmin = err
-                PHImin = PHI
+        For i As Integer = 0 To NumPhiStep.Value - 1
+
+            vect_phi(i) = NumPHImin.Value + increment * i
+            vect_err(i) = model.CalcError(vect_phi(i), p)
+
+            If (vect_err(i) < errmin) And (errfound = False) Then
+                errmin = vect_err(i)
+                PHIMin = vect_phi(i)
+            End If
+            If vect_err(i) > errmin Then
+                errfound = True
             End If
 
         Next
 
-        frmCIPM_Plot(PHImin, errmin, 2)
+        frmCIPM_Plot(vect_phi, vect_err)
+        frmCIPM_Plot(PHIMin, errmin)
+
         Label9.Show()
         LabelRes.Show()
         LabelPHImin.Text = CStr(PHImin)
 
     End Sub
 
-    Private Sub frmCIPM_Plot(ByVal x As Double, ByVal y As Double, ByVal choice As Integer)
+    Private Sub frmCIPM_Plot(ByVal x() As Double, ByVal y() As Double)
+
+        Chart1.Show()
+
+        Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
+        Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
+
+        For i As Integer = 0 To x.Length - 1
+            Chart1.Series("Plot").Points.AddXY(x(i), y(i))
+        Next
+
+    End Sub
+
+    Private Sub frmCIPM_Plot(ByVal x As Double, ByVal y As Double)
 
         Chart1.Show()
 
@@ -128,12 +152,8 @@ Public Class FrmCIPM
         Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
         Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
 
-        Select Case choice
-            Case 1
-                Chart1.Series("Plot").Points.AddXY(x, y)
-            Case 2
-                Chart1.Series("PlotMin").Points.AddXY(x, y)
-        End Select
+        Chart1.Series("PlotMin").Points.AddXY(x, y)
+
 
     End Sub
 
@@ -172,24 +192,27 @@ Public Class FrmCIPM
             MessageBox.Show(ex.Message)
         End Try
 
-        Select Case MsgBox("Are you sure to save PHI for " + MatName, MsgBoxStyle.YesNo, MatName)
-            Case MsgBoxResult.Yes
+        Dim Question As String = "Value of PHI ?"
+        Dim PHIMinManual As String = CStr(PHIMin)
+        PHIMinManual = InputBox(Question, "SAVE PHI", CStr(PHIMin))
 
-                Dim Request = "UPDATE MaterialsList SET PHI = " + PHIMin.ToString() + " WHERE Name = '" + MatName + "'"
-                Command.Connection = Connexion
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
+        Try
 
-                Request = "SELECT * FROM MaterialsList"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
+            Dim Request = "UPDATE MaterialsList SET PHI = " + PHIMinManual + " WHERE Name = '" + MatName + "'"
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
 
-                Dim DAdapter As New SqlDataAdapter(Command)
-                DAdapter.Fill(Mat, "MaterialsList")
+            Request = "SELECT * FROM MaterialsList"
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
 
-            Case MsgBoxResult.No
+            Dim DAdapter As New SqlDataAdapter(Command)
+            DAdapter.Fill(Mat, "MaterialsList")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
 
-        End Select
+        End Try
 
     End Sub
 

@@ -252,9 +252,12 @@ Partial Class FrmCIPM
         '
         Me.NumPhiStep.Location = New System.Drawing.Point(681, 324)
         Me.NumPhiStep.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumPhiStep.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.NumPhiStep.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         Me.NumPhiStep.Name = "NumPhiStep"
         Me.NumPhiStep.Size = New System.Drawing.Size(63, 22)
         Me.NumPhiStep.TabIndex = 19
+        Me.NumPhiStep.Value = New Decimal(New Integer() {2, 0, 0, 0})
         '
         'Label9
         '
