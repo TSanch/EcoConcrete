@@ -15,7 +15,7 @@ Public Class FrmDataBase
     Dim MatName As String
     Dim MatNameOld As String = ""
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
+    Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
         Connexion.Close()
         DAdapter.Dispose()
         Command.Dispose()
@@ -72,11 +72,13 @@ Public Class FrmDataBase
 
             DataGridView.DataSource = Mat.Tables(MatName)
             DataGridView.Columns("Id").Visible = False
-            DataGridView.AutoSize = False
+            DataGridView2.AutoResizeColumns()
+            'DataGridView.AutoSize = False
 
             DataGridView2.DataSource = Mat.Tables("MaterialsList")
             DataGridView2.Columns("Id").Visible = False
-            DataGridView2.AutoSize = False
+            DataGridView2.AutoResizeColumns()
+            'DataGridView2.AutoSize = False
 
             MatNameOld = MatName
 

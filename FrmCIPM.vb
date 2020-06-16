@@ -22,18 +22,18 @@ Public Class FrmCIPM
     Dim M As Integer = 1
     Dim n As Integer
 
-    Dim PHIMin = 0
+    Dim PHIMin As Double = 0
+    Dim AlphaMin As Double = 0
 
     Private Sub FrmCIPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        LabelRes.Hide()
-        Label9.Hide()
+        LabelPHImin.Hide()
+        Labelalphamin.Hide()
 
         Chart1.Titles.Add("Model Values")
         Chart1.ChartAreas.Clear()
         Chart1.ChartAreas.Add("Default")
         With Chart1.ChartAreas("Default")
-            .AxisX.Title = "Compacity [.]"
             .AxisX.MajorGrid.LineColor = Color.SkyBlue
             .AxisY.Title = "Malax Energy [.]"
             .AxisY.Maximum = 0
@@ -73,8 +73,11 @@ Public Class FrmCIPM
         NumCb.Value = 0.2
         Numdc.Value = 125
         NumPHImin.Value = 0.2
-        NumPhiStep.Value = 100000
+        NumPhiStep.Value = 4
         NumPHIMax.Value = 0.8
+        NumAlphaMax.Value = 0.45
+        NumAlphaMin.Value = 0.35
+        NumAlphaStep.Value = 4
 
         Chart1.Hide()
 
@@ -86,30 +89,33 @@ Public Class FrmCIPM
 
     End Sub
 
-    Private Sub ButtonCIPM_Click(sender As Object, e As EventArgs) Handles ButtonCIPM.Click
+    Private Sub ButtonPhi_Click(sender As Object, e As EventArgs) Handles ButtonPhi.Click
 
         Dim Kval As Double = 12.2
 
         InitGraphs()
+        Chart1.ChartAreas("Default").AxisX.Title = "Phi [.]"
 
         Dim p(M - 1) As Double
         For j As Integer = 0 To M - 1
             p(j) = 1
         Next
 
-        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
+        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
 
-        Dim increment As Double = (NumPHIMax.Value - NumPHImin.Value) / (NumPhiStep.Value - 1)
-        Dim vect_err(NumPhiStep.Value - 1) As Double
-        Dim vect_phi(NumPhiStep.Value - 1) As Double
+        Dim ilength As Integer = (NumPHIMax.Value - NumPHImin.Value) / (10 ^ (-NumPhiStep.Value))
+        Dim vect_err(ilength) As Double
+        Dim vect_phi(ilength) As Double
 
         Dim errfound As Boolean = False
         Dim errmin As Double = 100
+        Dim i As Integer = 0
 
-        For i As Integer = 0 To NumPhiStep.Value - 1
+        For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
 
-            vect_phi(i) = NumPHImin.Value + increment * i
-            vect_err(i) = model.CalcError(vect_phi(i), p)
+            vect_phi(i) = PHI
+            model.SetPhi(vect_phi(i))
+            vect_err(i) = model.CalcError(p)
 
             If (vect_err(i) < errmin) And (errfound = False) Then
                 errmin = vect_err(i)
@@ -119,23 +125,106 @@ Public Class FrmCIPM
                 errfound = True
             End If
 
+            i += 1
+
         Next
 
-        frmCIPM_Plot(vect_phi, vect_err)
-        frmCIPM_Plot(PHIMin, errmin)
+        frmCIPM_Plot(vect_phi, vect_err, NumPHImin.Value, NumPHIMax.Value)
+        frmCIPM_Plot(PHIMin, errmin, NumPHImin.Value, NumPHIMax.Value)
 
-        Label9.Show()
-        LabelRes.Show()
-        LabelPHImin.Text = CStr(PHImin)
+        LabelPHImin.Show()
+        PHIMin = Math.Round(PHIMin, 3)
+        LabelPHImin.Text = CStr(PHIMin)
 
     End Sub
 
-    Private Sub frmCIPM_Plot(ByVal x() As Double, ByVal y() As Double)
+    Private Sub ButtonAlpha_Click(sender As Object, e As EventArgs) Handles ButtonAlpha.Click
+
+        Dim Kval As Double = 12.2
+        Dim Phi As Double
+
+        InitGraphs()
+        Chart1.ChartAreas("Default").AxisX.Title = "Alpha [.]"
+
+        Dim p(M - 1) As Double
+        For j As Integer = 0 To M - 1
+            p(j) = 1
+        Next
+
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim MatName As String = oData.Row("Name").ToString()
+
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Try
+
+            Dim Request = "SELECT PHI FROM MaterialsList WHERE Name = '" + MatName + "'"
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Dim reader As SqlDataReader = Command.ExecuteReader()
+            reader.Read()
+            Phi = CDbl(reader.GetString(0))
+            MessageBox.Show("Phi = " + Phi.ToString())
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            GoTo b
+
+        End Try
+
+        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, Phi)
+
+        Dim ilength As Integer = (NumAlphaMax.Value - NumAlphaMin.Value) / (10 ^ (-NumAlphaStep.Value))
+
+        Dim vect_err(ilength) As Double
+        Dim vect_alpha(ilength) As Double
+
+        Dim errfound As Boolean = False
+        Dim errmin As Double = 100
+        Dim i As Integer = 0
+
+        For ALPHA As Double = NumAlphaMin.Value To NumAlphaMax.Value Step 10 ^ (-NumAlphaStep.Value)
+
+            vect_alpha(i) = ALPHA
+            model.SetAlpha(vect_alpha(i))
+            vect_err(i) = model.CalcError(p)
+
+            If (vect_err(i) < errmin) And (errfound = False) Then
+                errmin = vect_err(i)
+                AlphaMin = vect_alpha(i)
+            End If
+            If vect_err(i) > errmin Then
+                errfound = True
+            End If
+
+            i += 1
+
+        Next
+
+        frmCIPM_Plot(vect_alpha, vect_err, NumAlphaMin.Value, NumAlphaMax.Value)
+        frmCIPM_Plot(AlphaMin, errmin, NumAlphaMin.Value, NumAlphaMax.Value)
+
+        Labelalphamin.Show()
+        AlphaMin = Math.Round(AlphaMin, 3)
+        Labelalphamin.Text = CStr(AlphaMin)
+b:
+
+    End Sub
+
+    Private Sub frmCIPM_Plot(ByVal x() As Double, ByVal y() As Double, ByVal xmin As Double, ByVal xmax As Double)
 
         Chart1.Show()
-
-        Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
-        Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
+        Chart1.ChartAreas("Default").AxisX.Minimum = xmin
+        Chart1.ChartAreas("Default").AxisX.Maximum = xmax
 
         For i As Integer = 0 To x.Length - 1
             Chart1.Series("Plot").Points.AddXY(x(i), y(i))
@@ -143,14 +232,11 @@ Public Class FrmCIPM
 
     End Sub
 
-    Private Sub frmCIPM_Plot(ByVal x As Double, ByVal y As Double)
+    Private Sub frmCIPM_Plot(ByVal x As Double, ByVal y As Double, ByVal xmin As Double, ByVal xmax As Double)
 
         Chart1.Show()
-
-        Chart1.ChartAreas("Default").AxisY.Minimum = 0
-        Chart1.ChartAreas("Default").AxisY.Maximum = 1
-        Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
-        Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
+        Chart1.ChartAreas("Default").AxisX.Minimum = xmin
+        Chart1.ChartAreas("Default").AxisX.Maximum = xmax
 
         Chart1.Series("PlotMin").Points.AddXY(x, y)
 
@@ -178,7 +264,7 @@ Public Class FrmCIPM
 
     End Sub
 
-    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
+    Private Sub ButtonSavePhi_Click(sender As Object, e As EventArgs) Handles ButtonSavePhi.Click
 
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
@@ -272,5 +358,43 @@ Public Class FrmCIPM
         Command.Dispose()
         Mat.Dispose()
         MyBase.Finalize()
+    End Sub
+
+    Private Sub ButtonSaveAlpha_Click(sender As Object, e As EventArgs) Handles ButtonSaveAlpha.Click
+
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim MatName As String = oData.Row("Name").ToString()
+
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Dim Question As String = "Value of Alpha ?"
+        Dim PHIMinManual As String = CStr(PHIMin)
+        PHIMinManual = InputBox(Question, "SAVE Alpha", CStr(PHIMin))
+
+        Try
+
+            Dim Request = "UPDATE " + MatName + " Set alpha = " + AlphaMin
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Request = "SELECT * FROM MaterialsList"
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Dim DAdapter As New SqlDataAdapter(Command)
+            DAdapter.Fill(Mat, "MaterialsList")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+
+        End Try
+
     End Sub
 End Class

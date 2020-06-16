@@ -233,7 +233,7 @@ Public Class FrmMix
 
         Dim Kval As Double = 12.2
 
-        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value)
+        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
 
         LabelPHImin.Text = ""
 
@@ -251,7 +251,8 @@ Public Class FrmMix
 
             For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
 
-                err = model.CalcError(PHI, p)
+                model.SetPhi(PHI)
+                err = model.CalcError(p)
                 'frmCIPM_Plot(PHI, err, 1)
                 If err < errmin Then
                     errmin = err

@@ -26,8 +26,8 @@ Partial Class FrmCIPM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Me.Numwa = New System.Windows.Forms.NumericUpDown()
         Me.Numwb = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -38,14 +38,12 @@ Partial Class FrmCIPM
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.ButtonCIPM = New System.Windows.Forms.Button()
+        Me.ButtonPhi = New System.Windows.Forms.Button()
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.ButtonExit = New System.Windows.Forms.Button()
-        Me.LabelRes = New System.Windows.Forms.Label()
         Me.LabelPHImin = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.NumPhiStep = New System.Windows.Forms.NumericUpDown()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -57,8 +55,23 @@ Partial Class FrmCIPM
         Me.NumPHIMax = New System.Windows.Forms.NumericUpDown()
         Me.ComboBoxMat = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.ButtonSave = New System.Windows.Forms.Button()
+        Me.ButtonSavePhi = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ButtonAlpha = New System.Windows.Forms.Button()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.NumAlphaMax = New System.Windows.Forms.NumericUpDown()
+        Me.NumAlphaMin = New System.Windows.Forms.NumericUpDown()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.NumAlphaStep = New System.Windows.Forms.NumericUpDown()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.ButtonSaveAlpha = New System.Windows.Forms.Button()
+        Me.Labelalphamin = New System.Windows.Forms.Label()
         CType(Me.Numwa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Numwb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumCa, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +81,9 @@ Partial Class FrmCIPM
         CType(Me.NumPhiStep, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPHImin, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumPHIMax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumAlphaMax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumAlphaMin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumAlphaStep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Numwa
@@ -168,31 +184,31 @@ Partial Class FrmCIPM
         Me.Label7.TabIndex = 13
         Me.Label7.Text = "dc"
         '
-        'ButtonCIPM
+        'ButtonPhi
         '
-        Me.ButtonCIPM.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonCIPM.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
-        Me.ButtonCIPM.FlatAppearance.BorderSize = 2
-        Me.ButtonCIPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonCIPM.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCIPM.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonCIPM.Location = New System.Drawing.Point(104, 426)
-        Me.ButtonCIPM.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.ButtonCIPM.Name = "ButtonCIPM"
-        Me.ButtonCIPM.Size = New System.Drawing.Size(185, 30)
-        Me.ButtonCIPM.TabIndex = 14
-        Me.ButtonCIPM.Text = "CIPM"
-        Me.ButtonCIPM.UseVisualStyleBackColor = True
+        Me.ButtonPhi.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ButtonPhi.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
+        Me.ButtonPhi.FlatAppearance.BorderSize = 2
+        Me.ButtonPhi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPhi.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPhi.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonPhi.Location = New System.Drawing.Point(104, 318)
+        Me.ButtonPhi.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ButtonPhi.Name = "ButtonPhi"
+        Me.ButtonPhi.Size = New System.Drawing.Size(185, 30)
+        Me.ButtonPhi.TabIndex = 14
+        Me.ButtonPhi.Text = "Calculate      "
+        Me.ButtonPhi.UseVisualStyleBackColor = True
         '
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
         Me.Chart1.BorderlineColor = System.Drawing.Color.Black
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
-        Legend1.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(420, 43)
+        ChartArea3.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea3)
+        Legend3.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend3)
+        Me.Chart1.Location = New System.Drawing.Point(289, 43)
         Me.Chart1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Chart1.Name = "Chart1"
         Me.Chart1.Size = New System.Drawing.Size(546, 269)
@@ -217,22 +233,12 @@ Partial Class FrmCIPM
         Me.ButtonExit.Text = "EXIT"
         Me.ButtonExit.UseVisualStyleBackColor = False
         '
-        'LabelRes
-        '
-        Me.LabelRes.AutoSize = True
-        Me.LabelRes.ForeColor = System.Drawing.Color.DarkOrange
-        Me.LabelRes.Location = New System.Drawing.Point(417, 434)
-        Me.LabelRes.Name = "LabelRes"
-        Me.LabelRes.Size = New System.Drawing.Size(119, 14)
-        Me.LabelRes.TabIndex = 17
-        Me.LabelRes.Text = "Error Min with    ="
-        '
         'LabelPHImin
         '
         Me.LabelPHImin.AutoSize = True
         Me.LabelPHImin.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelPHImin.ForeColor = System.Drawing.Color.Orange
-        Me.LabelPHImin.Location = New System.Drawing.Point(542, 434)
+        Me.LabelPHImin.Location = New System.Drawing.Point(790, 327)
         Me.LabelPHImin.Name = "LabelPHImin"
         Me.LabelPHImin.Size = New System.Drawing.Size(0, 14)
         Me.LabelPHImin.TabIndex = 18
@@ -241,7 +247,7 @@ Partial Class FrmCIPM
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label8.Location = New System.Drawing.Point(635, 315)
+        Me.Label8.Location = New System.Drawing.Point(444, 315)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(18, 17)
@@ -250,31 +256,19 @@ Partial Class FrmCIPM
         '
         'NumPhiStep
         '
-        Me.NumPhiStep.Location = New System.Drawing.Point(681, 324)
+        Me.NumPhiStep.Location = New System.Drawing.Point(490, 324)
         Me.NumPhiStep.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.NumPhiStep.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.NumPhiStep.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
         Me.NumPhiStep.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         Me.NumPhiStep.Name = "NumPhiStep"
         Me.NumPhiStep.Size = New System.Drawing.Size(63, 22)
         Me.NumPhiStep.TabIndex = 19
         Me.NumPhiStep.Value = New Decimal(New Integer() {2, 0, 0, 0})
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label9.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label9.Location = New System.Drawing.Point(507, 433)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(18, 17)
-        Me.Label9.TabIndex = 21
-        Me.Label9.Text = "F"
-        '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(613, 332)
+        Me.Label10.Location = New System.Drawing.Point(422, 332)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(61, 14)
         Me.Label10.TabIndex = 22
@@ -302,7 +296,7 @@ Partial Class FrmCIPM
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(433, 332)
+        Me.Label11.Location = New System.Drawing.Point(308, 332)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(28, 14)
         Me.Label11.TabIndex = 26
@@ -312,7 +306,7 @@ Partial Class FrmCIPM
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label12.Location = New System.Drawing.Point(433, 315)
+        Me.Label12.Location = New System.Drawing.Point(308, 315)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(18, 17)
@@ -322,7 +316,7 @@ Partial Class FrmCIPM
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(850, 332)
+        Me.Label13.Location = New System.Drawing.Point(567, 332)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(32, 14)
         Me.Label13.TabIndex = 28
@@ -332,7 +326,7 @@ Partial Class FrmCIPM
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label14.Location = New System.Drawing.Point(843, 315)
+        Me.Label14.Location = New System.Drawing.Point(560, 315)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(18, 17)
@@ -343,7 +337,7 @@ Partial Class FrmCIPM
         '
         Me.NumPHImin.DecimalPlaces = 1
         Me.NumPHImin.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumPHImin.Location = New System.Drawing.Point(479, 324)
+        Me.NumPHImin.Location = New System.Drawing.Point(354, 324)
         Me.NumPHImin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHImin.Name = "NumPHImin"
         Me.NumPHImin.Size = New System.Drawing.Size(63, 22)
@@ -353,7 +347,7 @@ Partial Class FrmCIPM
         '
         Me.NumPHIMax.DecimalPlaces = 1
         Me.NumPHIMax.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumPHIMax.Location = New System.Drawing.Point(889, 324)
+        Me.NumPHIMax.Location = New System.Drawing.Point(606, 324)
         Me.NumPHIMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHIMax.Name = "NumPHIMax"
         Me.NumPHIMax.Size = New System.Drawing.Size(63, 22)
@@ -376,33 +370,202 @@ Partial Class FrmCIPM
         Me.Label15.TabIndex = 49
         Me.Label15.Text = "Material :"
         '
-        'ButtonSave
+        'ButtonSavePhi
         '
-        Me.ButtonSave.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonSave.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
-        Me.ButtonSave.FlatAppearance.BorderSize = 2
-        Me.ButtonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSave.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonSave.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonSave.Location = New System.Drawing.Point(767, 426)
-        Me.ButtonSave.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.ButtonSave.Name = "ButtonSave"
-        Me.ButtonSave.Size = New System.Drawing.Size(185, 30)
-        Me.ButtonSave.TabIndex = 51
-        Me.ButtonSave.Text = "Save   "
-        Me.ButtonSave.UseVisualStyleBackColor = True
+        Me.ButtonSavePhi.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ButtonSavePhi.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
+        Me.ButtonSavePhi.FlatAppearance.BorderSize = 2
+        Me.ButtonSavePhi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSavePhi.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSavePhi.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonSavePhi.Location = New System.Drawing.Point(688, 318)
+        Me.ButtonSavePhi.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ButtonSavePhi.Name = "ButtonSavePhi"
+        Me.ButtonSavePhi.Size = New System.Drawing.Size(65, 30)
+        Me.ButtonSavePhi.TabIndex = 51
+        Me.ButtonSavePhi.Text = "Save                    "
+        Me.ButtonSavePhi.UseVisualStyleBackColor = True
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Symbol", 10.0!)
         Me.Label1.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label1.Location = New System.Drawing.Point(874, 433)
+        Me.Label1.Location = New System.Drawing.Point(761, 324)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 17)
+        Me.Label1.Size = New System.Drawing.Size(30, 17)
         Me.Label1.TabIndex = 52
-        Me.Label1.Text = "F"
+        Me.Label1.Text = "F ="
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label2.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label2.Location = New System.Drawing.Point(219, 325)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(18, 17)
+        Me.Label2.TabIndex = 53
+        Me.Label2.Text = "F"
+        '
+        'ButtonAlpha
+        '
+        Me.ButtonAlpha.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ButtonAlpha.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
+        Me.ButtonAlpha.FlatAppearance.BorderSize = 2
+        Me.ButtonAlpha.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonAlpha.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAlpha.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonAlpha.Location = New System.Drawing.Point(104, 365)
+        Me.ButtonAlpha.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ButtonAlpha.Name = "ButtonAlpha"
+        Me.ButtonAlpha.Size = New System.Drawing.Size(185, 30)
+        Me.ButtonAlpha.TabIndex = 54
+        Me.ButtonAlpha.Text = "Calculate      "
+        Me.ButtonAlpha.UseVisualStyleBackColor = True
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label16.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label16.Location = New System.Drawing.Point(219, 371)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(18, 17)
+        Me.Label16.TabIndex = 55
+        Me.Label16.Text = "a"
+        '
+        'NumAlphaMax
+        '
+        Me.NumAlphaMax.DecimalPlaces = 2
+        Me.NumAlphaMax.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumAlphaMax.Location = New System.Drawing.Point(606, 371)
+        Me.NumAlphaMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumAlphaMax.Name = "NumAlphaMax"
+        Me.NumAlphaMax.Size = New System.Drawing.Size(63, 22)
+        Me.NumAlphaMax.TabIndex = 64
+        '
+        'NumAlphaMin
+        '
+        Me.NumAlphaMin.DecimalPlaces = 2
+        Me.NumAlphaMin.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumAlphaMin.Location = New System.Drawing.Point(354, 371)
+        Me.NumAlphaMin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumAlphaMin.Name = "NumAlphaMin"
+        Me.NumAlphaMin.Size = New System.Drawing.Size(63, 22)
+        Me.NumAlphaMin.TabIndex = 63
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(567, 379)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(32, 14)
+        Me.Label17.TabIndex = 62
+        Me.Label17.Text = "Max"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label18.Location = New System.Drawing.Point(560, 362)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(18, 17)
+        Me.Label18.TabIndex = 61
+        Me.Label18.Text = "a"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(308, 379)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(28, 14)
+        Me.Label19.TabIndex = 60
+        Me.Label19.Text = "Min"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label20.Location = New System.Drawing.Point(308, 362)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(18, 17)
+        Me.Label20.TabIndex = 59
+        Me.Label20.Text = "a"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(422, 379)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(61, 14)
+        Me.Label21.TabIndex = 58
+        Me.Label21.Text = "Accuracy"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label22.Location = New System.Drawing.Point(444, 362)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(18, 17)
+        Me.Label22.TabIndex = 57
+        Me.Label22.Text = "a"
+        '
+        'NumAlphaStep
+        '
+        Me.NumAlphaStep.Location = New System.Drawing.Point(490, 371)
+        Me.NumAlphaStep.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.NumAlphaStep.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.NumAlphaStep.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
+        Me.NumAlphaStep.Name = "NumAlphaStep"
+        Me.NumAlphaStep.Size = New System.Drawing.Size(63, 22)
+        Me.NumAlphaStep.TabIndex = 56
+        Me.NumAlphaStep.Value = New Decimal(New Integer() {2, 0, 0, 0})
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Symbol", 10.0!)
+        Me.Label23.ForeColor = System.Drawing.Color.DarkOrange
+        Me.Label23.Location = New System.Drawing.Point(761, 371)
+        Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(30, 17)
+        Me.Label23.TabIndex = 66
+        Me.Label23.Text = "a ="
+        '
+        'ButtonSaveAlpha
+        '
+        Me.ButtonSaveAlpha.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ButtonSaveAlpha.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
+        Me.ButtonSaveAlpha.FlatAppearance.BorderSize = 2
+        Me.ButtonSaveAlpha.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSaveAlpha.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSaveAlpha.ForeColor = System.Drawing.Color.DarkOrange
+        Me.ButtonSaveAlpha.Location = New System.Drawing.Point(688, 365)
+        Me.ButtonSaveAlpha.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.ButtonSaveAlpha.Name = "ButtonSaveAlpha"
+        Me.ButtonSaveAlpha.Size = New System.Drawing.Size(65, 30)
+        Me.ButtonSaveAlpha.TabIndex = 65
+        Me.ButtonSaveAlpha.Text = "Save                    "
+        Me.ButtonSaveAlpha.UseVisualStyleBackColor = True
+        '
+        'Labelalphamin
+        '
+        Me.Labelalphamin.AutoSize = True
+        Me.Labelalphamin.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Labelalphamin.ForeColor = System.Drawing.Color.Orange
+        Me.Labelalphamin.Location = New System.Drawing.Point(790, 374)
+        Me.Labelalphamin.Name = "Labelalphamin"
+        Me.Labelalphamin.Size = New System.Drawing.Size(0, 14)
+        Me.Labelalphamin.TabIndex = 67
         '
         'FrmCIPM
         '
@@ -411,8 +574,23 @@ Partial Class FrmCIPM
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1000, 500)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Labelalphamin)
+        Me.Controls.Add(Me.Label23)
+        Me.Controls.Add(Me.ButtonSaveAlpha)
+        Me.Controls.Add(Me.NumAlphaMax)
+        Me.Controls.Add(Me.NumAlphaMin)
+        Me.Controls.Add(Me.Label17)
+        Me.Controls.Add(Me.Label18)
+        Me.Controls.Add(Me.Label19)
+        Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.NumAlphaStep)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.ButtonAlpha)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.ButtonSave)
+        Me.Controls.Add(Me.ButtonSavePhi)
         Me.Controls.Add(Me.ComboBoxMat)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.NumPHIMax)
@@ -424,14 +602,12 @@ Partial Class FrmCIPM
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label10)
-        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.NumPhiStep)
         Me.Controls.Add(Me.LabelPHImin)
-        Me.Controls.Add(Me.LabelRes)
         Me.Controls.Add(Me.ButtonExit)
         Me.Controls.Add(Me.Chart1)
-        Me.Controls.Add(Me.ButtonCIPM)
+        Me.Controls.Add(Me.ButtonPhi)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -462,6 +638,9 @@ Partial Class FrmCIPM
         CType(Me.NumPhiStep, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumPHImin, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumPHIMax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumAlphaMax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumAlphaMin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumAlphaStep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -476,14 +655,12 @@ Partial Class FrmCIPM
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents ButtonCIPM As Button
+    Friend WithEvents ButtonPhi As Button
     Friend WithEvents Chart1 As DataVisualization.Charting.Chart
     Friend WithEvents ButtonExit As Button
-    Friend WithEvents LabelRes As Label
     Friend WithEvents LabelPHImin As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents NumPhiStep As NumericUpDown
-    Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
@@ -495,6 +672,21 @@ Partial Class FrmCIPM
     Friend WithEvents NumPHIMax As NumericUpDown
     Friend WithEvents ComboBoxMat As ComboBox
     Friend WithEvents Label15 As Label
-    Friend WithEvents ButtonSave As Button
+    Friend WithEvents ButtonSavePhi As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents ButtonAlpha As Button
+    Friend WithEvents Label16 As Label
+    Friend WithEvents NumAlphaMax As NumericUpDown
+    Friend WithEvents NumAlphaMin As NumericUpDown
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents NumAlphaStep As NumericUpDown
+    Friend WithEvents Label23 As Label
+    Friend WithEvents ButtonSaveAlpha As Button
+    Friend WithEvents Labelalphamin As Label
 End Class

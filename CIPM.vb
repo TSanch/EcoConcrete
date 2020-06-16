@@ -17,9 +17,10 @@ Public Class CIPM
     Private Cb As Double
     Private a(,) As Double
     Private b(,) As Double
+    Private Phi As Double
 
-    Public Sub New(ByVal NbMaterialsval As Double, ByVal nval As Double, ByVal rval(,) As Double, ByVal alphaval(,) As Double, ByVal Kval As Double,
-            ByVal dcval As Double, ByVal dval() As Double, ByVal waval As Double, ByVal wbval As Double, ByVal Caval As Double, ByVal Cbval As Double)
+    Public Sub New(ByRef NbMaterialsval As Double, ByRef nval As Double, ByRef rval(,) As Double, ByRef alphaval(,) As Double, ByRef Kval As Double,
+            ByRef dcval As Double, ByRef dval() As Double, ByRef waval As Double, ByRef wbval As Double, ByRef Caval As Double, ByRef Cbval As Double, ByRef Phival As Double)
 
         NbMaterials = NbMaterialsval
         n = nval
@@ -33,8 +34,25 @@ Public Class CIPM
         wb = wbval
         Ca = Caval
         Cb = Cbval
+        Phi = Phival
 
         Calcab()
+
+    End Sub
+
+    Public Sub SetPhi(ByRef Phival As Double)
+
+        Phi = Phival
+
+    End Sub
+
+    Public Sub SetAlpha(ByRef Alphaval As Double)
+
+        For k As Integer = 0 To NbMaterials - 1
+            For j As Integer = 0 To n - 1
+                alpha(k, j) = Alphaval
+            Next
+        Next
 
     End Sub
 
@@ -80,7 +98,7 @@ Public Class CIPM
 
     End Sub
 
-    Public Function CalcError(ByVal PHI As Double, ByVal pval() As Double) As Double
+    Public Function CalcError(ByRef pval() As Double) As Double
 
         Dim Kcalc As Double = 0
         Dim PhiBeta, Phi2Beta As Double
@@ -98,22 +116,22 @@ Public Class CIPM
             For k As Integer = 0 To NbMaterials - 1
 
                 beta = (1 + 1 / Kcipm) * alpha(k, i)
-                PhiBeta += p(k) * r(k, i) * PHI / beta
+                PhiBeta += p(k) * r(k, i) * Phi / beta
 
                 'Loop on the complete granulometry
                 r2 = 0
 
-                For j As Integer = 0 To (i - 2)
+                For j As Integer = 0 To (i - 1)
 
                     betaj = (1 + 1 / Kcipm) * alpha(k, j)
-                    r2 += (1 - b(i, j) * (1 - 1 / betaj)) * r(k, j) * PHI
+                    r2 += (1 - b(i, j) * (1 - 1 / betaj)) * r(k, j) * Phi
 
                 Next
 
-                For j As Integer = i To (n - 1)
+                For j As Integer = (i + 1) To (n - 1)
 
                     betaj = (1 + 1 / Kcipm) * alpha(k, j)
-                    r2 += a(i, j) * r(k, j) * PHI / betaj
+                    r2 += a(i, j) * r(k, j) * Phi / betaj
 
                 Next
 
