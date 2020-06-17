@@ -302,6 +302,44 @@ b:
 
     End Sub
 
+    Private Sub ButtonSaveAlpha_Click(sender As Object, e As EventArgs) Handles ButtonSaveAlpha.Click
+
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim MatName As String = oData.Row("Name").ToString()
+
+        If Connexion.State = ConnectionState.Open Then
+            Connexion.Close()
+        End If
+        Try
+            Connexion.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Dim Question As String = "Value of Alpha ?"
+        Dim AlphaMinManual As String = CStr(AlphaMin)
+        AlphaMinManual = InputBox(Question, "SAVE Alpha", CStr(AlphaMin))
+
+        Try
+
+            Dim Request = "UPDATE " + MatName + " Set alpha = " + CStr(AlphaMin)
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Request = "SELECT * FROM MaterialsList"
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Dim DAdapter As New SqlDataAdapter(Command)
+            DAdapter.Fill(Mat, "MaterialsList")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+
+        End Try
+
+    End Sub
+
     Private Sub ComboBoxMat_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ComboBoxMat.SelectionChangeCommitted
 
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
@@ -360,41 +398,5 @@ b:
         MyBase.Finalize()
     End Sub
 
-    Private Sub ButtonSaveAlpha_Click(sender As Object, e As EventArgs) Handles ButtonSaveAlpha.Click
 
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        Dim MatName As String = oData.Row("Name").ToString()
-
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
-        End If
-        Try
-            Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Question As String = "Value of Alpha ?"
-        Dim PHIMinManual As String = CStr(PHIMin)
-        PHIMinManual = InputBox(Question, "SAVE Alpha", CStr(PHIMin))
-
-        Try
-
-            Dim Request = "UPDATE " + MatName + " Set alpha = " + AlphaMin
-            Command.Connection = Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Request = "SELECT * FROM MaterialsList"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim DAdapter As New SqlDataAdapter(Command)
-            DAdapter.Fill(Mat, "MaterialsList")
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-
-        End Try
-
-    End Sub
 End Class

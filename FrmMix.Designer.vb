@@ -45,7 +45,6 @@ Partial Class FrmMix
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.CheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.MaterialsListTableAdapter1 = New EcoConcrete.MaterialsDataSetTableAdapters.MaterialsListTableAdapter()
         Me.DataGridView = New System.Windows.Forms.DataGridView()
         Me.ButtonMixOpt = New System.Windows.Forms.Button()
         Me.ButtonAddMix = New System.Windows.Forms.Button()
@@ -270,10 +269,7 @@ Partial Class FrmMix
         Me.CheckedListBox.Name = "CheckedListBox"
         Me.CheckedListBox.Size = New System.Drawing.Size(161, 170)
         Me.CheckedListBox.TabIndex = 53
-        '
-        'MaterialsListTableAdapter1
-        '
-        Me.MaterialsListTableAdapter1.ClearBeforeFill = True
+
         '
         'DataGridView
         '
@@ -489,7 +485,6 @@ Partial Class FrmMix
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label15 As Label
     Friend WithEvents CheckedListBox As CheckedListBox
-    Friend WithEvents MaterialsListTableAdapter1 As MaterialsDataSetTableAdapters.MaterialsListTableAdapter
     Friend WithEvents DataGridView As DataGridView
     Friend WithEvents ButtonMixOpt As Button
     Friend WithEvents ButtonAddMix As Button

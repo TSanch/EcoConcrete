@@ -13,10 +13,10 @@ Public Class FrmMain
     End Sub
 
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        My.Application.ChangeCulture("en_CA")
+        My.Application.ChangeCulture("en-US")
         Me.IsMdiContainer = True
         Me.WindowState = FormWindowState.Normal
-        Me.Location = Screen.AllScreens(1).WorkingArea.Location
+        Me.Location = Screen.PrimaryScreen.WorkingArea.Location
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click

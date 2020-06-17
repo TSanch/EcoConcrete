@@ -26,8 +26,8 @@ Partial Class FrmCIPM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Me.Numwa = New System.Windows.Forms.NumericUpDown()
         Me.Numwb = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -204,10 +204,10 @@ Partial Class FrmCIPM
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
         Me.Chart1.BorderlineColor = System.Drawing.Color.Black
-        ChartArea3.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea3)
-        Legend3.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend3)
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend1)
         Me.Chart1.Location = New System.Drawing.Point(289, 43)
         Me.Chart1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Chart1.Name = "Chart1"
@@ -441,7 +441,7 @@ Partial Class FrmCIPM
         'NumAlphaMax
         '
         Me.NumAlphaMax.DecimalPlaces = 2
-        Me.NumAlphaMax.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumAlphaMax.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
         Me.NumAlphaMax.Location = New System.Drawing.Point(606, 371)
         Me.NumAlphaMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumAlphaMax.Name = "NumAlphaMax"
@@ -451,7 +451,7 @@ Partial Class FrmCIPM
         'NumAlphaMin
         '
         Me.NumAlphaMin.DecimalPlaces = 2
-        Me.NumAlphaMin.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.NumAlphaMin.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
         Me.NumAlphaMin.Location = New System.Drawing.Point(354, 371)
         Me.NumAlphaMin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumAlphaMin.Name = "NumAlphaMin"

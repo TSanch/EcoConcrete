@@ -10,13 +10,13 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("EcoConcrete")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyDescription("Concrete Mix Optimisation")>
+<Assembly: AssemblyCompany("EcoConcrete")>
 <Assembly: AssemblyProduct("EcoConcrete")>
 <Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(True)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
 <Assembly: Guid("1fa1b104-94d7-44e4-babf-6b82a34274f0")>
