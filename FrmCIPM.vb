@@ -322,7 +322,7 @@ b:
 
         Try
 
-            Dim Request = "UPDATE " + MatName + " Set alpha = " + CStr(AlphaMin)
+            Dim Request = "UPDATE [" + MatName + "] Set alpha = " + CStr(AlphaMin)
             Command.Connection = Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
@@ -360,7 +360,7 @@ b:
             MessageBox.Show(ex.Message)
         End Try
 
-        Dim Request = "SELECT * FROM " + MatName
+        Dim Request = "SELECT * FROM [" + MatName + "]"
         Command.Connection = Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()

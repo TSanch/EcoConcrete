@@ -61,7 +61,7 @@ Public Class FrmDataBase
 
         Try
 
-            Dim Request = "SELECT * FROM " + MatName
+            Dim Request = "SELECT * FROM [" + MatName + "]"
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
@@ -115,12 +115,12 @@ Public Class FrmDataBase
             Dim DAdapter = New SqlDataAdapter(Command)
             DAdapter.Fill(Mat, "MaterialsList")
 
-            Request = "CREATE TABLE [dbo].[" + NewMat(0) + "] ([Id] INT IDENTITY (1, 1) NOT NULL, [r] FLOAT (53) NOT NULL, [alpha] FLOAT (53) NOT NULL, [d] FLOAT (53) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC))"
+            Request = "CREATE TABLE [dbo].[" + NewMat(0) + "] ([Id] INT IDENTITY (1, 1) NOT NULL, [r] FLOAT (53) NULL, [alpha] FLOAT (53) NOT NULL, [d] FLOAT (53) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC))"
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
             For i As Integer = 0 To NewMat(4)
-                Request = "INSERT INTO " + NewMat(0) + " ([r], [alpha], [d]) VALUES (0, 0, 0)"
+                Request = "INSERT INTO [" + NewMat(0) + "] ([r], [alpha], [d]) VALUES (0, 0, 0)"
                 Command.CommandText = Request
                 Command.ExecuteNonQuery()
             Next
@@ -170,7 +170,7 @@ Public Class FrmDataBase
                 DataGridView.EndEdit()
                 DataGridView2.EndEdit()
 
-                Dim Request = "SELECT * FROM " + MatName
+                Dim Request = "SELECT * FROM [" + MatName + "]"
                 Command.CommandText = Request
                 Command.ExecuteNonQuery()
 
@@ -211,7 +211,7 @@ Public Class FrmDataBase
 
         Select Case MsgBox("Are you sure to delete the material: " + MatName, MsgBoxStyle.YesNo, MatName)
             Case MsgBoxResult.Yes
-                Dim Request = "DROP TABLE " + MatName
+                Dim Request = "DROP TABLE [" + MatName + "]"
                 Command.CommandText = Request
                 Command.ExecuteNonQuery()
 

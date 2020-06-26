@@ -193,7 +193,7 @@ Public Class FrmMix
 
         For i As Integer = 0 To M - 1
 
-            Request = "SELECT * FROM " + MatName(i)
+            Request = "SELECT * FROM [" + MatName(i) + "]"
             Command.Connection = Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
