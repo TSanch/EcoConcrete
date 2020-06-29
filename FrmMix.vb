@@ -15,16 +15,15 @@ Public Class FrmMix
     Dim MatName(10) As String
     Dim MatNameOld As String = ""
 
-    Dim n As Integer
     Private r(,) As Double
     Private alpha(,) As Double
     Private d() As Double
 
     Dim M As Integer
+    Dim n As Integer
     Dim nbp As Integer = 0
 
-
-    Dim PHIMin
+    Dim PHIMin() As Double
 
     Private Sub FrmCIPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -80,7 +79,7 @@ Public Class FrmMix
         NumCb.Value = 0.2
         Numdc.Value = 125
         NumPHImin.Value = 0.2
-        NumPhiStep.Value = 3
+        NumPhiStep.Value = 4
         NumPHIMax.Value = 0.8
 
         'Chart1.Hide()
@@ -96,17 +95,18 @@ Public Class FrmMix
         DataGridView.Columns("Cost").Visible = True
         DataGridView.Columns("Density").Visible = False
         DataGridView.Columns("PHI").Visible = False
-        DataGridView.AutoSize = False
-
+        DataGridView.AutoResizeColumns()
 
     End Sub
 
     Private Sub ButtonChoiceMat_Click(sender As Object, e As EventArgs) Handles ButtonChoiceMat.Click
 
-        'InitGraphs()
+        ReDim MatName(CheckedListBox.CheckedItems.Count - 1)
+        For i As Integer = 0 To CheckedListBox.CheckedItems.Count - 1
+            MatName(i) = CheckedListBox.GetItemText(CheckedListBox.CheckedItems(i)).ToString()
+        Next
 
         LoadData()
-
 
     End Sub
 
@@ -133,7 +133,7 @@ Public Class FrmMix
         DAdapter.Dispose()
         Command.Dispose()
         Mat.Dispose()
-        Close()
+        MyBase.Finalize()
     End Sub
 
     'Private Sub InitGraphs()
@@ -160,15 +160,8 @@ Public Class FrmMix
             MessageBox.Show(ex.Message)
         End Try
 
-        Dim foundRows(100) As DataRow
-
-        ReDim MatName(CheckedListBox.CheckedItems.Count - 1)
-        For i As Integer = 0 To CheckedListBox.CheckedItems.Count - 1
-            MatName(i) = CheckedListBox.GetItemText(CheckedListBox.CheckedItems(i)).ToString()
-        Next
 
         Dim listName As String = String.Join("','", MatName)
-
         Dim Request As String = "SELECT * FROM MaterialsList WHERE Name IN ('" + listName + "')"
         Command = New SqlCommand
         Command.Connection = Connexion
@@ -183,13 +176,15 @@ Public Class FrmMix
         DataGridView.DataSource = Mat.Tables("MaterialsList")
         DataGridView.Columns("Id").Visible = False
         DataGridView.Columns("Name").Visible = True
-        DataGridView.Columns("Manufacturer").Visible = True
-        DataGridView.Columns("Cost").Visible = True
+        DataGridView.Columns("Manufacturer").Visible = False
+        DataGridView.Columns("Cost").Visible = False
         DataGridView.Columns("Density").Visible = False
         DataGridView.Columns("PHI").Visible = False
         DataGridView.AutoSize = False
 
         M = MatName.Length()
+
+        'Dim Phi_values(M - 1) As Double
 
         For i As Integer = 0 To M - 1
 
@@ -202,6 +197,8 @@ Public Class FrmMix
             If Mat.Tables.Contains(MatName(i)) Then Mat.Tables(MatName(i)).Clear()
             DAdapter.Fill(Mat, MatName(i))
 
+            'Phi_values(i) = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray(j)(5)
+
         Next
 
         n = Mat.Tables(MatName(0)).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray.Length()
@@ -211,22 +208,33 @@ Public Class FrmMix
             d(j) = Mat.Tables(MatName(0)).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray(j)(3)
         Next
 
+        ReDim r(M - 1, n - 1)
+        ReDim alpha(M - 1, n - 1)
+
         For i As Integer = 0 To M - 1
 
             Dim MatTable()() As Object = Mat.Tables(MatName(i)).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
 
-            ReDim r(M - 1, n - 1)
-            For j As Integer = 0 To n - 1
-                r(i, j) = MatTable(j)(1) / 100
-            Next
+            Dim n_new As Integer = MatTable.Length()
+            If n_new <> n Then
+                MessageBox.Show("Error: n are differents. Please verify the database!")
+                GoTo B
+            End If
 
-            ReDim alpha(M - 1, n - 1)
             For j As Integer = 0 To n - 1
+
+                r(i, j) = MatTable(j)(1) / 100
                 alpha(i, j) = MatTable(j)(2)
+
+                Dim d_new As Double = MatTable(j)(3)
+                If d_new <> d(j) Then
+                    MessageBox.Show("Error: d() are differents. Please verify the database!")
+                    GoTo B
+                End If
             Next
 
         Next
-
+B:
     End Sub
 
     Private Sub ButtonMixOpt_Click(sender As Object, e As EventArgs) Handles ButtonMixOpt.Click
@@ -237,6 +245,8 @@ Public Class FrmMix
 
         LabelPHImin.Text = ""
 
+        ReDim PHIMin(nbp - 1)
+
         For i As Integer = 0 To nbp - 1
 
             Dim MatTable()() As Object = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
@@ -246,26 +256,34 @@ Public Class FrmMix
                 p(j) = CDbl(MatTable(j)(6 + i))
             Next
 
+            Dim jlength As Integer = (NumPHIMax.Value - NumPHImin.Value) / (10 ^ (-NumPhiStep.Value))
+            Dim vect_err(jlength) As Double
+            Dim vect_phi(jlength) As Double
+
+            Dim errfound As Boolean = False
             Dim err As Double
             Dim errmin As Double = 100
+            Dim k As Integer = 0
 
             For PHI As Double = NumPHImin.Value To NumPHIMax.Value Step 10 ^ (-NumPhiStep.Value)
 
-                model.SetPhi(PHI)
-                err = model.CalcError(p)
-                'frmCIPM_Plot(PHI, err, 1)
-                If err < errmin Then
-                    errmin = err
-                    PHIMin = PHI
+                vect_phi(k) = PHI
+                model.SetPhi(vect_phi(k))
+                vect_err(k) = model.CalcError(p)
+
+                If (vect_err(k) < errmin) And (errfound = False) Then
+                    errmin = vect_err(k)
+                    PHIMin(i) = Math.Round(vect_phi(k), 3)
                 End If
+
+                k += 1
 
             Next
 
-            'frmCIPM_Plot(PHIMin, errmin, 2)
             Label9.Show()
             LabelRes.Show()
 
-            LabelPHImin.Text += " " + CStr(PHIMin)
+            LabelPHImin.Text += " " + CStr(PHIMin(i))
 
         Next
 
