@@ -67,6 +67,7 @@ Public Class FrmCIPM
         ComboBoxMat.DisplayMember = "Name"
         ComboBoxMat.ValueMember = "Id"
 
+        NumK.Value = 12.2
         Numwa.Value = 1
         Numwb.Value = 1
         NumCa.Value = 1.5
@@ -91,8 +92,6 @@ Public Class FrmCIPM
 
     Private Sub ButtonPhi_Click(sender As Object, e As EventArgs) Handles ButtonPhi.Click
 
-        Dim Kval As Double = 12.2
-
         InitGraphs()
         Chart1.ChartAreas("Default").AxisX.Title = "Phi [.]"
 
@@ -101,7 +100,7 @@ Public Class FrmCIPM
             p(j) = 1
         Next
 
-        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
+        Dim model As New CIPM(M, n, r, alpha, NumK.Value, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
 
         Dim ilength As Integer = (NumPHIMax.Value - NumPHImin.Value) / (10 ^ (-NumPhiStep.Value))
         Dim vect_err(ilength) As Double
@@ -289,12 +288,18 @@ b:
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
+            Request = "UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'"
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
             Request = "SELECT * FROM MaterialsList"
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
             Dim DAdapter As New SqlDataAdapter(Command)
             DAdapter.Fill(Mat, "MaterialsList")
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
 
@@ -323,6 +328,11 @@ b:
         Try
 
             Dim Request = "UPDATE [" + MatName + "] Set alpha = " + CStr(AlphaMin)
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Request = "UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'"
             Command.Connection = Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
@@ -386,6 +396,21 @@ b:
             d(i) = MatTable(i)(3)
         Next
 
+        Try
+            Request = "SELECT K FROM MaterialsList WHERE Name = '" + MatName + "'"
+            Command.Connection = Connexion
+            Command.CommandText = Request
+            Command.ExecuteNonQuery()
+
+            Dim reader As SqlDataReader = Command.ExecuteReader()
+            reader.Read()
+            NumK.Value = CDbl(reader.GetString(0))
+
+        Catch ex As Exception
+            MessageBox.Show("No value for K in " + MatName + ". Default value = 12.2")
+            NumK.Value = 12.2
+        End Try
+
         MatNameOld = MatName
 
     End Sub
@@ -397,6 +422,5 @@ b:
         Mat.Dispose()
         MyBase.Finalize()
     End Sub
-
 
 End Class

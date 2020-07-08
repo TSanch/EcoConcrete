@@ -73,6 +73,7 @@ Public Class FrmMix
         'CheckedListBox.DisplayMember = "Name"
         'CheckedListBox.ValueMember = "Id"
 
+        NumK.Value = 12.2
         Numwa.Value = 1
         Numwb.Value = 1
         NumCa.Value = 1.5
@@ -81,6 +82,7 @@ Public Class FrmMix
         NumPHImin.Value = 0.2
         NumPhiStep.Value = 4
         NumPHIMax.Value = 0.8
+        Numdp.Value = 6
 
         'Chart1.Hide()
 
@@ -97,6 +99,9 @@ Public Class FrmMix
         DataGridView.Columns("PHI").Visible = False
         DataGridView.AutoResizeColumns()
 
+        Mat.Tables.Add("p")
+        DataGridViewPhiMin.DataSource = Mat.Tables("p")
+
     End Sub
 
     Private Sub ButtonChoiceMat_Click(sender As Object, e As EventArgs) Handles ButtonChoiceMat.Click
@@ -107,6 +112,7 @@ Public Class FrmMix
         Next
 
         LoadData()
+        DataGridView.AutoResizeColumns()
 
     End Sub
 
@@ -180,6 +186,7 @@ Public Class FrmMix
         DataGridView.Columns("Cost").Visible = False
         DataGridView.Columns("Density").Visible = False
         DataGridView.Columns("PHI").Visible = False
+        DataGridView.Columns("K").Visible = False
         DataGridView.AutoSize = False
 
         M = MatName.Length()
@@ -239,22 +246,20 @@ B:
 
     Private Sub ButtonMixOpt_Click(sender As Object, e As EventArgs) Handles ButtonMixOpt.Click
 
-        Dim Kval As Double = 12.2
-
-        Dim model As New CIPM(M, n, r, alpha, Kval, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
-
-        LabelPHImin.Text = ""
+        Dim model As New CIPM(M, n, r, alpha, NumK.Value, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
+        Dim MatTable()() As Object = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
 
         ReDim PHIMin(nbp - 1)
 
-        For i As Integer = 0 To nbp - 1
+        Mat.Tables("p").Rows.Add()
 
-            Dim MatTable()() As Object = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
+        For i As Integer = 0 To nbp - 1
 
             Dim p(M - 1) As Double
             For j As Integer = 0 To M - 1
-                p(j) = CDbl(MatTable(j)(6 + i))
+                p(j) = CDbl(MatTable(j)(9 + i))
             Next
+
 
             Dim jlength As Integer = (NumPHIMax.Value - NumPHImin.Value) / (10 ^ (-NumPhiStep.Value))
             Dim vect_err(jlength) As Double
@@ -280,12 +285,15 @@ B:
 
             Next
 
+
             Label9.Show()
+
             LabelRes.Show()
 
-            LabelPHImin.Text += " " + CStr(PHIMin(i))
+            Mat.Tables("p")(0)(i) = PHIMin(i)
 
         Next
+
 
 
     End Sub
@@ -294,6 +302,77 @@ B:
 
         nbp += 1
         Mat.Tables("MaterialsList").Columns.Add("p" + CStr(nbp))
+
+        Dim column As DataColumn = New DataColumn("p" + CStr(nbp))
+        column.DataType = System.Type.GetType("System.Double")
+        Mat.Tables("p").Columns.Add(column)
+
+    End Sub
+
+    Private Sub ButtonMixAuto_Click(sender As Object, e As EventArgs) Handles ButtonMixAuto.Click
+
+        Dim model As New CIPM(M, n, r, alpha, NumK.Value, Numdc.Value, d, Numwa.Value, Numwb.Value, NumCa.Value, NumCb.Value, 0)
+        Dim MatTable()() As Object = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
+
+        MessageBox.Show("Fonction en développement !")
+
+        'Dim combi As Double = Numdp.Value ^ M
+        'Dim pauto(M - 1, combi - 1) As Double
+
+        Try
+
+            Dim cas(Numdp.Value - 1) As Integer
+            Dim sumcas As Integer = 0
+
+            For i As Integer = 0 To Numdp.Value - 1
+
+                cas(i) = Numdp.Value - i
+                sumcas += cas(i)
+
+            Next
+
+            Dim p(M - 1, sumcas - 1) As Double
+
+            For i As Integer = 0 To M - 2
+
+                Dim pmin As Double = 0
+                Dim pmax As Double = 1
+                Dim dp = (pmax - pmin) / (Numdp.Value - 1)
+                Dim countiii As Integer = 0
+
+                For ii As Integer = 0 To Numdp.Value - 1
+
+                    For iii As Integer = 0 To cas(ii) - 1
+                        p(i, iii + countiii) = pmin + dp * iii
+                    Next
+
+                    countiii += cas(ii)
+
+                Next
+            Next
+
+            For i As Integer = 0 To sumcas - 1
+
+                Dim sump As Double = 0
+
+                For ii As Integer = 0 To M - 2
+
+                    sump += p(ii, i)
+
+                Next
+
+                If sump < 1 Then
+                    p(M - 1, i) = 1 - sump
+                Else
+                    MessageBox.Show("Error Sum p > 1 !")
+                    GoTo B
+                End If
+            Next
+
+        Catch ex As Exception
+            MessageBox.Show("Error auto calculation : pmin or pmax value are not given !")
+        End Try
+B:
 
     End Sub
 

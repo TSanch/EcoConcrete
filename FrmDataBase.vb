@@ -179,6 +179,15 @@ Public Class FrmDataBase
 
                 DAdapter.Update(Mat, MatName)
 
+                Request = "DELETE FROM [" + MatName + "] WHERE d IS NULL OR d = 0"
+                Command.CommandText = Request
+                Command.ExecuteNonQuery()
+
+                DAdapter = New SqlDataAdapter(Command)
+                CmdBuilder = New SqlCommandBuilder(DAdapter)
+
+                DAdapter.Update(Mat, MatName)
+
                 Request = "SELECT * FROM MaterialsList"
                 Command.CommandText = Request
                 Command.ExecuteNonQuery()
@@ -187,7 +196,6 @@ Public Class FrmDataBase
                 CmdBuilder = New SqlCommandBuilder(DAdapter)
 
                 DAdapter.Update(Mat, "MaterialsList")
-
 
             Case MsgBoxResult.No
 
