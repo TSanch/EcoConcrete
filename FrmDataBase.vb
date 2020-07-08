@@ -167,24 +167,12 @@ Public Class FrmDataBase
         Select Case MsgBox("Are you sure to save the material: " + MatName, MsgBoxStyle.YesNo, MatName)
             Case MsgBoxResult.Yes
 
-                DataGridView.EndEdit()
-                DataGridView2.EndEdit()
-
                 Dim Request = "SELECT * FROM [" + MatName + "]"
                 Command.CommandText = Request
                 Command.ExecuteNonQuery()
 
                 Dim DAdapter As New SqlDataAdapter(Command)
                 Dim CmdBuilder As New SqlCommandBuilder(DAdapter)
-
-                DAdapter.Update(Mat, MatName)
-
-                Request = "DELETE FROM [" + MatName + "] WHERE d IS NULL OR d = 0"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                DAdapter = New SqlDataAdapter(Command)
-                CmdBuilder = New SqlCommandBuilder(DAdapter)
 
                 DAdapter.Update(Mat, MatName)
 
@@ -196,6 +184,22 @@ Public Class FrmDataBase
                 CmdBuilder = New SqlCommandBuilder(DAdapter)
 
                 DAdapter.Update(Mat, "MaterialsList")
+
+            Case MsgBoxResult.No
+
+        End Select
+
+        Select Case MsgBox("Some d value are null in " + MatName + ". Do you want to delete them ?", MsgBoxStyle.YesNo, MatName)
+            Case MsgBoxResult.Yes
+
+                Dim Request = "DELETE FROM [" + MatName + "] WHERE d IS NULL OR d = 0"
+                Command.CommandText = Request
+                Command.ExecuteNonQuery()
+
+                Dim DAdapter As New SqlDataAdapter(Command)
+                Dim CmdBuilder As New SqlCommandBuilder(DAdapter)
+
+                DAdapter.Update(Mat, MatName)
 
             Case MsgBoxResult.No
 
