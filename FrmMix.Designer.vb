@@ -466,7 +466,7 @@ Partial Class FrmMix
         Me.DataGridViewPhiMin.Cursor = System.Windows.Forms.Cursors.Default
         Me.DataGridViewPhiMin.Location = New System.Drawing.Point(286, 302)
         Me.DataGridViewPhiMin.Name = "DataGridViewPhiMin"
-        Me.DataGridViewPhiMin.Size = New System.Drawing.Size(483, 42)
+        Me.DataGridViewPhiMin.Size = New System.Drawing.Size(483, 96)
         Me.DataGridViewPhiMin.TabIndex = 75
         '
         'FrmMix
