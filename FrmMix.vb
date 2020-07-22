@@ -188,7 +188,6 @@ Public Class FrmMix
         DataGridView.Columns("Density").Visible = False
         DataGridView.Columns("PHI").Visible = False
         DataGridView.Columns("K").Visible = False
-        DataGridView.AutoSize = False
 
         M = MatName.Length()
 
@@ -307,6 +306,8 @@ B:
         Dim column As DataColumn = New DataColumn("p" + CStr(nbp))
         column.DataType = System.Type.GetType("System.Double")
         Mat.Tables("p").Columns.Add(column)
+
+        DataGridView.AutoResizeColumns()
 
     End Sub
 
