@@ -116,8 +116,8 @@ Partial Class FrmMix
         '
         'NumCa
         '
-        Me.NumCa.DecimalPlaces = 1
-        Me.NumCa.Location = New System.Drawing.Point(924, 231)
+        Me.NumCa.DecimalPlaces = 2
+        Me.NumCa.Location = New System.Drawing.Point(924, 232)
         Me.NumCa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCa.Name = "NumCa"
         Me.NumCa.Size = New System.Drawing.Size(63, 22)
@@ -125,7 +125,7 @@ Partial Class FrmMix
         '
         'NumCb
         '
-        Me.NumCb.DecimalPlaces = 1
+        Me.NumCb.DecimalPlaces = 2
         Me.NumCb.Location = New System.Drawing.Point(924, 259)
         Me.NumCb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCb.Name = "NumCb"

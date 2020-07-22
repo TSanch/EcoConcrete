@@ -43,7 +43,8 @@ Public Class FrmMix
         'End With
 
         Connexion = New SqlConnection
-        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
+        Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=sa;Password=***********"
+        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
         If Connexion.State = ConnectionState.Open Then
             Connexion.Close()
         End If
@@ -373,6 +374,42 @@ B:
             MessageBox.Show("Error auto calculation : pmin or pmax value are not given !")
         End Try
 B:
+
+    End Sub
+
+    Private Sub KeyPaste(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView.KeyDown
+        If e.KeyCode = Keys.V And Keys.ControlKey Then
+            Paste()
+        End If
+    End Sub
+
+    Private Sub Paste()
+
+        Dim tArr() As String
+        Dim arT() As String
+        Dim c, cc, r As Integer
+
+        tArr = Clipboard.GetText().Split(Environment.NewLine)
+
+        r = DataGridView.SelectedCells(0).RowIndex
+        c = DataGridView.SelectedCells(0).ColumnIndex
+
+        For i As Integer = 0 To tArr.Length - 2
+            arT = tArr(i).Split(vbTab)
+            cc = c
+            For ii As Integer = 0 To arT.Length - 1
+                If cc > DataGridView.ColumnCount - 1 Then Exit For
+                If r > DataGridView.Rows.Count - 1 Then
+                    Dim Row As DataGridViewRow = DataGridView.Rows(0).Clone()
+                    DataGridView.Rows.Add(Row)
+                End If
+
+                DataGridView.Item(cc, r).Value = CDbl(arT(ii))
+
+                cc += 1
+            Next
+            r += 1
+        Next
 
     End Sub
 
