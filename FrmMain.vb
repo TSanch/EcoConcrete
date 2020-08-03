@@ -31,7 +31,7 @@ Public Class FrmMain
 
                 Dim Password As String = InputBox("Password :", "Connexion to database...")
 
-                If Password = "dabou" Then
+                If Password = "sexyboy" Then
                     Connexion = New SqlConnection
                     Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
 
