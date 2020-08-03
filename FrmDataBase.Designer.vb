@@ -10,7 +10,6 @@ Partial Class FrmDataBase
                 components.Dispose()
             End If
         Finally
-            Connexion.Close()
             DAdapter.Dispose()
             Command.Dispose()
             Mat.Dispose()

@@ -11,7 +11,6 @@ Partial Class FrmMix
             End If
         Finally
             Command.Dispose()
-            Connexion.Dispose()
             DAdapter.Dispose()
             Mat.Dispose()
             MyBase.Dispose(disposing)

@@ -5,7 +5,7 @@ Imports System.Xml
 
 Public Class FrmDataBase
 
-    Dim Connexion As SqlConnection
+    'Dim Connexion As SqlConnection
     Dim DAdapter As SqlDataAdapter
     Dim Command As SqlCommand
 
@@ -16,7 +16,7 @@ Public Class FrmDataBase
     Dim MatNameOld As String = ""
 
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        Connexion.Close()
+        'Connexion.Close()
         DAdapter.Dispose()
         Command.Dispose()
         Mat.Dispose()
@@ -26,23 +26,23 @@ Public Class FrmDataBase
     Private Sub FrmDataBase_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Mat = New MaterialsData
-        Connexion = New SqlConnection
+        'Connexion = New SqlConnection
 
         'Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=thomas;Password=;"
-        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
+        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
 
         Dim Request = "SELECT * FROM MaterialsList"
         Command = New SqlCommand
-        Command.Connection = Connexion
+        Command.Connection = FrmMain.Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()
 
@@ -95,11 +95,11 @@ Public Class FrmDataBase
         Dim NewMat(4) As String
         Inputboxes(NewMat)
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -157,11 +157,11 @@ Public Class FrmDataBase
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -214,11 +214,11 @@ Public Class FrmDataBase
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try

@@ -6,7 +6,7 @@ Imports System.Xml
 
 Public Class FrmCIPM
 
-    Dim Connexion As SqlConnection
+    'Dim Connexion As SqlConnection
     Dim DAdapter As SqlDataAdapter
     Dim Command As SqlCommand
 
@@ -41,21 +41,22 @@ Public Class FrmCIPM
             .AxisY.MajorGrid.LineColor = Color.SkyBlue
         End With
 
-        Connexion = New SqlConnection
+        'Connexion = New SqlConnection
         'Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=sa;Password=***********"
-        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
+
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
 
         Dim Request = "SELECT * FROM MaterialsList"
         Command = New SqlCommand
-        Command.Connection = Connexion
+        Command.Connection = FrmMain.Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()
 
@@ -154,11 +155,11 @@ Public Class FrmCIPM
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -166,7 +167,7 @@ Public Class FrmCIPM
         Try
 
             Dim Request = "SELECT PHI FROM MaterialsList WHERE Name = '" + MatName + "'"
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
@@ -244,7 +245,6 @@ b:
     End Sub
 
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        Connexion.Close()
         DAdapter.Dispose()
         Command.Dispose()
         Mat.Dispose()
@@ -269,11 +269,11 @@ b:
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -285,12 +285,12 @@ b:
         Try
 
             Dim Request = "UPDATE MaterialsList SET PHI = " + PHIMinManual + " WHERE Name = '" + MatName + "'"
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
             Request = "UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'"
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
@@ -313,11 +313,11 @@ b:
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -329,12 +329,12 @@ b:
         Try
 
             Dim Request = "UPDATE [" + MatName + "] Set alpha = " + CStr(AlphaMin)
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
             Request = "UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'"
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
@@ -362,17 +362,17 @@ b:
 
     Private Sub LoadData()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
 
         Dim Request = "SELECT * FROM [" + MatName + "]"
-        Command.Connection = Connexion
+        Command.Connection = FrmMain.Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()
 
@@ -399,7 +399,7 @@ b:
 
         Try
             Request = "SELECT K FROM MaterialsList WHERE Name = '" + MatName + "'"
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
@@ -417,7 +417,6 @@ b:
     End Sub
 
     Protected Overrides Sub Finalize()
-        Connexion.Close()
         DAdapter.Dispose()
         Command.Dispose()
         Mat.Dispose()

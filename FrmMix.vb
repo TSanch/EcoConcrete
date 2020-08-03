@@ -6,7 +6,7 @@ Imports System.Xml
 
 Public Class FrmMix
 
-    Dim Connexion As SqlConnection
+    'Dim Connexion As SqlConnection
     Dim DAdapter As SqlDataAdapter
     Dim Command As SqlCommand
 
@@ -42,21 +42,22 @@ Public Class FrmMix
         '.AxisY.MajorGrid.LineColor = Color.SkyBlue
         'End With
 
-        Connexion = New SqlConnection
+        'Connexion = New SqlConnection
         'Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=sa;Password=***********"
-        Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
+
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
 
         Dim Request As String = "SELECT * FROM MaterialsList"
         Command = New SqlCommand
-        Command.Connection = Connexion
+        Command.Connection = FrmMain.Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()
 
@@ -136,7 +137,6 @@ Public Class FrmMix
     'End Sub
 
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        Connexion.Close()
         DAdapter.Dispose()
         Command.Dispose()
         Mat.Dispose()
@@ -158,11 +158,11 @@ Public Class FrmMix
 
     Private Sub LoadData()
 
-        If Connexion.State = ConnectionState.Open Then
-            Connexion.Close()
+        If FrmMain.Connexion.State = ConnectionState.Open Then
+            FrmMain.Connexion.Close()
         End If
         Try
-            Connexion.Open()
+            FrmMain.Connexion.Open()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -171,7 +171,7 @@ Public Class FrmMix
         Dim listName As String = String.Join("','", MatName)
         Dim Request As String = "SELECT * FROM MaterialsList WHERE Name IN ('" + listName + "')"
         Command = New SqlCommand
-        Command.Connection = Connexion
+        Command.Connection = FrmMain.Connexion
         Command.CommandText = Request
         Command.ExecuteNonQuery()
 
@@ -196,7 +196,7 @@ Public Class FrmMix
         For i As Integer = 0 To M - 1
 
             Request = "SELECT * FROM [" + MatName(i) + "]"
-            Command.Connection = Connexion
+            Command.Connection = FrmMain.Connexion
             Command.CommandText = Request
             Command.ExecuteNonQuery()
 
