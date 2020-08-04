@@ -10,8 +10,6 @@ Partial Class FrmDataBase
                 components.Dispose()
             End If
         Finally
-            DAdapter.Dispose()
-            Command.Dispose()
             Mat.Dispose()
             MyBase.Dispose(disposing)
         End Try
@@ -43,7 +41,6 @@ Partial Class FrmDataBase
         'ButtonExit
         '
         Me.ButtonExit.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.ButtonExit.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ButtonExit.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
         Me.ButtonExit.FlatAppearance.BorderSize = 2

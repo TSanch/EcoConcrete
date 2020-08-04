@@ -6,11 +6,7 @@ Imports System.Xml
 
 Public Class FrmMix
 
-    'Dim Connexion As SqlConnection
-    Dim DAdapter As SqlDataAdapter
-    Dim Command As SqlCommand
-
-    Dim Mat As MaterialsData
+    Dim Mat As New MaterialsData
 
     Dim MatName(10) As String
     Dim MatNameOld As String = ""
@@ -30,50 +26,16 @@ Public Class FrmMix
         LabelRes.Hide()
         Label9.Hide()
 
-        'Chart1.Titles.Add("Model Values")
-        'Chart1.ChartAreas.Clear()
-        'Chart1.ChartAreas.Add("Default")
-        'With Chart1.ChartAreas("Default")
-        '.AxisX.Title = "Compacity [.]"
-        '.AxisX.MajorGrid.LineColor = Color.SkyBlue
-        '.AxisY.Title = "Malax Energy [.]"
-        '.AxisY.Maximum = NumPHImin.Value
-        '.AxisY.Maximum = NumPHIMax.Value
-        '.AxisY.MajorGrid.LineColor = Color.SkyBlue
-        'End With
+        FrmMain.DBCon.VerifyConnexion()
 
-        'Connexion = New SqlConnection
-        'Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=sa;Password=***********"
-        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
-
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
-        End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Request As String = "SELECT * FROM MaterialsList"
-        Command = New SqlCommand
-        Command.Connection = FrmMain.Connexion
-        Command.CommandText = Request
-        Command.ExecuteNonQuery()
-
-        Mat = New MaterialsData
-
-        DAdapter = New SqlDataAdapter(Command)
-        DAdapter.Fill(Mat, "MaterialsList")
+        FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+        FrmMain.DBCon.MatFill(Mat, "MaterialsList")
 
         For i As Integer = 0 To Mat.Tables("MaterialsList").Rows.Count - 1
 
             CheckedListBox.Items.Add(Mat.Tables("MaterialsList")(i)(1))
 
         Next
-
-        'CheckedListBox.DisplayMember = "Name"
-        'CheckedListBox.ValueMember = "Id"
 
         NumK.Value = 12.2
         Numwa.Value = 1
@@ -85,12 +47,6 @@ Public Class FrmMix
         NumPhiStep.Value = 4
         NumPHIMax.Value = 0.8
         Numdp.Value = 6
-
-        'Chart1.Hide()
-
-        'Mat.Tables("MaterialsList").Columns.Add("p" + CStr(nbp))
-
-        'Ajouter colomne pour proportions p
 
         DataGridView.DataSource = Mat.Tables("MaterialsList")
         DataGridView.Columns("Id").Visible = False
@@ -118,67 +74,22 @@ Public Class FrmMix
 
     End Sub
 
-    'Private Sub frmCIPM_Plot(ByVal x As Double, ByVal y As Double, ByVal choice As Integer)
-
-    '    Chart1.Show()
-
-    '    Chart1.ChartAreas("Default").AxisY.Minimum = 0
-    '    Chart1.ChartAreas("Default").AxisY.Maximum = 0.3
-    '    Chart1.ChartAreas("Default").AxisX.Minimum = NumPHImin.Value
-    '    Chart1.ChartAreas("Default").AxisX.Maximum = NumPHIMax.Value
-
-    '    Select Case choice
-    '        Case 1
-    '            Chart1.Series("Plot").Points.AddXY(x, y)
-    '        Case 2
-    '            Chart1.Series("PlotMin").Points.AddXY(x, y)
-    '    End Select
-
-    'End Sub
-
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        DAdapter.Dispose()
-        Command.Dispose()
+
         Mat.Dispose()
         MyBase.Finalize()
+
     End Sub
-
-    'Private Sub InitGraphs()
-
-    '    Chart1.Series.Clear()
-    '    Chart1.Series.Add("Plot")
-    '    Chart1.Series("Plot").Color = Color.Red
-    '    Chart1.Series("Plot").ChartType = DataVisualization.Charting.SeriesChartType.Line
-    '    Chart1.Series.Add("PlotMin")
-    '    Chart1.Series("PlotMin").Color = Color.Blue
-    '    Chart1.Series("PlotMin").MarkerSize = 10
-    '    Chart1.Series("PlotMin").ChartType = DataVisualization.Charting.SeriesChartType.Point
-
-    'End Sub
 
     Private Sub LoadData()
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
-        End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
+        FrmMain.DBCon.VerifyConnexion()
 
         Dim listName As String = String.Join("','", MatName)
-        Dim Request As String = "SELECT * FROM MaterialsList WHERE Name IN ('" + listName + "')"
-        Command = New SqlCommand
-        Command.Connection = FrmMain.Connexion
-        Command.CommandText = Request
-        Command.ExecuteNonQuery()
+        FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList WHERE Name IN ('" + listName + "')")
 
         Mat.Tables("MaterialsList").Clear()
-
-        DAdapter = New SqlDataAdapter(Command)
-        DAdapter.Fill(Mat, "MaterialsList")
+        FrmMain.DBCon.MatFill(Mat, "MaterialsList")
 
         DataGridView.DataSource = Mat.Tables("MaterialsList")
         DataGridView.Columns("Id").Visible = False
@@ -191,20 +102,11 @@ Public Class FrmMix
 
         M = MatName.Length()
 
-        'Dim Phi_values(M - 1) As Double
-
         For i As Integer = 0 To M - 1
 
-            Request = "SELECT * FROM [" + MatName(i) + "]"
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim DAdapter = New SqlDataAdapter(Command)
+            FrmMain.DBCon.DBRequest("SELECT * FROM [" + MatName(i) + "]")
             If Mat.Tables.Contains(MatName(i)) Then Mat.Tables(MatName(i)).Clear()
-            DAdapter.Fill(Mat, MatName(i))
-
-            'Phi_values(i) = Mat.Tables("MaterialsList").Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray(j)(5)
+            FrmMain.DBCon.MatFill(Mat, MatName(i))
 
         Next
 
@@ -285,9 +187,7 @@ B:
 
             Next
 
-
             Label9.Show()
-
             LabelRes.Show()
 
             Mat.Tables("p")(0)(i) = PHIMin(i)
@@ -379,9 +279,11 @@ B:
     End Sub
 
     Private Sub KeyPaste(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView.KeyDown
+
         If e.KeyCode = Keys.V And Keys.ControlKey Then
             Paste()
         End If
+
     End Sub
 
     Private Sub Paste()

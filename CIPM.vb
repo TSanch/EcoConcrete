@@ -112,13 +112,11 @@ Public Class CIPM
             PhiBeta = 0
             Phi2Beta = 0
 
-            'Loop on the materials
             For k As Integer = 0 To NbMaterials - 1
 
                 beta = (1 + 1 / Kcipm) * alpha(k, i)
                 PhiBeta += p(k) * r(k, i) * Phi / beta
 
-                'Loop on the complete granulometry
                 r2 = 0
 
                 For j As Integer = 0 To (i - 1)

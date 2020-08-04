@@ -40,7 +40,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>EcoConcrete.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -157,6 +157,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBconnexion.vb" />
     <Compile Include="CIPM.vb" />
     <Compile Include="FrmDataBase.Designer.vb">
       <DependentUpon>FrmDataBase.vb</DependentUpon>
@@ -168,6 +169,12 @@
       <DependentUpon>FrmCIPM.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmCIPM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMain.vb">
@@ -212,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCIPM.resx">
       <DependentUpon>FrmCIPM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.en.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>

@@ -5,50 +5,24 @@ Imports System.Xml
 
 Public Class FrmDataBase
 
-    'Dim Connexion As SqlConnection
-    Dim DAdapter As SqlDataAdapter
-    Dim Command As SqlCommand
-
-    Dim Mat As MaterialsData
+    Dim Mat As New MaterialsData
     Dim n As Integer = 65
-
     Dim MatName As String
     Dim MatNameOld As String = ""
 
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        'Connexion.Close()
-        DAdapter.Dispose()
-        Command.Dispose()
+
+        FrmMain.DBCon.Dispose()
         Mat.Dispose()
         Close()
+
     End Sub
 
     Private Sub FrmDataBase_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Mat = New MaterialsData
-        'Connexion = New SqlConnection
-
-        'Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=thomas;Password=;"
-        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
-
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
-        End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Request = "SELECT * FROM MaterialsList"
-        Command = New SqlCommand
-        Command.Connection = FrmMain.Connexion
-        Command.CommandText = Request
-        Command.ExecuteNonQuery()
-
-
-        DAdapter = New SqlDataAdapter(Command)
-        DAdapter.Fill(Mat, "MaterialsList")
+        FrmMain.DBCon.VerifyConnexion()
+        FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+        FrmMain.DBCon.MatFill(Mat, "MaterialsList")
 
         ComboBoxMat.DataSource = Mat.Tables("MaterialsList")
         ComboBoxMat.DisplayMember = "Name"
@@ -63,24 +37,17 @@ Public Class FrmDataBase
 
         Try
 
-            Dim Request = "SELECT * FROM [" + MatName + "]"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            DAdapter = New SqlDataAdapter(Command)
-
+            FrmMain.DBCon.DBRequest("SELECT * FROM [" + MatName + "]")
             If Mat.Tables.Contains(MatName) Then Mat.Tables(MatName).Clear()
-            DAdapter.Fill(Mat, MatName)
+            FrmMain.DBCon.MatFill(Mat, MatName)
 
             DataGridView.DataSource = Mat.Tables(MatName)
             DataGridView.Columns("Id").Visible = False
-            DataGridView2.AutoResizeColumns()
-            'DataGridView.AutoSize = False
+            DataGridView.AutoResizeColumns()
 
             DataGridView2.DataSource = Mat.Tables("MaterialsList")
             DataGridView2.Columns("Id").Visible = False
             DataGridView2.AutoResizeColumns()
-            'DataGridView2.AutoSize = False
 
             MatNameOld = MatName
 
@@ -92,46 +59,36 @@ Public Class FrmDataBase
 
     Private Sub ButtonNewMat_Click(sender As Object, e As EventArgs) Handles ButtonNewMat.Click
 
-        Dim NewMat(4) As String
-        Inputboxes(NewMat)
+        If FrmMain.DBCon.user = "DABOU" Then
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
+            Dim NewMat(4) As String
+            Inputboxes(NewMat)
+
+            FrmMain.DBCon.VerifyConnexion()
+
+            Try
+
+                FrmMain.DBCon.DBRequest("INSERT INTO MaterialsList (Name, Manufacturer, Cost, Density) VALUES ('" + NewMat(0) + "', '" + NewMat(1) + "', " + NewMat(2) + ", " + NewMat(3) + ")")
+                FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+                FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+
+                FrmMain.DBCon.DBRequest("CREATE TABLE [dbo].[" + NewMat(0) + "] ([Id] INT IDENTITY (1, 1) NOT NULL, [r] FLOAT (53) NULL, [alpha] FLOAT (53) NOT NULL, [d] FLOAT (53) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC))")
+
+                For i As Integer = 0 To NewMat(4)
+                    FrmMain.DBCon.DBRequest("INSERT INTO [" + NewMat(0) + "] ([r], [alpha], [d]) VALUES (0, 0, 0)")
+                Next
+
+                Mat.Tables.Add(NewMat(0))
+
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+
+        Else
+
+            MessageBox.Show("Error: Admin access required.")
+
         End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Try
-
-            Dim Request = "INSERT INTO MaterialsList (Name, Manufacturer, Cost, Density) VALUES ('" + NewMat(0) + "', '" + NewMat(1) + "', " + NewMat(2) + ", " + NewMat(3) + ")"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Request = "SELECT * FROM MaterialsList"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim DAdapter = New SqlDataAdapter(Command)
-            DAdapter.Fill(Mat, "MaterialsList")
-
-            Request = "CREATE TABLE [dbo].[" + NewMat(0) + "] ([Id] INT IDENTITY (1, 1) NOT NULL, [r] FLOAT (53) NULL, [alpha] FLOAT (53) NOT NULL, [d] FLOAT (53) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC))"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            For i As Integer = 0 To NewMat(4)
-                Request = "INSERT INTO [" + NewMat(0) + "] ([r], [alpha], [d]) VALUES (0, 0, 0)"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-            Next
-
-            Mat.Tables.Add(NewMat(0))
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
 
     End Sub
 
@@ -154,104 +111,86 @@ Public Class FrmDataBase
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
 
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        Dim MatName As String = oData.Row("Name").ToString()
+        If FrmMain.DBCon.user = "DABOU" Then
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
+            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+            Dim MatName As String = oData.Row("Name").ToString()
+
+            FrmMain.DBCon.VerifyConnexion()
+
+            Select Case MsgBox("Are you sure to save the material: " + MatName, MsgBoxStyle.YesNo, MatName)
+                Case MsgBoxResult.Yes
+
+                    FrmMain.DBCon.DBRequest("SELECT * FROM [" + MatName + "]")
+                    FrmMain.DBCon.MatFill(Mat, MatName)
+
+                    FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+                    FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+
+                    Select Case MsgBox("Some d value are null in " + MatName + ". Do you want to delete them ?", MsgBoxStyle.YesNo, MatName)
+
+                        Case MsgBoxResult.Yes
+
+                            FrmMain.DBCon.DBRequest("DELETE FROM [" + MatName + "] WHERE d IS NULL OR d = 0")
+                            FrmMain.DBCon.DBUpdate(Mat, MatName)
+
+                        Case MsgBoxResult.No
+
+                    End Select
+
+                Case MsgBoxResult.No
+
+                    GoTo B
+
+            End Select
+
+        Else
+
+            MessageBox.Show("Error: Admin access required.")
+
         End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Select Case MsgBox("Are you sure to save the material: " + MatName, MsgBoxStyle.YesNo, MatName)
-            Case MsgBoxResult.Yes
-
-                Dim Request = "SELECT * FROM [" + MatName + "]"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                Dim DAdapter As New SqlDataAdapter(Command)
-                Dim CmdBuilder As New SqlCommandBuilder(DAdapter)
-
-                DAdapter.Update(Mat, MatName)
-
-                Request = "SELECT * FROM MaterialsList"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                DAdapter = New SqlDataAdapter(Command)
-                CmdBuilder = New SqlCommandBuilder(DAdapter)
-
-                DAdapter.Update(Mat, "MaterialsList")
-
-            Case MsgBoxResult.No
-
-        End Select
-
-        Select Case MsgBox("Some d value are null in " + MatName + ". Do you want to delete them ?", MsgBoxStyle.YesNo, MatName)
-            Case MsgBoxResult.Yes
-
-                Dim Request = "DELETE FROM [" + MatName + "] WHERE d IS NULL OR d = 0"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                Dim DAdapter As New SqlDataAdapter(Command)
-                Dim CmdBuilder As New SqlCommandBuilder(DAdapter)
-
-                DAdapter.Update(Mat, MatName)
-
-            Case MsgBoxResult.No
-
-        End Select
-
+B:
     End Sub
 
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
 
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        Dim MatName As String = oData.Row("Name").ToString()
+        If FrmMain.DBCon.user = "DABOU" Then
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
+            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+            Dim MatName As String = oData.Row("Name").ToString()
+
+            FrmMain.DBCon.VerifyConnexion()
+
+            Select Case MsgBox("Are you sure to delete the material: " + MatName, MsgBoxStyle.YesNo, MatName)
+                Case MsgBoxResult.Yes
+
+                    FrmMain.DBCon.DBRequest("DROP TABLE [" + MatName + "]")
+                    Mat.Tables.Remove(MatName)
+                    FrmMain.DBCon.DBRequest("DELETE FROM MaterialsList WHERE Name = '" + MatName + "'")
+
+                    FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+                    FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+
+                Case MsgBoxResult.No
+
+                    GoTo B
+
+            End Select
+
+        Else
+
+            MessageBox.Show("Error: Admin access required.")
+
         End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Select Case MsgBox("Are you sure to delete the material: " + MatName, MsgBoxStyle.YesNo, MatName)
-            Case MsgBoxResult.Yes
-                Dim Request = "DROP TABLE [" + MatName + "]"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                Mat.Tables.Remove(MatName)
-
-                Request = "DELETE FROM MaterialsList WHERE Name = '" + MatName + "'"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                Request = "SELECT * FROM MaterialsList"
-                Command.CommandText = Request
-                Command.ExecuteNonQuery()
-
-                Dim DAdapter As New SqlDataAdapter(Command)
-                DAdapter.Fill(Mat, "MaterialsList")
-
-            Case MsgBoxResult.No
-
-        End Select
-
+B:
     End Sub
 
     Private Sub KeyPaste(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DataGridView.KeyDown
+
         If e.KeyCode = Keys.V And Keys.ControlKey Then
             Paste()
         End If
+
     End Sub
 
     Private Sub Paste()
@@ -288,6 +227,7 @@ Public Class FrmDataBase
 
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         MatName = oData.Row("Name").ToString()
+
         If MatName <> MatNameOld Then DiplayData()
 
     End Sub

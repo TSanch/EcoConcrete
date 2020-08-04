@@ -10,8 +10,6 @@ Partial Class FrmCIPM
                 components.Dispose()
             End If
         Finally
-            DAdapter.Dispose()
-            Command.Dispose()
             Mat.Dispose()
             MyBase.Dispose(disposing)
         End Try
@@ -405,7 +403,7 @@ Partial Class FrmCIPM
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Symbol", 10.0!)
         Me.Label2.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label2.Location = New System.Drawing.Point(219, 325)
+        Me.Label2.Location = New System.Drawing.Point(219, 324)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(18, 17)
@@ -433,7 +431,7 @@ Partial Class FrmCIPM
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Symbol", 10.0!)
         Me.Label16.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label16.Location = New System.Drawing.Point(219, 371)
+        Me.Label16.Location = New System.Drawing.Point(219, 370)
         Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(18, 17)

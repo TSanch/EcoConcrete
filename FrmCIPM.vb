@@ -3,14 +3,11 @@ Imports System.Windows.Forms.DataVisualization.Charting
 Imports System.Data.SqlClient
 Imports System.Data.DataRow
 Imports System.Xml
+Imports System.Diagnostics.Eventing.Reader
 
 Public Class FrmCIPM
 
-    'Dim Connexion As SqlConnection
-    Dim DAdapter As SqlDataAdapter
-    Dim Command As SqlCommand
-
-    Dim Mat As MaterialsData
+    Dim Mat As New MaterialsData
 
     Dim MatName As String
     Dim MatNameOld As String = ""
@@ -41,29 +38,9 @@ Public Class FrmCIPM
             .AxisY.MajorGrid.LineColor = Color.SkyBlue
         End With
 
-        'Connexion = New SqlConnection
-        'Connexion.ConnectionString = "Data Source = 132.203.72.135;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Persist Security Info=True;User ID=sa;Password=***********"
-        'Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
-
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
-        End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Request = "SELECT * FROM MaterialsList"
-        Command = New SqlCommand
-        Command.Connection = FrmMain.Connexion
-        Command.CommandText = Request
-        Command.ExecuteNonQuery()
-
-        Mat = New MaterialsData
-
-        DAdapter = New SqlDataAdapter(Command)
-        DAdapter.Fill(Mat, "MaterialsList")
+        FrmMain.DBCon.VerifyConnexion()
+        FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+        FrmMain.DBCon.MatFill(Mat, "MaterialsList")
 
         ComboBoxMat.DataSource = Mat.Tables("MaterialsList")
         ComboBoxMat.DisplayMember = "Name"
@@ -87,10 +64,48 @@ Public Class FrmCIPM
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         MatName = oData.Row("Name").ToString()
 
-        Mat = New MaterialsData
         LoadData()
 
     End Sub
+
+    Private Sub LoadData()
+
+        FrmMain.DBCon.VerifyConnexion()
+        FrmMain.DBCon.DBRequest("SELECT * FROM [" + MatName + "]")
+        FrmMain.DBCon.MatFill(Mat, MatName)
+
+        Dim MatTable()() As Object = Mat.Tables(MatName).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
+        n = MatTable.Count()
+
+        ReDim r(M - 1, n - 1)
+        For i As Integer = 0 To n - 1
+            r(0, i) = MatTable(i)(1) / 100
+        Next
+
+        ReDim alpha(M - 1, n - 1)
+        For i As Integer = 0 To n - 1
+            alpha(0, i) = MatTable(i)(2)
+        Next
+
+        ReDim d(n - 1)
+        For i As Integer = 0 To n - 1
+            d(i) = MatTable(i)(3)
+        Next
+
+        Try
+            FrmMain.DBCon.DBRequest("SELECT K FROM MaterialsList WHERE Name = '" + MatName + "'")
+            FrmMain.DBCon.DBRead(NumK.Value)
+
+        Catch ex As Exception
+            MessageBox.Show("No value for K in " + MatName + ". Default value = 12.2")
+            NumK.Value = 12.2
+
+        End Try
+
+        MatNameOld = MatName
+
+    End Sub
+
 
     Private Sub ButtonPhi_Click(sender As Object, e As EventArgs) Handles ButtonPhi.Click
 
@@ -155,30 +170,17 @@ Public Class FrmCIPM
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         Dim MatName As String = oData.Row("Name").ToString()
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
-        End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+        FrmMain.DBCon.VerifyConnexion()
 
         Try
 
-            Dim Request = "SELECT PHI FROM MaterialsList WHERE Name = '" + MatName + "'"
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim reader As SqlDataReader = Command.ExecuteReader()
-            reader.Read()
-            Phi = CDbl(reader.GetString(0))
+            FrmMain.DBCon.DBRequest("SELECT PHI FROM MaterialsList WHERE Name = '" + MatName + "'")
+            FrmMain.DBCon.DBRead(Phi)
             MessageBox.Show("Phi = " + Phi.ToString())
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
-            GoTo b
+            GoTo B
 
         End Try
 
@@ -217,8 +219,7 @@ Public Class FrmCIPM
         Labelalphamin.Show()
         AlphaMin = Math.Round(AlphaMin, 3)
         Labelalphamin.Text = CStr(AlphaMin)
-b:
-
+B:
     End Sub
 
     Private Sub frmCIPM_Plot(ByVal x() As Double, ByVal y() As Double, ByVal xmin As Double, ByVal xmax As Double)
@@ -245,10 +246,10 @@ b:
     End Sub
 
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
-        DAdapter.Dispose()
-        Command.Dispose()
+
         Mat.Dispose()
         Close()
+
     End Sub
 
     Private Sub InitGraphs()
@@ -266,88 +267,67 @@ b:
 
     Private Sub ButtonSavePhi_Click(sender As Object, e As EventArgs) Handles ButtonSavePhi.Click
 
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        Dim MatName As String = oData.Row("Name").ToString()
+        If FrmMain.DBCon.user = "DABOU" Then
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
+            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+            Dim MatName As String = oData.Row("Name").ToString()
+
+            FrmMain.DBCon.VerifyConnexion()
+
+            Dim Question As String = "Value of PHI ?"
+            Dim PHIMinManual As String = CStr(PHIMin)
+            PHIMinManual = InputBox(Question, "SAVE PHI", CStr(PHIMin))
+
+            Try
+
+                FrmMain.DBCon.DBRequest("UPDATE MaterialsList SET PHI = " + PHIMinManual + " WHERE Name = '" + MatName + "'")
+                FrmMain.DBCon.DBRequest("UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'")
+
+                FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+                FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+
+        Else
+
+            MessageBox.Show("Error: Admin access required.")
+
         End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Question As String = "Value of PHI ?"
-        Dim PHIMinManual As String = CStr(PHIMin)
-        PHIMinManual = InputBox(Question, "SAVE PHI", CStr(PHIMin))
-
-        Try
-
-            Dim Request = "UPDATE MaterialsList SET PHI = " + PHIMinManual + " WHERE Name = '" + MatName + "'"
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Request = "UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'"
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Request = "SELECT * FROM MaterialsList"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim DAdapter As New SqlDataAdapter(Command)
-            DAdapter.Fill(Mat, "MaterialsList")
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-
-        End Try
 
     End Sub
 
     Private Sub ButtonSaveAlpha_Click(sender As Object, e As EventArgs) Handles ButtonSaveAlpha.Click
 
-        Dim oData As DataRowView = ComboBoxMat.SelectedItem
-        Dim MatName As String = oData.Row("Name").ToString()
+        If FrmMain.DBCon.user = "DABOU" Then
 
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
+            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+            Dim MatName As String = oData.Row("Name").ToString()
+
+            FrmMain.DBCon.VerifyConnexion()
+
+            Dim Question As String = "Value of Alpha ?"
+            Dim AlphaMinManual As String = CStr(AlphaMin)
+            AlphaMinManual = InputBox(Question, "SAVE Alpha", CStr(AlphaMin))
+
+            Try
+
+                FrmMain.DBCon.DBRequest("UPDATE [" + MatName + "] Set alpha = " + CStr(AlphaMin))
+                FrmMain.DBCon.DBRequest("UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'")
+
+                FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+                FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+
+        Else
+
+            MessageBox.Show("Error: Admin access required.")
+
         End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Question As String = "Value of Alpha ?"
-        Dim AlphaMinManual As String = CStr(AlphaMin)
-        AlphaMinManual = InputBox(Question, "SAVE Alpha", CStr(AlphaMin))
-
-        Try
-
-            Dim Request = "UPDATE [" + MatName + "] Set alpha = " + CStr(AlphaMin)
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Request = "UPDATE MaterialsList SET K = " + CStr(NumK.Value) + " WHERE Name = '" + MatName + "'"
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Request = "SELECT * FROM MaterialsList"
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim DAdapter As New SqlDataAdapter(Command)
-            DAdapter.Fill(Mat, "MaterialsList")
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-
-        End Try
 
     End Sub
 
@@ -360,67 +340,11 @@ b:
 
     End Sub
 
-    Private Sub LoadData()
-
-        If FrmMain.Connexion.State = ConnectionState.Open Then
-            FrmMain.Connexion.Close()
-        End If
-        Try
-            FrmMain.Connexion.Open()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-        Dim Request = "SELECT * FROM [" + MatName + "]"
-        Command.Connection = FrmMain.Connexion
-        Command.CommandText = Request
-        Command.ExecuteNonQuery()
-
-        Dim DAdapter = New SqlDataAdapter(Command)
-        DAdapter.Fill(Mat, MatName)
-
-        Dim MatTable()() As Object = Mat.Tables(MatName).Rows.Cast(Of DataRow).Select(Function(dr) dr.ItemArray).ToArray
-        n = MatTable.Count()
-
-        ReDim r(M - 1, n - 1)
-        For i As Integer = 0 To n - 1
-            r(0, i) = MatTable(i)(1) / 100
-        Next
-
-        ReDim alpha(M - 1, n - 1)
-        For i As Integer = 0 To n - 1
-            alpha(0, i) = MatTable(i)(2)
-        Next
-
-        ReDim d(n - 1)
-        For i As Integer = 0 To n - 1
-            d(i) = MatTable(i)(3)
-        Next
-
-        Try
-            Request = "SELECT K FROM MaterialsList WHERE Name = '" + MatName + "'"
-            Command.Connection = FrmMain.Connexion
-            Command.CommandText = Request
-            Command.ExecuteNonQuery()
-
-            Dim reader As SqlDataReader = Command.ExecuteReader()
-            reader.Read()
-            NumK.Value = CDbl(reader.GetString(0))
-
-        Catch ex As Exception
-            MessageBox.Show("No value for K in " + MatName + ". Default value = 12.2")
-            NumK.Value = 12.2
-        End Try
-
-        MatNameOld = MatName
-
-    End Sub
-
     Protected Overrides Sub Finalize()
-        DAdapter.Dispose()
-        Command.Dispose()
+
         Mat.Dispose()
         MyBase.Finalize()
+
     End Sub
 
 End Class

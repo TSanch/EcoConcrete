@@ -9,15 +9,6 @@ Partial Class FrmMain
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If
-            If disposing AndAlso frmC IsNot Nothing Then
-                frmC.Dispose()
-            End If
-            If disposing AndAlso frmD IsNot Nothing Then
-                frmD.Dispose()
-            End If
-            If disposing AndAlso frmM IsNot Nothing Then
-                frmM.Dispose()
-            End If
         Finally
             MyBase.Dispose(disposing)
         End Try
@@ -38,11 +29,11 @@ Partial Class FrmMain
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptmisationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CIPMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MIXToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VersionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.MIXToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         MenuStrip1 = New System.Windows.Forms.MenuStrip()
         MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -83,7 +74,7 @@ Partial Class FrmMain
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'OptmisationToolStripMenuItem
@@ -97,8 +88,14 @@ Partial Class FrmMain
         'CIPMToolStripMenuItem
         '
         Me.CIPMToolStripMenuItem.Name = "CIPMToolStripMenuItem"
-        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CIPMToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.CIPMToolStripMenuItem.Text = "CIPM"
+        '
+        'MIXToolStripMenuItem
+        '
+        Me.MIXToolStripMenuItem.Name = "MIXToolStripMenuItem"
+        Me.MIXToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
+        Me.MIXToolStripMenuItem.Text = "MIX"
         '
         'ToolStripMenuItem1
         '
@@ -128,16 +125,11 @@ Partial Class FrmMain
         Me.Panel1.Size = New System.Drawing.Size(21, 500)
         Me.Panel1.TabIndex = 2
         '
-        'MIXToolStripMenuItem
-        '
-        Me.MIXToolStripMenuItem.Name = "MIXToolStripMenuItem"
-        Me.MIXToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.MIXToolStripMenuItem.Text = "MIX"
-        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.Gainsboro
         Me.BackgroundImage = Global.EcoConcrete.My.Resources.Resources.UHPC_1
         Me.ClientSize = New System.Drawing.Size(1000, 500)
@@ -147,6 +139,7 @@ Partial Class FrmMain
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.MainMenuStrip = MenuStrip1
         Me.Name = "FrmMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "EcoConcrete"
         Me.TransparencyKey = System.Drawing.Color.Transparent
         MenuStrip1.ResumeLayout(False)

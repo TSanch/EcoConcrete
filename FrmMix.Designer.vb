@@ -10,8 +10,6 @@ Partial Class FrmMix
                 components.Dispose()
             End If
         Finally
-            Command.Dispose()
-            DAdapter.Dispose()
             Mat.Dispose()
             MyBase.Dispose(disposing)
         End Try
@@ -77,7 +75,7 @@ Partial Class FrmMix
         '
         'Numwa
         '
-        Me.Numwa.Location = New System.Drawing.Point(924, 172)
+        Me.Numwa.Location = New System.Drawing.Point(874, 130)
         Me.Numwa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwa.Name = "Numwa"
         Me.Numwa.Size = New System.Drawing.Size(63, 22)
@@ -85,7 +83,7 @@ Partial Class FrmMix
         '
         'Numwb
         '
-        Me.Numwb.Location = New System.Drawing.Point(924, 200)
+        Me.Numwb.Location = New System.Drawing.Point(874, 158)
         Me.Numwb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numwb.Name = "Numwb"
         Me.Numwb.Size = New System.Drawing.Size(63, 22)
@@ -95,7 +93,7 @@ Partial Class FrmMix
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label3.Location = New System.Drawing.Point(864, 174)
+        Me.Label3.Location = New System.Drawing.Point(814, 132)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(26, 14)
@@ -106,7 +104,7 @@ Partial Class FrmMix
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label4.Location = New System.Drawing.Point(864, 202)
+        Me.Label4.Location = New System.Drawing.Point(814, 160)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(26, 14)
@@ -116,7 +114,7 @@ Partial Class FrmMix
         'NumCa
         '
         Me.NumCa.DecimalPlaces = 2
-        Me.NumCa.Location = New System.Drawing.Point(924, 232)
+        Me.NumCa.Location = New System.Drawing.Point(874, 190)
         Me.NumCa.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCa.Name = "NumCa"
         Me.NumCa.Size = New System.Drawing.Size(63, 22)
@@ -125,7 +123,7 @@ Partial Class FrmMix
         'NumCb
         '
         Me.NumCb.DecimalPlaces = 2
-        Me.NumCb.Location = New System.Drawing.Point(924, 259)
+        Me.NumCb.Location = New System.Drawing.Point(874, 217)
         Me.NumCb.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumCb.Name = "NumCb"
         Me.NumCb.Size = New System.Drawing.Size(63, 22)
@@ -133,7 +131,7 @@ Partial Class FrmMix
         '
         'Numdc
         '
-        Me.Numdc.Location = New System.Drawing.Point(924, 287)
+        Me.Numdc.Location = New System.Drawing.Point(874, 245)
         Me.Numdc.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Numdc.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
         Me.Numdc.Name = "Numdc"
@@ -144,7 +142,7 @@ Partial Class FrmMix
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label5.Location = New System.Drawing.Point(864, 233)
+        Me.Label5.Location = New System.Drawing.Point(814, 191)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(24, 14)
@@ -155,7 +153,7 @@ Partial Class FrmMix
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label6.Location = New System.Drawing.Point(864, 261)
+        Me.Label6.Location = New System.Drawing.Point(814, 219)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(24, 14)
@@ -166,7 +164,7 @@ Partial Class FrmMix
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label7.Location = New System.Drawing.Point(864, 289)
+        Me.Label7.Location = New System.Drawing.Point(814, 247)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(21, 14)
@@ -192,7 +190,6 @@ Partial Class FrmMix
         'ButtonExit
         '
         Me.ButtonExit.BackColor = System.Drawing.Color.Transparent
-        Me.ButtonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.ButtonExit.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.ButtonExit.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange
         Me.ButtonExit.FlatAppearance.BorderSize = 2
@@ -288,7 +285,7 @@ Partial Class FrmMix
         Me.ButtonMixOpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonMixOpt.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonMixOpt.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonMixOpt.Location = New System.Drawing.Point(826, 426)
+        Me.ButtonMixOpt.Location = New System.Drawing.Point(777, 415)
         Me.ButtonMixOpt.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ButtonMixOpt.Name = "ButtonMixOpt"
         Me.ButtonMixOpt.Size = New System.Drawing.Size(161, 30)
@@ -316,7 +313,7 @@ Partial Class FrmMix
         '
         Me.NumPHIMax.DecimalPlaces = 1
         Me.NumPHIMax.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumPHIMax.Location = New System.Drawing.Point(922, 354)
+        Me.NumPHIMax.Location = New System.Drawing.Point(872, 312)
         Me.NumPHIMax.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHIMax.Name = "NumPHIMax"
         Me.NumPHIMax.Size = New System.Drawing.Size(63, 22)
@@ -326,7 +323,7 @@ Partial Class FrmMix
         '
         Me.NumPHImin.DecimalPlaces = 1
         Me.NumPHImin.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.NumPHImin.Location = New System.Drawing.Point(922, 326)
+        Me.NumPHImin.Location = New System.Drawing.Point(872, 284)
         Me.NumPHImin.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPHImin.Name = "NumPHImin"
         Me.NumPHImin.Size = New System.Drawing.Size(63, 22)
@@ -335,7 +332,7 @@ Partial Class FrmMix
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(876, 362)
+        Me.Label13.Location = New System.Drawing.Point(826, 320)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(32, 14)
         Me.Label13.TabIndex = 63
@@ -345,7 +342,7 @@ Partial Class FrmMix
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label14.Location = New System.Drawing.Point(862, 354)
+        Me.Label14.Location = New System.Drawing.Point(812, 312)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(18, 17)
@@ -355,7 +352,7 @@ Partial Class FrmMix
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(876, 334)
+        Me.Label11.Location = New System.Drawing.Point(826, 292)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(28, 14)
         Me.Label11.TabIndex = 61
@@ -365,7 +362,7 @@ Partial Class FrmMix
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label12.Location = New System.Drawing.Point(862, 327)
+        Me.Label12.Location = New System.Drawing.Point(812, 285)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(18, 17)
@@ -375,7 +372,7 @@ Partial Class FrmMix
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(854, 398)
+        Me.Label10.Location = New System.Drawing.Point(804, 356)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(61, 14)
         Me.Label10.TabIndex = 59
@@ -385,7 +382,7 @@ Partial Class FrmMix
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Symbol", 10.0!)
-        Me.Label8.Location = New System.Drawing.Point(862, 381)
+        Me.Label8.Location = New System.Drawing.Point(812, 339)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(18, 17)
@@ -394,7 +391,7 @@ Partial Class FrmMix
         '
         'NumPhiStep
         '
-        Me.NumPhiStep.Location = New System.Drawing.Point(922, 380)
+        Me.NumPhiStep.Location = New System.Drawing.Point(872, 338)
         Me.NumPhiStep.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumPhiStep.Name = "NumPhiStep"
         Me.NumPhiStep.Size = New System.Drawing.Size(63, 22)
@@ -404,7 +401,7 @@ Partial Class FrmMix
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.Color.DarkOrange
-        Me.Label1.Location = New System.Drawing.Point(862, 136)
+        Me.Label1.Location = New System.Drawing.Point(812, 94)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(15, 14)
@@ -414,7 +411,7 @@ Partial Class FrmMix
         'NumK
         '
         Me.NumK.DecimalPlaces = 1
-        Me.NumK.Location = New System.Drawing.Point(922, 134)
+        Me.NumK.Location = New System.Drawing.Point(872, 92)
         Me.NumK.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.NumK.Name = "NumK"
         Me.NumK.Size = New System.Drawing.Size(63, 22)
@@ -447,7 +444,7 @@ Partial Class FrmMix
         Me.ButtonMixAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonMixAuto.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonMixAuto.ForeColor = System.Drawing.Color.DarkOrange
-        Me.ButtonMixAuto.Location = New System.Drawing.Point(657, 426)
+        Me.ButtonMixAuto.Location = New System.Drawing.Point(608, 415)
         Me.ButtonMixAuto.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.ButtonMixAuto.Name = "ButtonMixAuto"
         Me.ButtonMixAuto.Size = New System.Drawing.Size(161, 30)
