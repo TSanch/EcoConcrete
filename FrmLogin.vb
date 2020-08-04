@@ -69,7 +69,7 @@ Public Class FrmLogin
 
             FrmMain.DBCon.user = "Public"
             MessageBox.Show("Database in Read Access")
-            FrmMain.DBCon.Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\Materials.mdf;Integrated Security=True;Connect Timeout=30"
+            FrmMain.DBCon.Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\MaterialsPublic.mdf;Integrated Security=True;Connect Timeout=30"
             Close()
 
         Else
