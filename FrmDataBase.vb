@@ -33,7 +33,7 @@ Public Class FrmDataBase
 
     End Sub
 
-    Public Sub DiplayData()
+    Public Sub DiplayData(ByRef MatName As String)
 
         Try
 
@@ -127,12 +127,14 @@ Public Class FrmDataBase
                     FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
                     FrmMain.DBCon.MatFill(Mat, "MaterialsList")
 
-                    Select Case MsgBox("Some d value are null in " + MatName + ". Do you want to delete them ?", MsgBoxStyle.YesNo, MatName)
+                    Select Case MsgBox("If some d value are null in " + MatName + ", do you want to delete them ?", MsgBoxStyle.YesNo, MatName)
 
                         Case MsgBoxResult.Yes
 
                             FrmMain.DBCon.DBRequest("DELETE FROM [" + MatName + "] WHERE d IS NULL OR d = 0")
                             FrmMain.DBCon.DBUpdate(Mat, MatName)
+
+                            RefreshForm()
 
                         Case MsgBoxResult.No
 
@@ -170,6 +172,8 @@ B:
 
                     FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
                     FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+
+                    RefreshForm()
 
                 Case MsgBoxResult.No
 
@@ -228,9 +232,17 @@ B:
         Dim oData As DataRowView = ComboBoxMat.SelectedItem
         MatName = oData.Row("Name").ToString()
 
-        If MatName <> MatNameOld Then DiplayData()
+        If MatName <> MatNameOld Then DiplayData(MatName)
 
     End Sub
 
+    Private Sub RefreshForm()
+
+        Dim Frm As New FrmDataBase
+        Frm.MdiParent = FrmMain
+        Frm.Show()
+        Me.Close()
+
+    End Sub
 
 End Class
