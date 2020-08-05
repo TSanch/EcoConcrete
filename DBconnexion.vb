@@ -42,16 +42,14 @@ Public Class DBconnexion
 
         Dim DAdapter As New SqlDataAdapter(Command)
         DAdapter.Fill(Mat, Table)
-        DAdapter.Dispose()
-
 
     End Sub
 
     Public Sub DBUpdate(ByRef Mat As MaterialsData, ByRef Table As String)
 
-        Dim DAdapter = New SqlDataAdapter(Command)
+        Dim DAdapter As New SqlDataAdapter(Command)
+        Dim CmdBuilder As New SqlCommandBuilder(DAdapter)
         DAdapter.Update(Mat, Table)
-        DAdapter.Dispose()
 
     End Sub
 

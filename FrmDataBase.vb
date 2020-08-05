@@ -12,7 +12,6 @@ Public Class FrmDataBase
 
     Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
 
-        FrmMain.DBCon.Dispose()
         Mat.Dispose()
         Close()
 
@@ -122,10 +121,10 @@ Public Class FrmDataBase
                 Case MsgBoxResult.Yes
 
                     FrmMain.DBCon.DBRequest("SELECT * FROM [" + MatName + "]")
-                    FrmMain.DBCon.MatFill(Mat, MatName)
+                    FrmMain.DBCon.DBUpdate(Mat, MatName)
 
                     FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
-                    FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+                    FrmMain.DBCon.DBUpdate(Mat, "MaterialsList")
 
                     Select Case MsgBox("If some d value are null in " + MatName + ", do you want to delete them ?", MsgBoxStyle.YesNo, MatName)
 
@@ -137,6 +136,8 @@ Public Class FrmDataBase
                             RefreshForm()
 
                         Case MsgBoxResult.No
+
+                            GoTo B
 
                     End Select
 

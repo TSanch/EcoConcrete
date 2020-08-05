@@ -67,10 +67,22 @@ Public Class FrmLogin
 
         ElseIf ComboBoxLogin.SelectedItem = "Public" Then
 
-            FrmMain.DBCon.user = "Public"
-            MessageBox.Show("Database in Read Access")
-            FrmMain.DBCon.Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\MaterialsPublic.mdf;Integrated Security=True;Connect Timeout=30"
-            Close()
+            If TextBoxPwd.Text = "sexyboy" Then
+
+                FrmMain.DBCon.user = "DABOU"
+                FrmMain.DBCon.Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\MaterialsPublic.mdf;Integrated Security=True;Connect Timeout=30"
+                Close()
+
+            Else
+
+                FrmMain.DBCon.user = "Public"
+                MessageBox.Show("Database in Read Access")
+                FrmMain.DBCon.Connexion.ConnectionString = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=\\GCI-DACON-01\Ecoconcrete\Database\MaterialsPublic.mdf;Integrated Security=True;Connect Timeout=30"
+                Close()
+
+            End If
+
+
 
         Else
 

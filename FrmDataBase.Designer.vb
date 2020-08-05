@@ -115,6 +115,9 @@ Partial Class FrmDataBase
         'DataGridView
         '
         Me.DataGridView.AllowDrop = True
+        Me.DataGridView.AllowUserToAddRows = False
+        Me.DataGridView.AllowUserToDeleteRows = False
+        Me.DataGridView.AllowUserToResizeRows = False
         Me.DataGridView.BackgroundColor = System.Drawing.Color.OldLace
         Me.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -141,6 +144,8 @@ Partial Class FrmDataBase
         '
         'DataGridView2
         '
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
         Me.DataGridView2.AllowUserToResizeRows = False
         Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
         Me.DataGridView2.BackgroundColor = System.Drawing.Color.OldLace
