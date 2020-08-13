@@ -30,8 +30,6 @@ Public Class FrmMain
         Me.WindowState = FormWindowState.Normal
         Me.Location = Screen.PrimaryScreen.WorkingArea.Location
 
-        DBCon.UserLog()
-
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click

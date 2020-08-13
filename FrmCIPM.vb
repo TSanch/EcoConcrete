@@ -267,9 +267,8 @@ B:
 
     Private Sub ButtonSavePhi_Click(sender As Object, e As EventArgs) Handles ButtonSavePhi.Click
 
-        If FrmMain.DBCon.user = "DABOU" Then
 
-            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
             Dim MatName As String = oData.Row("Name").ToString()
 
             FrmMain.DBCon.VerifyConnexion()
@@ -290,19 +289,14 @@ B:
                 MessageBox.Show(ex.Message)
             End Try
 
-        Else
 
-            MessageBox.Show("Error: Admin access required.")
-
-        End If
 
     End Sub
 
     Private Sub ButtonSaveAlpha_Click(sender As Object, e As EventArgs) Handles ButtonSaveAlpha.Click
 
-        If FrmMain.DBCon.user = "DABOU" Then
 
-            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
             Dim MatName As String = oData.Row("Name").ToString()
 
             FrmMain.DBCon.VerifyConnexion()
@@ -323,11 +317,6 @@ B:
                 MessageBox.Show(ex.Message)
             End Try
 
-        Else
-
-            MessageBox.Show("Error: Admin access required.")
-
-        End If
 
     End Sub
 

@@ -58,36 +58,28 @@ Public Class FrmDataBase
 
     Private Sub ButtonNewMat_Click(sender As Object, e As EventArgs) Handles ButtonNewMat.Click
 
-        If FrmMain.DBCon.user = "DABOU" Then
+        Dim NewMat(4) As String
+        Inputboxes(NewMat)
 
-            Dim NewMat(4) As String
-            Inputboxes(NewMat)
+        FrmMain.DBCon.VerifyConnexion()
 
-            FrmMain.DBCon.VerifyConnexion()
+        Try
 
-            Try
+            FrmMain.DBCon.DBRequest("INSERT INTO MaterialsList (Name, Manufacturer, Cost, Density) VALUES ('" + NewMat(0) + "', '" + NewMat(1) + "', " + NewMat(2) + ", " + NewMat(3) + ")")
+            FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
+            FrmMain.DBCon.MatFill(Mat, "MaterialsList")
 
-                FrmMain.DBCon.DBRequest("INSERT INTO MaterialsList (Name, Manufacturer, Cost, Density) VALUES ('" + NewMat(0) + "', '" + NewMat(1) + "', " + NewMat(2) + ", " + NewMat(3) + ")")
-                FrmMain.DBCon.DBRequest("SELECT * FROM MaterialsList")
-                FrmMain.DBCon.MatFill(Mat, "MaterialsList")
+            FrmMain.DBCon.DBRequest("CREATE TABLE [dbo].[" + NewMat(0) + "] ([Id] INT IDENTITY (1, 1) NOT NULL, [r] FLOAT (53) NULL, [alpha] FLOAT (53) NOT NULL, [d] FLOAT (53) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC))")
 
-                FrmMain.DBCon.DBRequest("CREATE TABLE [dbo].[" + NewMat(0) + "] ([Id] INT IDENTITY (1, 1) NOT NULL, [r] FLOAT (53) NULL, [alpha] FLOAT (53) NOT NULL, [d] FLOAT (53) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC))")
+            For i As Integer = 0 To NewMat(4)
+                FrmMain.DBCon.DBRequest("INSERT INTO [" + NewMat(0) + "] ([r], [alpha], [d]) VALUES (0, 0, 0)")
+            Next
 
-                For i As Integer = 0 To NewMat(4)
-                    FrmMain.DBCon.DBRequest("INSERT INTO [" + NewMat(0) + "] ([r], [alpha], [d]) VALUES (0, 0, 0)")
-                Next
+            Mat.Tables.Add(NewMat(0))
 
-                Mat.Tables.Add(NewMat(0))
-
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-
-        Else
-
-            MessageBox.Show("Error: Admin access required.")
-
-        End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
 
     End Sub
 
@@ -110,9 +102,8 @@ Public Class FrmDataBase
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
 
-        If FrmMain.DBCon.user = "DABOU" Then
 
-            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
             Dim MatName As String = oData.Row("Name").ToString()
 
             FrmMain.DBCon.VerifyConnexion()
@@ -147,19 +138,13 @@ Public Class FrmDataBase
 
             End Select
 
-        Else
-
-            MessageBox.Show("Error: Admin access required.")
-
-        End If
 B:
     End Sub
 
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
 
-        If FrmMain.DBCon.user = "DABOU" Then
 
-            Dim oData As DataRowView = ComboBoxMat.SelectedItem
+        Dim oData As DataRowView = ComboBoxMat.SelectedItem
             Dim MatName As String = oData.Row("Name").ToString()
 
             FrmMain.DBCon.VerifyConnexion()
@@ -182,11 +167,6 @@ B:
 
             End Select
 
-        Else
-
-            MessageBox.Show("Error: Admin access required.")
-
-        End If
 B:
     End Sub
 

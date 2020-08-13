@@ -6,13 +6,10 @@ Public Class DBconnexion
 
     Public Connexion As New SqlConnection
     Public Command As New SqlCommand
-    Public user As String
 
-    Public Sub UserLog()
+    Public Sub New()
 
-        Using frm As New FrmLogin
-            frm.ShowDialog()
-        End Using
+        Connexion.ConnectionString = "Data Source = 132.203.36.238;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Integrated Security=True"
 
     End Sub
 

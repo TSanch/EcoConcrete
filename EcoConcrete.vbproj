@@ -171,12 +171,6 @@
     <Compile Include="FrmCIPM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLogin.Designer.vb">
-      <DependentUpon>FrmLogin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FrmLogin.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -219,9 +213,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCIPM.resx">
       <DependentUpon>FrmCIPM.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmLogin.resx">
-      <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.en.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
