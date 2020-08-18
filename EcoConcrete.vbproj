@@ -157,6 +157,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox.Designer.vb">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DBconnexion.vb" />
     <Compile Include="CIPM.vb" />
     <Compile Include="FrmDataBase.Designer.vb">
@@ -208,6 +214,9 @@
     <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDataBase.resx">
       <DependentUpon>FrmDataBase.vb</DependentUpon>
     </EmbeddedResource>
@@ -268,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Design-of-Ecological-Concrete-by-Particule-Packing-Optimization.pdf" />
     <None Include="Resources\UHPC_1.tif" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +292,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo1.ico" />
+    <None Include="Resources\Image1.png" />
+    <None Include="Resources\Logo.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

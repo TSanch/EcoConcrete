@@ -107,13 +107,13 @@ Partial Class FrmMain
         'ManualToolStripMenuItem
         '
         Me.ManualToolStripMenuItem.Name = "ManualToolStripMenuItem"
-        Me.ManualToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.ManualToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ManualToolStripMenuItem.Text = "Manual"
         '
         'VersionToolStripMenuItem
         '
         Me.VersionToolStripMenuItem.Name = "VersionToolStripMenuItem"
-        Me.VersionToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.VersionToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.VersionToolStripMenuItem.Text = "Version"
         '
         'Panel1

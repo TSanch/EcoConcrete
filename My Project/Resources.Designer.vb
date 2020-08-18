@@ -61,11 +61,21 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend ReadOnly Property Design_of_Ecological_Concrete_by_Particule_Packing_Optimization() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Design_of_Ecological_Concrete_by_Particule_Packing_Optimization", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property UHPC_1() As System.Drawing.Bitmap
+        Friend ReadOnly Property Image1() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("UHPC_1", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("Image1", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -73,9 +83,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property uhpc_3_zoom_out1() As System.Drawing.Bitmap
+        Friend ReadOnly Property UHPC_1() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("uhpc-3 zoom out1", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("UHPC_1", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

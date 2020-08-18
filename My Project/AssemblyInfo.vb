@@ -10,10 +10,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("EcoConcrete")>
-<Assembly: AssemblyDescription("Concrete Mix Optimisation")>
-<Assembly: AssemblyCompany("EcoConcrete")>
+<Assembly: AssemblyDescription("Vb.net interface for concrete mix optimisation and SQL database connection")>
+<Assembly: AssemblyCompany("Thomas Sanchez")>
 <Assembly: AssemblyProduct("EcoConcrete")>
-<Assembly: AssemblyCopyright("Copyright ©  2020")>
+<Assembly: AssemblyCopyright("GNU General Public License v3.0")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(True)>

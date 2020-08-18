@@ -4,8 +4,7 @@ Imports System.Data.SqlClient
 Imports System.Linq.Expressions
 Imports System.Runtime.Remoting.Services
 Imports System.Linq
-
-
+Imports System.IO
 
 Public Class FrmMain
 
@@ -55,4 +54,20 @@ Public Class FrmMain
 
     End Sub
 
+    Private Sub VersionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VersionToolStripMenuItem.Click
+
+        Dim frmAbout = New AboutBox
+        frmAbout.ShowDialog()
+
+    End Sub
+
+    Private Sub ManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualToolStripMenuItem.Click
+
+        Dim manual As Byte() = My.Resources.Design_of_Ecological_Concrete_by_Particule_Packing_Optimization
+        Using tmp As New FileStream("Design-of-Ecological-Concrete-by-Particule-Packing-Optimization.pdf", FileMode.Create)
+            tmp.Write(manual, 0, manual.Length)
+        End Using
+        Process.Start("Design-of-Ecological-Concrete-by-Particule-Packing-Optimization.pdf")
+
+    End Sub
 End Class
