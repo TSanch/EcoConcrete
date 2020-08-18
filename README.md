@@ -13,21 +13,13 @@ You can also create your own database in local and replace the line in DBConnexi
 Connexion.ConnectionString = "Data Source = 132.203.36.238;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Integrated Security=True"
 by the your database file path.
 
-### Installing
-
-## Running the tests
-
-### And coding style tests
-
-## Deployment
-
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](https://github.com/TSanch/EcoConcrete/blob/master/CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
 
 ## Versioning
 
-We use SemVer for versioning. For the versions available, see the tags on this repository. 
+SemVer is used for versioning. For the versions available, see the tags on this repository. 
 
 ## Authors
 
@@ -35,7 +27,7 @@ We use SemVer for versioning. For the versions available, see the tags on this r
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](https://github.com/TSanch/EcoConcrete/blob/master/LICENSE.md) file for details
 
 ## Acknowledgments
 
