@@ -31,5 +31,5 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Acknowledgments
 
-CIPM algorithm : Design of Ecological Concrete by Particle Packing Optimization, S.A.A.M. Fennis, 2011
+CIPM algorithm : [Design of Ecological Concrete by Particle Packing Optimization, S.A.A.M. Fennis, 2011] (https://repository.tudelft.nl/islandora/object/uuid%3A5a1e445b-36a7-4f27-a89a-d48372d2a45c)
 
