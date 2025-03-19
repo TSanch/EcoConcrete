@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.Logging
 Imports Microsoft.Win32
 Imports System.Data.SqlClient
+Imports System.IO
 
 Public Class DBconnexion
 
@@ -9,7 +10,10 @@ Public Class DBconnexion
 
     Public Sub New()
 
-        Connexion.ConnectionString = "Data Source = 132.203.36.238;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Integrated Security=True"
+        Dim appDirectory As String = AppDomain.CurrentDomain.BaseDirectory
+        Dim localPath As String = Path.Combine(appDirectory, "Resources\Materials.mdf")
+        Connexion.ConnectionString = $"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={localPath};Integrated Security=False"
+        'Connexion.ConnectionString = "Data Source = 132.203.36.238;Initial Catalog=\\GCI-DACON-01\ECOCONCRETE\DATABASE\MATERIALS.MDF;Integrated Security=True"
 
     End Sub
 
