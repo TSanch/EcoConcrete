@@ -11,6 +11,7 @@ Public Class FrmMain
     Private frmC As FrmCIPM
     Private frmD As FrmDataBase
     Private frmM As FrmMix
+    Private frmA As AboutBox
 
     Public DBCon As New DBconnexion
 
@@ -56,8 +57,8 @@ Public Class FrmMain
 
     Private Sub VersionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VersionToolStripMenuItem.Click
 
-        Dim frmAbout = New AboutBox
-        frmAbout.ShowDialog()
+        frmA = New AboutBox
+        frmA.ShowDialog()
 
     End Sub
 
