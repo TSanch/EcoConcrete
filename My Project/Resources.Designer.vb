@@ -61,16 +61,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property DataBase() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("DataBase", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Recherche une ressource localisée de type System.Byte[].
         '''</summary>
         Friend ReadOnly Property Design_of_Ecological_Concrete_by_Particule_Packing_Optimization() As Byte()
